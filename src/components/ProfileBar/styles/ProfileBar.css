@@ -1,0 +1,36 @@
+._profile_stats_bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background-color: #f1f1f1d3;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  width: 100%;
+  border-bottom: 1px solid var(--light-grey);
+  padding-top: 120px;
+  border-top-left-radius: 0.5em;
+  border-top-right-radius: 0.5em;
+}
+
+._profile_stats_bar_icon {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  color: var(--medium-grey);
+  font-size: 0.8em;
+}
+
+._profile_stats_bar_icon div {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--dark-blue);
+  font-family: product_sans, sans-serif;
+  font-size: 1.2em;
+}
+
+._profile_stats_bar_icon div svg {
+  font-size: 1.2em;
+}

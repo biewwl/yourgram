@@ -1,0 +1,126 @@
+._profile_page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  background-image: url("../../../pattners/wiggle/wiggle.svg");
+}
+
+._profile_content {
+  padding-top: 60px;
+  width: 100%;
+  min-height: 100vh;
+  max-width: 800px;
+  background-color: #fff;
+  border-left: 1px solid var(--light-grey);
+  border-right: 1px solid var(--light-grey);
+  position: relative;
+}
+
+._header_profile {
+  width: 100%;
+  height: 250px;
+  /* background-color: red; */
+  position: absolute;
+  object-fit: cover;
+}
+
+._profile_presentation {
+  /* background-color: red; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  margin-top: 150px;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+}
+
+._profile_user_avatar {
+  position: absolute;
+  top: -80px;
+  text-align: center;
+  z-index: 10;
+}
+
+._profile_user {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+._verified_user_profile {
+  color: var(--orange);
+  font-size: 1.2em;
+}
+
+._profile_user_avatar h1 {
+  font-weight: 300;
+  font-family: product_sans, sans-serif;
+  color: var(--dark-grey);
+}
+
+._profile_user_avatar span {
+  color: grey;
+  font-size: 0.8em;
+  font-style: italic;
+  font-family: product_sans, sans-serif;
+}
+
+._avatar_profile {
+  height: 150px;
+  width: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 1px solid var(--light-grey);
+  justify-self: center;
+  /* box-shadow: 0 0 20px #e2e2e2; */
+  border: 3px solid #fff;
+}
+
+._profile_user_data {
+  display: flex;
+  font-family: product_sans, sans-serif;
+  /* padding: 20px; */
+  flex-direction: column;
+  border: 1px solid var(--light-grey);
+  min-height: 50vh;
+  /* background-color: rgb(155, 38, 38); */
+  width: 100%;
+  /* height: 80%; */
+  border-radius: 0.5em;
+}
+
+._profile_post_title {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+}
+
+._profile_post_title div {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  color: var(--dark-blue);
+  width: 100%;
+}
+
+._profile_post_title svg {
+  font-size: 1.2em;
+  color: var(--orange);
+}
+
+._profile_post_title h2 {
+  font-size: 1.2em;
+  font-family: product_sans, sans-serif;
+  font-weight: 100;
+}
+
+._profile_posts_view {
+  background: none;
+  border: none;
+  font-size: 1em;
+  cursor: pointer;
+}

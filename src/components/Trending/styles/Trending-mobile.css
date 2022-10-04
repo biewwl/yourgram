@@ -1,0 +1,18 @@
+@media screen and (max-width: 768px) {
+
+  ._trending_post {
+    flex-direction: column;
+    border: 1px solid var(--light-grey-2);
+    border-radius: 1.5em;
+  }
+
+  ._trending_thumbnail {
+    width: 100%;
+    border-radius: 1.5em 1.5em 0 0;
+  }
+
+  ._trending_post_views {
+    font-size: 0.8em;
+    padding: 10px 0;
+  }
+}

@@ -1,0 +1,5 @@
+@media screen and (max-width: 768px) {
+  ._profile_stats_bar_icon div svg {
+    display: none;
+  }
+}

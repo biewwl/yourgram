@@ -1,0 +1,134 @@
+._stories_section {
+  /* background-color: red; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* height: 250px; */
+  width: 100%;
+  padding: 20px;
+  gap: 30px;
+  margin-top: 20px;
+  position: relative;
+}
+
+._stories_title {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  color: #3C3A5F;
+}
+
+
+._stories_title svg {
+  font-size: 1.5em;
+  color: #ff7b23;
+}
+
+._stories_title h2 {
+  font-size: 1.2em;
+  font-family: product_sans, sans-serif;
+  font-weight: 100;
+}
+
+._stories {
+  display: flex;
+  gap: 20px;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+}
+
+._stories::-webkit-scrollbar {
+  display: none;
+}
+
+
+._prev_story, ._next_story {
+  position: absolute;
+  opacity: 0;
+  z-index: 10;
+  top: 0;
+  height: 100%;
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.5s;
+}
+
+._prev_story:hover, ._next_story:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
+._prev_story {
+  left: -10px;
+}
+
+._next_story {
+  right: -10px;
+}
+
+:is(._prev_story, ._next_story) svg {
+  color: #fff;
+  font-size: 1.5em;
+  border-radius: 50%;
+  background-color: var(--dark-grey);
+}
+
+._story {
+  align-items: flex-start;
+  min-width: 130px;
+  max-width: 130px;
+  height: 230px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  scroll-snap-align: start;
+  /* transform: translateX(-200px); */
+}
+
+._story_thumbnail {
+  border-radius: 1.3em;
+  width: 100%;
+  height: 100%;
+  max-height: 190px;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+._story_live_tag {
+  font-family: product_sans, sans-serif;
+  background-color: var(--orange);
+  color: #fff;
+  padding: 5px;
+  font-size: 0.7em;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  border-radius: 0.6em;
+}
+
+._story_user {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 5px;
+  font-size: 0.9em;
+  text-decoration: none;
+}
+
+._story_user span {
+  font-family: product_sans, sans-serif;
+  font-weight: 100;
+  max-width: 100px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  color: var(--dark-grey);
+}
+
+._verified_user_story {
+  color: var(--orange);
+}

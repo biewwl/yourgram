@@ -1,0 +1,6 @@
+@media screen and (max-width: 768px) {
+  ._prev_story,
+  ._next_story {
+    display: none;
+  }
+}
