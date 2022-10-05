@@ -56,6 +56,7 @@
   font-family: product_sans, sans-serif;
   font-weight: 100;
   color: var(--dark-grey);
+  text-decoration: none;
 }
 
 ._verified_user_trending_post {

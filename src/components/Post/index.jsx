@@ -46,7 +46,7 @@ function Post({
         <img src={thumbnail} alt="trending_post" className="_post_thumbnail" />
         <PostBar />
         <section className="_post_data">
-          <span className="_post_data_user">{user}</span>
+          <Link to={`/${nick}`} className="_post_data_user">{user}</Link>
           <span className="_post_capture">{capture}</span>
         </section>
         <section className="_post_date">

@@ -1,8 +1,10 @@
 import { Icon } from "@iconify/react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { formatTimer } from "../../helpers";
 import "./styles/Notification.css";
 
-function Notification({ notification }) {
+function Notification({ notification, nick }) {
   const { elapsedMinutes, payload, sender, type } = notification;
 
   const timer = () => {
@@ -24,7 +26,9 @@ function Notification({ notification }) {
 
   return (
     <section className="_notification">
-      <img src={sender.avatar} alt="" className="_notify_avatar_sender" />
+      <Link to={`/${sender.nick}`}>
+        <img src={sender.avatar} alt="" className="_notify_avatar_sender" />
+      </Link>
       <p>
         <div>
           {type === "like" && (
@@ -39,7 +43,7 @@ function Notification({ notification }) {
               className="_notify_icon follow"
             />
           )}
-          <span className="_notify_sender_nick">
+          <Link to={`/${sender.nick}`} className="_notify_sender_nick">
             {sender.nick}
             {sender.verified && (
               <Icon
@@ -47,7 +51,7 @@ function Notification({ notification }) {
                 className="_verified_user_notify"
               />
             )}
-          </span>
+          </Link>
           <span className="_notify_feedback">
             {type === "like" && "liked your post."}
             {type === "comment" && `comment your post.`}
@@ -57,14 +61,19 @@ function Notification({ notification }) {
         <span className="_notify_elapsed_minutes">{timer()}</span>
       </p>
       {type !== "follow" && (
-        <img
-          src={payload.post.thumbnail}
-          alt=""
-          className="_notify_thumbnail"
-        />
+        <Link to={`/${nick}/${payload.post.id}`}>
+          <img
+            src={payload.post.thumbnail}
+            alt=""
+            className="_notify_thumbnail"
+          />
+        </Link>
       )}
     </section>
   );
 }
+const mapStateToProps = (state) => ({
+  nick: state.user.nick,
+});
 
-export default Notification;
+export default connect(mapStateToProps)(Notification);

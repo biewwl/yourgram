@@ -2,9 +2,10 @@ import { Icon } from "@iconify/react";
 import fakeTrending from "../../mocks/fakeTrending";
 import "./styles/Trending.css";
 import "./styles/Trending-mobile.css";
+import { Link } from "react-router-dom";
 
 export default function Trending() {
-  const { thumbnail, user, capture, postDate, verified, views } = fakeTrending;
+  const { thumbnail, user, nick ,capture, postDate, verified, views } = fakeTrending;
 
   return (
     <article className="_trending_content">
@@ -20,7 +21,7 @@ export default function Trending() {
         />
         <section className="_trending_post_data">
           <h3 className="_trending_post_capture">{capture}</h3>
-          <span className="_trending_post_user">
+          <Link to={`/${nick}`} className="_trending_post_user">
             <span>{user}</span>
             {verified && (
               <Icon
@@ -28,7 +29,7 @@ export default function Trending() {
                 className="_verified_user_trending_post"
               />
             )}
-          </span>
+          </Link>
           <span className="_trending_post_date">{postDate}</span>
           <span className="_trending_post_views">
             <Icon icon="carbon:view" />
