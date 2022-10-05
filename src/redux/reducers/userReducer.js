@@ -1,8 +1,7 @@
+import { getUser } from '../../mocks/fakeUsers';
+
 const initialState = {
-  user: "Cat Lol",
-  nick: "catlol",
-  avatar: "",
-  verified: true,
+  ...getUser('lolcat'),
 };
 
 export default function user(state = initialState, action) {

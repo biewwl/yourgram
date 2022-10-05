@@ -1,11 +1,11 @@
 import { Icon } from "@iconify/react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 import "./styles/Header.css";
 import "./styles/Header-mobile.css";
-import { connect } from "react-redux";
 
-function Header({ nick }) {
+function Header({ nick, page }) {
   const [querySearch, setQuerySearch] = useState("");
 
   const handleChange = ({ target }) => {
@@ -25,16 +25,22 @@ function Header({ nick }) {
       />
       <nav className="_nav_header_bar">
         <Link to="/feed">
-          <Icon icon="fluent:home-20-filled" />
+          {page === 'home' && <Icon icon="majesticons:home-simple" />}
+          {page !== 'home' && <Icon icon="majesticons:home-simple-line" />}
         </Link>
         <Link to="/direct">
-          <Icon icon="eva:paper-plane-fill" />
+          {page === 'direct' && <Icon icon="bxs:paper-plane" />}
+          {page !== 'direct' && <Icon icon="bx:paper-plane" />}
           <span className="_notify"></span>
         </Link>
         <Link to="/new">
           <Icon icon="bx:add-to-queue" />
         </Link>
-        <Icon icon="bx:bell" />
+        <Link to="/notifications">
+          {page === 'notifications' && <Icon icon="bxs:bell" />}
+          {page !== 'notifications' && <Icon icon="bx:bell" />}
+          <span className="_notify"></span>
+        </Link>
         <Link to={`/${nick}`}>
           <img
             src="https://assets.papodehomem.com.br/2015/05/30/05/42/43/431/photo.jpg"

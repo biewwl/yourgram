@@ -108,6 +108,13 @@ const fakeUsers = [
     nick: "thuglife",
     header: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4l9TdOxiC4foSIPNHcLc6nAQHc9IS1qVvRg&usqp=CAU',
   },
+  {
+    user: "Cat LoL",
+    avatar: "https://assets.papodehomem.com.br/2015/05/30/05/42/43/431/photo.jpg",
+    verified: true,
+    nick: "lolcat",
+    header: 'https://i.pinimg.com/736x/25/02/05/250205aeea9cd5eca6b7ccf7fc704398.jpg',
+  },
 ];
 
 // const generatePrettyArray = () => {

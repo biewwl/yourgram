@@ -5,7 +5,7 @@ import { Icon } from "@iconify/react";
 function Direct() {
   return (
     <div>
-      <Header />
+      <Header page="direct" />
       <div className="body">
         <div className="page">
           <div className="persons">

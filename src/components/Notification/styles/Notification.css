@@ -1,0 +1,43 @@
+._notification {
+  display: flex;
+  /* background-color: grey; */
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+}
+
+._notify_avatar_sender {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+._notify_sender_nick {
+  font-weight: 600;
+  font-family: product_sans, sans-serif;
+  color: var(--dark-blue);
+}
+
+._notify_feedback {
+  font-family: product_sans, sans-serif;
+  font-weight: 100;
+  color: var(--medium-grey);
+}
+
+._notify_thumbnail {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+}
+
+._notification p {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+._notify_elapsed_minutes {
+  color: var(--light-grey-2);
+  text-transform: uppercase;
+}

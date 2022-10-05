@@ -9,7 +9,7 @@ import "./styles/Home-mobile.css";
 export default function Home() {
   return (
     <div className="_home_page">
-      <Header />
+      <Header page="home" />
       <main className="_home_content">
         <Stories />
         <Trending />
