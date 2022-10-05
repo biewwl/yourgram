@@ -1,6 +1,4 @@
 ._profile_stats_bar {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
   background-color: #f1f1f1d3;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -9,6 +7,29 @@
   padding-top: 120px;
   border-top-left-radius: 0.5em;
   border-top-right-radius: 0.5em;
+}
+
+._profile_actions {
+  display: flex;
+  /* background-color: red; */
+  justify-content: space-evenly;
+  padding: 0 20px 20px;
+}
+
+._profile_actions button {
+  padding: 5px;
+  width: 40%;
+  max-width: 160px;
+  border: none;
+  border-radius: 25px;
+  background-color: var(--light-grey-2);
+  color: var(--dark-grey);
+  cursor: pointer;
+}
+
+._profile_stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 }
 
 ._profile_stats_bar_icon {

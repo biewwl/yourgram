@@ -43,7 +43,7 @@ function Profile() {
             <span>@{nick}</span>
           </section>
           <section className="_profile_user_data">
-            <ProfileBar posts={posts.length} />
+            <ProfileBar posts={posts.length} nick={nick} />
             <div className="_profile_post_title">
               <div>
                 <Icon icon="gridicons:posts" />
