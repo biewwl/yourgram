@@ -54,8 +54,8 @@ function Notification({ notification, nick }) {
           </Link>
           <span className="_notify_feedback">
             {type === "like" && "liked your post."}
-            {type === "comment" && `comment your post.`}
-            {type === "follow" && "follow you."}
+            {type === "comment" && `commented your post.`}
+            {type === "follow" && "followed you."}
           </span>
         </div>
         <span className="_notify_elapsed_minutes">{timer()}</span>
