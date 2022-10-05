@@ -1,0 +1,12 @@
+@media screen and (max-width: 768px) {
+  ._edit_profile_content {
+    padding-bottom: 60px;
+  }
+
+  ._edit_profile_save {
+    bottom: 80px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+  }
+}

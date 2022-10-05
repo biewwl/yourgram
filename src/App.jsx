@@ -6,6 +6,7 @@ import Profile from "./pages/Profile";
 import Notifications from "./pages/Notifications";
 import "./App.css";
 import "./colors/colors.css"
+import EditProfile from "./pages/EditProfile";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route exact path="/feed" element={<Home />} />
         <Route exact path="/direct" element={<Direct />} />
         <Route exact path="/:nick" element={<Profile />} />
+        <Route exact path="/profile/edit" element={<EditProfile />} />
         <Route exact path="notifications" element={<Notifications />} />
       </Routes>
     </div>

@@ -3,12 +3,14 @@
   /* background-color: grey; */
   align-items: center;
   gap: 10px;
-  padding: 10px;
+  padding: 20px 10px;
+  border-bottom: 1px solid var(--light-grey);
 }
 
 ._notify_avatar_sender {
-  width: 60px;
-  height: 60px;
+  min-width: 45px;
+  max-width: 45px;
+  height: 45px;
   object-fit: cover;
   border-radius: 50%;
 }
@@ -17,6 +19,9 @@
   font-weight: 600;
   font-family: product_sans, sans-serif;
   color: var(--dark-blue);
+  display: flex;
+  align-items: center;
+  gap: 2.5px;
 }
 
 ._notify_feedback {
@@ -26,18 +31,47 @@
 }
 
 ._notify_thumbnail {
-  width: 60px;
-  height: 60px;
+  min-width: 50px;
+  max-width: 50px;
+  height: 50px;
   object-fit: cover;
 }
 
 ._notification p {
   display: flex;
-  align-items: center;
-  gap: 10px;
+  flex-direction: column;
+  gap: 0 5px;
+  /* background-color: red; */
+  width: 100%;
+  padding: 10px;
+  font-size: 0.9em;
 }
 
+._notification p div {
+  display: flex;
+  gap: 0 5px;
+  flex-wrap: wrap;
+}
 ._notify_elapsed_minutes {
   color: var(--light-grey-2);
-  text-transform: uppercase;
+  font-size: 0.6em;
+  /* background-color: red; */
+  height: 100%;
+  font-family: product_sans, sans-serif;
+}
+
+._notify_icon.like {
+  color: rgb(214, 58, 58);
+}
+
+._notify_icon.comment {
+  color: rgb(86, 189, 148);
+}
+
+._notify_icon.follow {
+  color: rgb(86, 108, 189);
+}
+
+._verified_user_notify {
+  color: var(--orange);
 }

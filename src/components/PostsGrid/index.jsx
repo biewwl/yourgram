@@ -3,9 +3,9 @@ import "./styles/PostGrid.css";
 function PostsGrid({ posts }) {
   return (
     <article className="_posts_grid">
-      {posts.map((post) => {
+      {posts.map((post, i) => {
         const { thumbnail, capture } = post;
-        return <img src={thumbnail} alt={capture} />;
+        return <img src={thumbnail} alt={capture} key={i} />;
       })}
     </article>
   );

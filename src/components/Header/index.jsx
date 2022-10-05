@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import "./styles/Header.css";
 import "./styles/Header-mobile.css";
 
-function Header({ nick, page }) {
+function Header({ nick, page, avatar }) {
   const [querySearch, setQuerySearch] = useState("");
 
   const handleChange = ({ target }) => {
@@ -43,7 +43,7 @@ function Header({ nick, page }) {
         </Link>
         <Link to={`/${nick}`}>
           <img
-            src="https://assets.papodehomem.com.br/2015/05/30/05/42/43/431/photo.jpg"
+            src={avatar}
             alt="avatar"
             className="_avatar_header_bar"
           />
@@ -55,6 +55,7 @@ function Header({ nick, page }) {
 
 const mapStateToProps = (state) => ({
   nick: state.user.nick,
+  avatar: state.user.avatar,
 });
 
 export default connect(mapStateToProps)(Header);

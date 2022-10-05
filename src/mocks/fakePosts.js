@@ -78,10 +78,20 @@ const fakePosts = [
     views: '1.2M views',
     id: 1, // When using API it refers to the post's Primary Key in the database
   },
-  
+  {
+    user: 'lolcat',
+    avatar: getUser('lolcat').avatar,
+    verified: getUser('lolcat').verified,
+    nick: getUser('lolcat').nick,
+    capture: 'travelling',
+    thumbnail: 'https://classic.exame.com/wp-content/uploads/2021/03/capa-nyan-cat.jpg?quality=70&strip=info&w=1024',
+    postDate: '5 days ago',
+    views: '3.2M views',
+    id: 2, // When using API it refers to the post's Primary Key in the database
+  },
 ];
 
-export const getPost = (id) => fakePosts
-  .find((post) => post.id === id);
+export const getPost = (owner, id) => fakePosts
+  .find((post) => owner === post.nick && post.id === id);
 
 export default fakePosts;

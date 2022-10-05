@@ -1,18 +1,21 @@
 import { Icon } from "@iconify/react";
 import { useState } from "react";
 import PostBar from "../PostBar";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 import "./styles/Post.css";
 import "./styles/Post-mobile.css";
-import { Link } from "react-router-dom";
 
-export default function Post({
+function Post({
   thumbnail,
   user,
   capture,
   verified,
   avatar,
   postDate,
-  nick
+  nick,
+  nickUser,
+  avatarImage
 }) {
   const [comment, setComment] = useState("");
 
@@ -25,11 +28,13 @@ export default function Post({
     return comment.length <= 0;
   };
 
+  const image = nick === nickUser ? avatarImage : avatar;
+
   return (
     <section className="_post">
       <section className="_post_top_content">
         <Link to={`/${nick}`} className="_post_user">
-          <img src={avatar} alt="avatar" className="_post_user_avatar" />
+          <img src={image} alt="avatar" className="_post_user_avatar" />
           <span>{user}</span>
           {verified && (
             <Icon
@@ -64,3 +69,10 @@ export default function Post({
     </section>
   );
 }
+
+const mapStateToProps = (state) => ({
+  nickUser: state.user.nick,
+  avatarImage: state.user.avatar,
+});
+
+export default connect(mapStateToProps)(Post);

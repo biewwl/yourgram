@@ -9,8 +9,9 @@ import fakePosts from "../../mocks/fakePosts";
 import { useState } from "react";
 import "./styles/Profile.css";
 import "./styles/Profile-mobile.css";
+import { connect } from "react-redux";
 
-function Profile() {
+function Profile({ nickLogged }) {
   const { nick } = useParams();
 
   const { user, avatar, verified, header } = fakeUsers.find(
@@ -43,16 +44,17 @@ function Profile() {
             <span>@{nick}</span>
           </section>
           <section className="_profile_user_data">
-            <ProfileBar posts={posts.length} nick={nick} />
+            <ProfileBar
+              posts={posts.length}
+              nick={nick}
+              nickLogged={nickLogged}
+            />
             <div className="_profile_post_title">
               <div>
                 <Icon icon="gridicons:posts" />
                 <h2>Posts</h2>
               </div>
-              <button
-                onClick={changeView}
-                className="_profile_posts_view"
-              >
+              <button onClick={changeView} className="_profile_posts_view">
                 {grid ? (
                   <Icon icon="bi:view-list" />
                 ) : (
@@ -69,4 +71,8 @@ function Profile() {
   );
 }
 
-export default Profile;
+const mapStateToProps = (state) => ({
+  nickLogged: state.user.nick,
+});
+
+export default connect(mapStateToProps)(Profile);
