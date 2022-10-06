@@ -1,6 +1,8 @@
 const fakeUsers = [
   {
     user: "Mr. Cat",
+    email: "cat@cat.com",
+    password: "catcatcat",
     avatar: "https://wallpaperaccess.com/full/32048.jpg",
     verified: true,
     nick: "mrcat",
@@ -9,6 +11,8 @@ const fakeUsers = [
   },
   {
     user: "PolemiCat",
+    email: "cat@cat.com",
+    password: "catcatcat",
     avatar:
       "https://cdn.pixabay.com/photo/2017/08/16/20/16/yellow-cat-2649033_960_720.jpg",
     verified: true,
@@ -17,6 +21,8 @@ const fakeUsers = [
   },
   {
     user: "Real Black",
+    email: "cat@cat.com",
+    password: "catcatcat",
     avatar:
       "https://eu-images.contentstack.com/v3/assets/blt66983808af36a8ef/bltb5565ff0cc8601e9/624f596266aa7f1348924533/blackcat_Lifeonwhite_Alamy_Stock_Photo.jpeg?quality=80&format=jpg&width=690",
     verified: true,
@@ -26,6 +32,8 @@ const fakeUsers = [
   },
   {
     user: "Astra Vlog",
+    email: "cat@cat.com",
+    password: "catcatcat",
     avatar: "https://akhbarelmi.ir/media/covers/175146.jpg",
     verified: true,
     nick: "astravlog",
@@ -34,6 +42,8 @@ const fakeUsers = [
   },
   {
     user: "Cat Jr.",
+    email: "cat@cat.com",
+    password: "catcatcat",
     avatar:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXcES9q6owZT27Grqx-zpCZfHSuJ3VfSEkoA&usqp=CAU",
     verified: false,
@@ -43,6 +53,8 @@ const fakeUsers = [
   },
   {
     user: "Cute Cat",
+    email: "cat@cat.com",
+    password: "catcatcat",
     avatar:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSY6mGU9NgW6-ZiExdW0RWRDIzImgc0FOfhg&usqp=CAU",
     verified: false,
@@ -51,6 +63,8 @@ const fakeUsers = [
   },
   {
     user: "Studious Cat",
+    email: "cat@cat.com",
+    password: "catcatcat",
     avatar:
       "https://thumbs.dreamstime.com/b/cute-grey-cat-glasses-wood-background-178508562.jpg",
     verified: true,
@@ -60,6 +74,8 @@ const fakeUsers = [
   },
   {
     user: "John Cat",
+    email: "cat@cat.com",
+    password: "catcatcat",
     avatar:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLQtx_SaztbC9yDSvnfTFV1oQkU5mQyAierA&usqp=CAU",
     verified: false,
@@ -69,6 +85,8 @@ const fakeUsers = [
   },
   {
     user: "Meow Bella",
+    email: "cat@cat.com",
+    password: "catcatcat",
     avatar:
       "https://i.pinimg.com/originals/89/e9/99/89e999dd299dd837a4693cd39f6a1cd6.jpg",
     verified: true,
@@ -78,6 +96,8 @@ const fakeUsers = [
   },
   {
     user: "Tumblr Cat",
+    email: "cat@cat.com",
+    password: "catcatcat",
     avatar:
       "https://ih1.redbubble.net/image.533614679.7633/raf,750x1000,075,t,FFFFFF:97ab1c12de.u2.jpg",
     verified: true,
@@ -86,6 +106,8 @@ const fakeUsers = [
   },
   {
     user: "Meowzeiro",
+    email: "cat@cat.com",
+    password: "catcatcat",
     avatar:
       "https://64.media.tumblr.com/bb228e4edf679f5bc4016b676549497d/tumblr_pfti60LMM11xnen5oo1_r1_1280.png",
     verified: false,
@@ -95,6 +117,8 @@ const fakeUsers = [
   },
   {
     user: "BotâniCat",
+    email: "cat@cat.com",
+    password: "catcatcat",
     avatar:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXwZuJUBh2gRwa9xeAyLc12XYOES8P7j0tQA&usqp=CAU",
     verified: false,
@@ -104,6 +128,8 @@ const fakeUsers = [
   },
   {
     user: "Meow Music",
+    email: "cat@cat.com",
+    password: "catcatcat",
     avatar:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhyjnxbwRrgexw7p5guoPgSvrnn_9gFWP6GA&usqp=CAU",
     verified: true,
@@ -113,6 +139,8 @@ const fakeUsers = [
   },
   {
     user: "Bad",
+    email: "cat@cat.com",
+    password: "catcatcat",
     avatar: "https://images.snapwi.re/0a3d/5bd7aeb3dffb4541b65ad6ae.w800.jpg",
     verified: true,
     nick: "thuglife",
@@ -121,6 +149,8 @@ const fakeUsers = [
   },
   {
     user: "Cat LoL",
+    email: "cat@cat.com",
+    password: "catcatcat",
     avatar:
       "https://assets.papodehomem.com.br/2015/05/30/05/42/43/431/photo.jpg",
     verified: true,
@@ -130,6 +160,8 @@ const fakeUsers = [
   },
   {
     user: "Sleep Cat",
+    email: "cat@cat.com",
+    password: "catcatcat",
     avatar:
       "https://aliancatraducoes.com/wp-content/uploads/2019/10/o-que-sao-cat-tools.jpg",
     verified: false,
@@ -139,14 +171,14 @@ const fakeUsers = [
   },
   {
     user: "Gabriel Dias",
+    email: "biewwl.js@gmail.com",
+    password: "gabrieldias",
     avatar:
       "https://i.pinimg.com/736x/70/e3/75/70e375ba58795c9f2a326f700e91b665.jpg",
     verified: true,
     nick: "gabriel",
-    header:
-      "https://wallpaperaccess.com/full/1397323.jpg",
+    header: "https://wallpaperaccess.com/full/1397323.jpg",
   },
-  
 ];
 
 // const generatePrettyArray = () => {
@@ -158,9 +190,24 @@ const fakeUsers = [
 // };
 
 export const getUser = (nick) => {
-  return fakeUsers.find((u) => u.nick === nick);
+  const withoutPass = fakeUsers.map((u) => {
+    const { avatar, header, nick, user, verified } = u;
+    return { avatar, header, nick, user, verified };
+  });
+  return withoutPass.find((u) => u.nick === nick);
 };
 
+export const getFullUser = (nickOrEmail) =>
+  fakeUsers.find((u) => u.nick === nickOrEmail || u.email === nickOrEmail);
+
+export const verifyExistUser = (nick, email) => {
+  const existNick = fakeUsers.some((u) => u.nick === nick);
+  const existEmail = fakeUsers.some((u) => u.email === email);
+  return {
+    existNick,
+    existEmail
+  }
+};
 // export const prettyFakeUsers = generatePrettyArray();
 
 export default fakeUsers;

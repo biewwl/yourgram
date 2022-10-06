@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import "./styles/PostView-mobile.css";
 import { connect } from "react-redux";
 
-function PostView({ userData, comments, nickUser, avatarImage }) {
+function PostView({ userData, comments, nickUser, avatarImage, status }) {
   const { thumbnail, user, subtitle, verified, avatar, postDate, nick } =
     userData;
 
@@ -74,9 +74,7 @@ function PostView({ userData, comments, nickUser, avatarImage }) {
                     <Link to={`/${sender.nick}`}>
                       {sender.nick}
                       {sender.verified && (
-                        <Icon
-                          icon="codicon:verified-filled"
-                        />
+                        <Icon icon="codicon:verified-filled" />
                       )}
                     </Link>
                     <p>{payload.comment}</p>
@@ -85,17 +83,21 @@ function PostView({ userData, comments, nickUser, avatarImage }) {
               );
             })}
           </div>
-          <PostBar className="_post_view_post_bar" />
-          <section className="_post_view_comment_input">
-            <Icon icon="ic:outline-emoji-emotions" />
-            <input
-              type="text"
-              placeholder="Add a comment..."
-              value={comment}
-              onChange={handleChange}
-            />
-            <button disabled={checkSend()}>Send</button>
-          </section>
+          {status && (
+            <>
+              <PostBar className="_post_view_post_bar" />
+              <section className="_post_view_comment_input">
+                <Icon icon="ic:outline-emoji-emotions" />
+                <input
+                  type="text"
+                  placeholder="Add a comment..."
+                  value={comment}
+                  onChange={handleChange}
+                />
+                <button disabled={checkSend()}>Send</button>
+              </section>
+            </>
+          )}
         </section>
       </article>
     </section>
@@ -105,6 +107,7 @@ function PostView({ userData, comments, nickUser, avatarImage }) {
 const mapStateToProps = (state) => ({
   nickUser: state.user.nick,
   avatarImage: state.user.avatar,
+  status: state.user.status,
 });
 
 export default connect(mapStateToProps)(PostView);

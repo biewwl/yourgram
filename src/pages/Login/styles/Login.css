@@ -24,17 +24,17 @@
 
 ._content_login {
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
   display: flex;
   background-color: #fff;
   border-radius: 1em;
   /* box-shadow: 1px 1px 5px #f1f1f1; */
   flex-direction: column;
-  height: 400px;
+  /* height: 400px; */
   min-width: 300px;
   width: 80%;
   max-width: 400px;
-  padding: 20px 40px;
+  padding: 40px;
   gap: 30px;
   overflow: hidden;
   position: relative;
@@ -109,5 +109,27 @@
 
 ._login_button:disabled {
   cursor: default;
-  opacity: 0;
+  opacity: 0.3;
+}
+
+._login_alternate_mode {
+  padding: 10px 0;
+  font-size: 0.8em;
+  display: flex;
+  gap: 5px;
+  color: #444;
+}
+
+._login_alternate_mode span {
+  color: var(--orange);
+  cursor: pointer;
+}
+
+._login_alternate_mode span:hover {
+  text-decoration: underline;
+}
+
+._invalid_message {
+  color: red;
+  font-size: 0.6em;
 }

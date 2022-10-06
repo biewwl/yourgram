@@ -1,18 +1,69 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { connect } from "react-redux";
+import { validateEmail } from "../../helpers";
+import { fakeAPI } from "../../mocks/fakeAPI";
+import { verifyExistUser } from "../../mocks/fakeUsers";
 import logo from "./images/logo.png";
+import { loginUser } from "../../redux/actions/userAction";
 import "./styles/Login.css";
 
-export default function Login() {
-  const nav = useNavigate();
+function Login({ dispatch }) {
+  // const nav = useNavigate();
+
+  const [create, setCreate] = useState(false);
+  const [invalidLogin, setInvalidLogin] = useState(false);
+  const [invalidCreateUser, setInvalidCreateUser] = useState(false);
+  const [createExistUser, setCreateExistUser] = useState(false);
 
   const [userData, setUserData] = useState({
     username: "",
     password: "",
+    email: "",
+    name: "",
   });
+
+  const login = () => {
+    const { username, password } = userData;
+    const { message, login } = fakeAPI.post.login(username, password);
+    if (message) return setInvalidLogin(message);
+    dispatch(loginUser(login));
+    // nav("/feed");
+  };
+
+  const createLogin = () => {
+    const { username, email, password, name } = userData;
+    const { message } = fakeAPI.post.createUser(
+      username,
+      email,
+      password,
+      name
+    );
+    if (message) return setInvalidCreateUser(message);
+    dispatch(loginUser(username));
+    // return nav("/feed");
+  };
 
   const handleChange = ({ target }) => {
     const { name, value } = target;
+
+    if (invalidLogin) setInvalidLogin("");
+    if (invalidCreateUser) setInvalidCreateUser("");
+    setCreateExistUser(false);
+
+    if (create && name === "username") {
+      const { existNick } = verifyExistUser(value);
+      if (existNick) {
+        setInvalidCreateUser("Username not available!");
+        setCreateExistUser(true);
+      }
+    } else if (create) {
+      const { existNick } = verifyExistUser(userData.username);
+      if (existNick) {
+        setInvalidCreateUser("Username not available!");
+        setCreateExistUser(true);
+      }
+    }
+
     setUserData({
       ...userData,
       [name]: value,
@@ -20,12 +71,18 @@ export default function Login() {
   };
 
   const verifyData = () => {
-    const { password, username } = userData;
-    return username.length > 2 && password.length > 7;
+    const { password, username, email } = userData;
+    const verifyUser = username.length > 2;
+    const verifyPass = password.length > 7;
+    const verifyEmail = validateEmail(email);
+    if (!create) {
+      return verifyUser && verifyPass;
+    }
+    return !createExistUser && verifyUser && verifyPass && verifyEmail;
   };
 
-  const login = () => {
-    nav("/feed");
+  const alternateMode = () => {
+    setCreate(!create);
   };
 
   return (
@@ -37,13 +94,33 @@ export default function Login() {
           <span className="_text_intro">Share moments!</span>
         </section>
         <form className="_login_form">
+          {create && (
+            <>
+              <input
+                type="text"
+                name="name"
+                id="name"
+                value={userData.name}
+                onChange={handleChange}
+                placeholder="Name"
+              />
+              <input
+                type="email"
+                name="email"
+                id="email"
+                value={userData.email}
+                onChange={handleChange}
+                placeholder="Email"
+              />
+            </>
+          )}
           <input
             type="text"
             name="username"
             id="username"
             value={userData.username}
             onChange={handleChange}
-            placeholder="User"
+            placeholder={create ? "Username" : "Username or email"}
           />
           <input
             type="password"
@@ -53,15 +130,35 @@ export default function Login() {
             onChange={handleChange}
             placeholder="Password"
           />
+          {!create && (
+            <span className="_login_alternate_mode">
+              Don't have an account?
+              <span onClick={alternateMode}>Sing up!</span>
+            </span>
+          )}
+          {create && (
+            <span className="_login_alternate_mode" onClick={alternateMode}>
+              You have an account?
+              <span onClick={alternateMode}>Sing in!</span>
+            </span>
+          )}
         </form>
         <button
           disabled={!verifyData()}
-          onClick={login}
+          onClick={create ? createLogin : login}
           className="_login_button"
-        >
+          >
           Enter
         </button>
+          {!create && invalidLogin && (
+            <span className="_invalid_message">{invalidLogin}</span>
+          )}
+          {create && invalidCreateUser && (
+            <span className="_invalid_message">{invalidCreateUser}</span>
+          )}
       </article>
     </main>
   );
 }
+
+export default connect()(Login);

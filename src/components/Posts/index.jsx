@@ -14,7 +14,6 @@ export default function Posts({ posts, title }) {
       {posts.map((post, i) => {
         const { thumbnail, user, subtitle, verified, avatar, postDate, nick, id } =
           post;
-          console.log(post);
         return (
           <Post
             thumbnail={thumbnail}
