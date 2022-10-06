@@ -2,11 +2,12 @@ import PostBar from "../PostBar";
 import { Icon } from "@iconify/react";
 import "./styles/PostView.css";
 import { useState } from "react";
-import { getCommentsForLogged } from "../../mocks/fakeComments";
+// import { getCommentsForLogged } from "../../mocks/fakeComments";
 import { Link } from "react-router-dom";
 import "./styles/PostView-mobile.css";
+import { connect } from "react-redux";
 
-function PostView({ userData, comments }) {
+function PostView({ userData, comments, nickUser, avatarImage }) {
   const { thumbnail, user, subtitle, verified, avatar, postDate, nick } =
     userData;
 
@@ -21,7 +22,7 @@ function PostView({ userData, comments }) {
     return comment.length <= 0;
   };
 
-  console.log(getCommentsForLogged(nick));
+  const image = nick === nickUser ? avatarImage : avatar;
 
   return (
     <section className="_post_view">
@@ -34,7 +35,7 @@ function PostView({ userData, comments }) {
             <section className="_post_view_header">
               <Link to={`/${nick}`}>
                 <img
-                  src={avatar}
+                  src={image}
                   alt={nick}
                   className="_post_view_header_avatar"
                 />
@@ -101,4 +102,9 @@ function PostView({ userData, comments }) {
   );
 }
 
-export default PostView;
+const mapStateToProps = (state) => ({
+  nickUser: state.user.nick,
+  avatarImage: state.user.avatar,
+});
+
+export default connect(mapStateToProps)(PostView);

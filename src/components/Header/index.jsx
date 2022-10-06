@@ -21,7 +21,7 @@ function Header({ nick, page, avatar }) {
         type="text"
         value={querySearch}
         onChange={handleChange}
-        placeholder="Pesquisar"
+        placeholder="Search"
       />
       <nav className="_nav_header_bar">
         <Link to="/feed">
