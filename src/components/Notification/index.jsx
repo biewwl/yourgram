@@ -30,7 +30,7 @@ function Notification({ notification, nick }) {
         <img src={sender.avatar} alt="" className="_notify_avatar_sender" />
       </Link>
       <p>
-        <div>
+        <span>
           {type === "like" && (
             <Icon icon="mdi:cards-heart" className="_notify_icon like" />
           )}
@@ -57,7 +57,7 @@ function Notification({ notification, nick }) {
             {type === "comment" && `commented your post.`}
             {type === "follow" && "followed you."}
           </span>
-        </div>
+        </span>
         <span className="_notify_elapsed_minutes">{timer()}</span>
       </p>
       {type !== "follow" && (

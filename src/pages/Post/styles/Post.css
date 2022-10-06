@@ -1,0 +1,21 @@
+._post_page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  background-image: url("../../../pattners/wiggle/wiggle.svg");
+  min-height: 100vh;
+}
+
+._post_page_content {
+  display: flex;
+  justify-content: center;
+  background-color: #fff;
+  padding-top: 60px;
+  min-height: 100vh;
+  /* background-color: red; */
+  width: 100%;
+  max-width: 800px;
+  border-left: 1px solid var(--light-grey);
+  border-right: 1px solid var(--light-grey);
+}

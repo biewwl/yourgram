@@ -12,18 +12,20 @@ export default function Posts({ posts, title }) {
         </div>
       )}
       {posts.map((post, i) => {
-        const { thumbnail, user, capture, verified, avatar, postDate, nick } =
+        const { thumbnail, user, subtitle, verified, avatar, postDate, nick, id } =
           post;
+          console.log(post);
         return (
           <Post
             thumbnail={thumbnail}
             user={user}
-            capture={capture}
+            subtitle={subtitle}
             verified={verified}
             avatar={avatar}
             postDate={postDate}
             key={i}
             nick={nick}
+            id={id}
           />
         );
       })}

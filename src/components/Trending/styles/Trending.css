@@ -43,7 +43,7 @@
   gap: 20px;
 }
 
-._trending_post_capture {
+._trending_post_subtitle {
   color: var(--dark-blue);
   font-family: product_sans, sans-serif;
   font-weight: 100;
