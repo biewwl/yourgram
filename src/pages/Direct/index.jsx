@@ -1,8 +1,23 @@
 import "./styles/Direct.css";
 import Header from "../../components/Header";
 import { Icon } from "@iconify/react";
+import { Link, useParams } from "react-router-dom";
+import chats from "./chats"
+import { getUser } from "../../mocks/fakeUsers";
+import { useState } from "react";
 
 function Direct() {
+
+  const [search, setSearch] = useState('');
+
+  const handleChange = ({ target }) => {
+    setSearch(target.value);
+  }
+
+  const params = useParams();
+
+  const user = params.nick;
+
   return (
     <div>
       <Header page="direct" />
@@ -10,96 +25,98 @@ function Direct() {
         <div className="page">
           <div className="persons">
             <div className="user">
-              <img
-                className="user-pic"
-                src="https://assets.papodehomem.com.br/2015/05/30/05/42/43/431/photo.jpg"
-                alt=""
-              />
-              <p className="name">Cat LoL</p>
+              <Link to="/lolcat">
+                <img
+                  className="user-pic"
+                  src="https://assets.papodehomem.com.br/2015/05/30/05/42/43/431/photo.jpg"
+                  alt=""
+                />
+              </Link>
+              <Link className="name" to="/lolcat" >Cat LoL</Link>
             </div>
-            <div className="list">
-              <div className="person-message">
-                <div className="all">
-                  <img
-                    className="photo-chat"
-                    src="https://aliancatraducoes.com/wp-content/uploads/2019/10/o-que-sao-cat-tools.jpg"
-                    alt=""
-                  />
-                  <div className="cat-message">
-                    <p className="name-chat">Sleep Cat</p>
-                    <p className="message">Come on!! I want to sleeeep</p>
-                  </div>
-                </div>
-                <div className="count-message">5</div>
-              </div>
-              <div className="person-message">
-                <div className="all">
-                  <img
-                    className="photo-chat"
-                    src="https://stickerly.pstatic.net/sticker_pack/HOztWLErY069XuMiaH30vA/K0Q2VH/31/7b61297b-f4c9-453c-a219-d5f2cb529387.png"
-                    alt=""
-                  />
-                  <div className="cat-message">
-                    <p className="name-chat">PickCat</p>
-                    <p className="message">YooooooWW</p>
-                  </div>
-                </div>
-                <div className="count-message">5</div>
-              </div>
-              <div className="person-message">
-                <div className="all">
-                  <img
-                    className="photo-chat"
-                    src="https://i1.sndcdn.com/avatars-000600452151-38sfei-t500x500.jpg"
-                    alt=""
-                  />
-                  <div className="cat-message">
-                    <p className="name-chat">Cat Cute</p>
-                    <p className="message">Ohh, mee too!!</p>
-                  </div>
-                </div>
-                <div className="count-message">5</div>
-              </div>
-              <div className="person-message selected">
-                <div className="all">
-                  <img
-                    className="photo-chat"
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSm4GMt4U5hGOWFSuKHpfcyckBEZumF3LH0Q&usqp=CAU"
-                    alt=""
-                  />
-                  <div className="cat-message">
-                    <div className="special-name">
-                      <p className="name-chat">The Jeans</p>
-                      <Icon
-                        className="verified"
-                        icon="codicon:verified-filled"
+            <div className="options">
+              <input
+                className="input-search" 
+                value={search} 
+                type="text" 
+                onChange={ handleChange }
+                name="" 
+                placeholder="Search" 
+                id="" />
+              <Icon className="write" icon="jam:write" />
+            </div>
+            <div clkLinkassName="list">
+              {chats.filter((infos) => infos.user.toLowerCase().includes(search.toLowerCase())).map((infocat) => (
+                <Link to={`/direct/${infocat.nick}`} className={`person-message-${infocat.nick === user}`}>
+                  <div className="all">
+                    <Link to={`/${infocat.nick}`}>
+                      <img
+                        className="photo-chat"
+                        src={infocat.avatar}
+                        alt=""
                       />
+                    </Link>
+                    <div className="cat-message">
+                      <div className="box-name">
+                        <p className="name-chat">{infocat.user}</p>
+                        {infocat.verified ? <Icon icon="codicon:verified-filled" className="verified" /> : ''}
+                      </div>
+                      <p className="message">{infocat.catMessages[infocat.catMessages.length - 1].message}</p>
                     </div>
-                    <p className="message">This is 4 U</p>
                   </div>
-                </div>
-                <div className="count-message">5</div>
-              </div>
-              <div className="person-message">
-                <div className="all">
-                  <img
-                    className="photo-chat"
-                    src="https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F47%2F2020%2F10%2F07%2Fcat-in-pirate-costume-380541532-2000.jpg&q=60"
-                    alt=""
-                  />
-                  <div className="cat-message">
-                    <p className="name-chat">HowHow</p>
-                    <p className="message">
-                      Yess, i'm
-                      sureeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-                    </p>
-                  </div>
-                </div>
-                <div className="count-message">5</div>
-              </div>
+                  {infocat.catMessages.filter((type) => type.from === 'other').length - infocat.catMessages
+                    .indexOf(infocat.catMessages.filter((type) => type.from === 'me')[infocat.catMessages
+                      .filter((type) => type.from === 'me').length - 1])
+                    > 0 ?
+                    <div className="count-message">{infocat.catMessages.length - infocat.catMessages
+                      .indexOf(infocat.catMessages.filter((type) => type.from === 'me')[infocat.catMessages
+                        .filter((type) => type.from === 'me').length - 1]) - 1}</div> : ''}
+                </Link>
+              ))}
             </div>
           </div>
-          <div className="chat"></div>
+          <div className="chat">
+            {chats.some((chat) => chat.nick === user) ? [chats.find((chat) => chat.nick === user)].map((infos) => (
+              <div className="square-chat">
+                <div className="chat-header">
+                  <img src={infos.avatar} alt="" />
+                  <div className="name-top">
+                    <Link className="name-chat" to={`/${infos.nick}`} >{infos.user}</Link>
+                    {infos.verified ? <Icon icon="codicon:verified-filled" className="verified" /> : ''}
+                  </div>
+                </div>
+                <div className="all-chats">
+                  {infos.catMessages.map((messages) => (
+                    <div>
+                      {messages.from === 'other'
+                        ? <div className="other-message">
+                          <Link to={`/${infos.nick}`}><img className="img-side-other" src={infos.avatar} alt="" /></Link>
+                          <p className="message-other">{messages.message}</p>
+                        </div>
+                        : <div className="me-message">
+                          <Link to="/lolcat"><img className="img-side-me" src={getUser('lolcat').avatar} alt="" /></Link>
+                          <p className="message-me">{messages.message}</p>
+                        </div>}
+                    </div>
+                  ))}
+                </div>
+                <div className="tools-chat">
+                  <Icon className="tools-chat-icon" icon="bi:camera" />
+                  <div className="input">
+                    <input type="text" placeholder="Write your message" name="" id="" />
+                    <Icon className="tools-chat-icon send" icon="fluent:send-28-filled" />
+                  </div>
+                  <Icon className="tools-chat-icon" icon="heroicons-outline:paper-clip" />
+                  <Icon className="tools-chat-icon mic" icon="fluent:mic-16-filled" />
+                </div>
+              </div>
+            )) : <div className="no-one">
+              <Icon className="dont-message" icon="emojione-monotone:grinning-cat-face" />
+              <p>
+                Hey! Choose a chat to start!
+              </p>
+            </div>}
+          </div>
         </div>
       </div>
     </div>
