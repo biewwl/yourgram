@@ -36,12 +36,12 @@ function Direct() {
             </div>
             <div className="options">
               <input
-                className="input-search" 
-                value={search} 
-                type="text" 
-                onChange={ handleChange }
-                name="" 
-                placeholder="Search" 
+                className="input-search"
+                value={search}
+                type="text"
+                onChange={handleChange}
+                name=""
+                placeholder="Search"
                 id="" />
               <Icon className="write" icon="jam:write" />
             </div>
@@ -62,6 +62,10 @@ function Direct() {
                         {infocat.verified ? <Icon icon="codicon:verified-filled" className="verified" /> : ''}
                       </div>
                       <p className="message">{infocat.catMessages[infocat.catMessages.length - 1].message}</p>
+                      <div className="timer-message">
+                        <p>{infocat.catMessages[infocat.catMessages.length - 1].timer}</p>
+                        <p>{`${infocat.catMessages[infocat.catMessages.length - 1].format} ago`}</p>
+                      </div>
                     </div>
                   </div>
                   {infocat.catMessages.filter((type) => type.from === 'other').length - infocat.catMessages

@@ -170,6 +170,17 @@
   width: 100%;
 }
 
+.timer-message {
+  display: flex;
+  align-items: center;
+}
+
+.timer-message p {
+  margin-right: 5px;
+  font-size: 11px;
+  color: var(--medium-grey);
+}
+
 .chat-header {
   display: flex;
   align-items: center;
