@@ -115,6 +115,13 @@ const fakeUsers = [
     nick: "lolcat",
     header: 'https://i.pinimg.com/736x/25/02/05/250205aeea9cd5eca6b7ccf7fc704398.jpg',
   },
+  {
+    user: "Sleep Cat",
+    avatar: "https://aliancatraducoes.com/wp-content/uploads/2019/10/o-que-sao-cat-tools.jpg",
+    verified: false,
+    nick: "sleepcat",
+    header: "https://www.papelmoderno.com.br/image/cache/data/7891113359405-1000x1000.jpg"
+  }
 ];
 
 // const generatePrettyArray = () => {

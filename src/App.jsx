@@ -14,6 +14,7 @@ function App() {
         <Route exact path="/" element={<Login />} />
         <Route exact path="/feed" element={<Home />} />
         <Route exact path="/direct" element={<Direct />} />
+        <Route exact path="/direct/:nick" element={<Direct />} />
         <Route exact path="/:nick" element={<Profile />} />
         <Route exact path="notifications" element={<Notifications />} />
       </Routes>
