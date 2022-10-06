@@ -2,8 +2,6 @@
   width: 100vw;
   height: 100vh;
   /* background-color: rgba(0, 0, 0, 0.402); */
-  position: fixed;
-  top: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -15,7 +13,7 @@
   width: 800px;
   display: flex;
   align-items: center;
-  border-radius: 0.5em;
+  /* border-radius: 0.5em; */
   gap: 20px;
 }
 
@@ -26,7 +24,7 @@
   display: flex;
   align-items: center;
   /* background-color: #000; */
-  border-radius: 0.5em 0 0 0.5em;
+  /* border-radius: 0.5em 0 0 0.5em; */
   overflow: hidden;
   justify-content: center;
   padding: 10px;
@@ -76,8 +74,8 @@
 }
 
 ._post_view_post_bar {
-  position: absolute;
-  bottom: 0;
+  border-top: 1px solid var(--light-grey);
+  padding: 20px;
 }
 
 ._post_view_subtitle {

@@ -5,6 +5,7 @@ import PostView from "../../components/PostView";
 import { getPost } from "../../mocks/fakePosts";
 import { getCommentsForLogged } from "../../mocks/fakeComments";
 import "./styles/Post.css";
+import { useEffect } from "react";
 
 function Post() {
   const { nick, post } = useParams();
@@ -16,20 +17,13 @@ function Post() {
 
   const commentsForLogged = getCommentsForLogged(nick, Number(post))
 
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
+
   return (
     <div className="_post_page">
       <Header />
-      {/* <main className="_post_page_content">
-        <PostComponent
-          thumbnail={thumbnail}
-          user={user}
-          capture={capture}
-          verified={verified}
-          avatar={avatar}
-          postDate={postDate}
-          nick={nick}
-        />
-      </main> */}
       <PostView
         userData={userData}
         comments={commentsForLogged}

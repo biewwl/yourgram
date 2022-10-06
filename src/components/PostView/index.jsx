@@ -77,7 +77,7 @@ function PostView({ userData, comments }) {
               );
             })}
           </div>
-          <PostBar />
+          <PostBar className="_post_view_post_bar" />
           <section className="_post_view_comment_input">
             <Icon icon="ic:outline-emoji-emotions" />
             <input
