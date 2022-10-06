@@ -1,3 +1,4 @@
+import { getCommentsForLogged } from "./fakeComments";
 import { getPost } from "./fakePosts";
 import { getUser } from "./fakeUsers";
 
@@ -13,19 +14,6 @@ const fakeNotifications = [
         ...getPost("lolcat", 1),
       },
       comment: "",
-    },
-  },
-  {
-    type: "comment",
-    sender: {
-      ...getUser("lifebella"),
-    },
-    elapsedMinutes: 21,
-    payload: {
-      post: {
-        ...getPost("lolcat", 1),
-      },
-      comment: "OHHHH NOOO OMGG I'TS NOT REAL BRO!",
     },
   },
   {
@@ -88,19 +76,6 @@ const fakeNotifications = [
     },
   },
   {
-    type: "comment",
-    sender: {
-      ...getUser("studious.cat"),
-    },
-    elapsedMinutes: 21,
-    payload: {
-      post: {
-        ...getPost("lolcat", 2),
-      },
-      comment: "OHHHH NOOO OMGG I'TS NOT REAL BRO!",
-    },
-  },
-  {
     type: "like",
     sender: {
       ...getUser("studious.cat"),
@@ -113,6 +88,7 @@ const fakeNotifications = [
       comment: "",
     },
   },
+  ...getCommentsForLogged('lolcat'),
 ];
 
 export default fakeNotifications;

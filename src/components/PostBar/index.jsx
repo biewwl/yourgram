@@ -1,9 +1,12 @@
 import { Icon } from "@iconify/react";
 import "./styles/PostBar.css";
 
-export default function PostBar() {
+export default function PostBar({ className }) {
+
+  const newClass = className ? ` ${className}` : '';
+
   return (
-    <section className="_post_bar">
+    <section className={`_post_bar${newClass}`}>
       <div>
         <Icon icon="mdi:cards-heart-outline" />
         <Icon icon="mdi:comment-outline" />

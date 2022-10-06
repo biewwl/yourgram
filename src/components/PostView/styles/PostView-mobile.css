@@ -1,0 +1,31 @@
+@media screen and (max-width: 768px) {
+
+  ._post_view {
+    height: auto;
+    padding-top: 60px;
+    padding-bottom: 70px;
+  }
+
+  ._post_view_content {
+    flex-direction: column;
+    height: auto;
+  }
+
+
+  ._post_view_thumbnail {
+    width: 100%
+  }
+
+  ._post_view_data {
+    width: 100%;
+  }
+
+  ._post_view_comments {
+    height: auto;
+  }
+
+  ._post_view_data {
+    border-radius: 0;
+  }
+
+}

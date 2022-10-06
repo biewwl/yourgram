@@ -7,6 +7,7 @@ import Notifications from "./pages/Notifications";
 import "./App.css";
 import "./colors/colors.css"
 import EditProfile from "./pages/EditProfile";
+import Post from "./pages/Post";
 
 function App() {
   return (
@@ -17,8 +18,9 @@ function App() {
         <Route exact path="/direct" element={<Direct />} />
         <Route exact path="/direct/:nick" element={<Direct />} />
         <Route exact path="/:nick" element={<Profile />} />
+        <Route exact path="/:nick/:post" element={<Post />} />
         <Route exact path="/profile/edit" element={<EditProfile />} />
-        <Route exact path="notifications" element={<Notifications />} />
+        <Route exact path="/notifications" element={<Notifications />} />
       </Routes>
     </div>
   );

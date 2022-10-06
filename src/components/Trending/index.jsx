@@ -5,7 +5,7 @@ import "./styles/Trending-mobile.css";
 import { Link } from "react-router-dom";
 
 export default function Trending() {
-  const { thumbnail, user, nick ,capture, postDate, verified, views } = fakeTrending;
+  const { thumbnail, user, nick ,subtitle, postDate, verified, views } = fakeTrending;
 
   return (
     <article className="_trending_content">
@@ -20,7 +20,7 @@ export default function Trending() {
           className="_trending_thumbnail"
         />
         <section className="_trending_post_data">
-          <h3 className="_trending_post_capture">{capture}</h3>
+          <h3 className="_trending_post_subtitle">{subtitle}</h3>
           <Link to={`/${nick}`} className="_trending_post_user">
             <span>{user}</span>
             {verified && (

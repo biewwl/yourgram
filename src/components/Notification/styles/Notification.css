@@ -48,14 +48,14 @@
   font-size: 0.9em;
 }
 
-._notification p div {
+._notification p > span {
   display: flex;
   gap: 0 5px;
   flex-wrap: wrap;
 }
 ._notify_elapsed_minutes {
   color: var(--light-grey-2);
-  font-size: 0.6em;
+  font-size: 0.8em;
   /* background-color: red; */
   height: 100%;
   font-family: product_sans, sans-serif;

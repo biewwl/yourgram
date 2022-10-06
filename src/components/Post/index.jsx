@@ -5,17 +5,19 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import "./styles/Post.css";
 import "./styles/Post-mobile.css";
+import { getCommentsById } from "../../mocks/fakeComments";
 
 function Post({
   thumbnail,
   user,
-  capture,
+  subtitle,
   verified,
   avatar,
   postDate,
   nick,
   nickUser,
-  avatarImage
+  avatarImage,
+  id,
 }) {
   const [comment, setComment] = useState("");
 
@@ -29,6 +31,8 @@ function Post({
   };
 
   const image = nick === nickUser ? avatarImage : avatar;
+
+  const countPost = getCommentsById(nick, id).length
 
   return (
     <section className="_post">
@@ -46,15 +50,21 @@ function Post({
         <img src={thumbnail} alt="trending_post" className="_post_thumbnail" />
         <PostBar />
         <section className="_post_data">
-          <Link to={`/${nick}`} className="_post_data_user">{user}</Link>
-          <span className="_post_capture">{capture}</span>
+          <Link to={`/${nick}`} className="_post_data_user">
+            {user}
+          </Link>
+          <span className="_post_subtitle">{subtitle}</span>
         </section>
         <section className="_post_date">
           <span className="_date">{postDate}</span>
         </section>
       </section>
       <section className="_post_comments">
-        <span className="_comments_link">See all 500 comments</span>
+        <Link to={`/${nick}/${id}`} className="_comments_link">
+          { countPost === 0 && `See post` }
+          { countPost === 1 && `See post and ${countPost} comment` }
+          { countPost > 1 && `See post and all ${countPost} comments` }
+        </Link>
         <section className="_comment">
           <Icon icon="ic:outline-emoji-emotions" />
           <input
