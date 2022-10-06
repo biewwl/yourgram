@@ -18,6 +18,66 @@ const chats = [
     ],
   },
   {
+    ...getUser('sleepcat'),
+    catMessages: [
+      {
+        message: 'Come on!! I want to sleeeep',
+        from: 'other',
+        ...formatTimer(30),
+      },
+      {
+        message: 'What u doing',
+        from: 'other',
+        ...formatTimer(30),
+      }
+    ],
+  },
+  {
+    ...getUser('sleepcat'),
+    catMessages: [
+      {
+        message: 'Come on!! I want to sleeeep',
+        from: 'other',
+        ...formatTimer(30),
+      },
+      {
+        message: 'What u doing',
+        from: 'other',
+        ...formatTimer(30),
+      }
+    ],
+  },
+  {
+    ...getUser('sleepcat'),
+    catMessages: [
+      {
+        message: 'Come on!! I want to sleeeep',
+        from: 'other',
+        ...formatTimer(30),
+      },
+      {
+        message: 'What u doing',
+        from: 'other',
+        ...formatTimer(30),
+      }
+    ],
+  },
+  {
+    ...getUser('sleepcat'),
+    catMessages: [
+      {
+        message: 'Come on!! I want to sleeeep',
+        from: 'other',
+        ...formatTimer(30),
+      },
+      {
+        message: 'What u doing',
+        from: 'other',
+        ...formatTimer(30),
+      }
+    ],
+  },
+  {
     ...getUser('mm'),
     catMessages: [
       {

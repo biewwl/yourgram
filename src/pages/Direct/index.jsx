@@ -6,6 +6,7 @@ import { Link, useParams } from "react-router-dom";
 import chats from "./chats"
 import { getUser } from "../../mocks/fakeUsers";
 import { useState } from "react";
+import { HashLink } from "react-router-hash-link/dist/react-router-hash-link.cjs.development";
 
 function Direct() {
 
@@ -22,7 +23,7 @@ function Direct() {
   return (
     <div>
       <Header page="direct" />
-      <div className="body">
+      <div id="body" className="body">
         <div className="page">
           <div className="persons">
             <div className="user">
@@ -49,7 +50,7 @@ function Direct() {
             <div className="list">
               {chats.filter((infos) => infos.user.toLowerCase().includes(search.toLowerCase())).map((infocat) => (
                 <Link to={`/direct/${infocat.nick}`} className={`person-message-${infocat.nick === user}`}>
-                  <div className="all">
+                  <HashLink to={`/direct/${infocat.nick}#chat`} className="all">
                     <Link to={`/${infocat.nick}`}>
                       <img
                         className="photo-chat"
@@ -68,7 +69,7 @@ function Direct() {
                         <p>{`${infocat.catMessages[infocat.catMessages.length - 1].format} ago`}</p>
                       </div>
                     </div>
-                  </div>
+                  </HashLink>
                   {infocat.catMessages.filter((type) => type.from === 'other').length - infocat.catMessages
                     .indexOf(infocat.catMessages.filter((type) => type.from === 'me')[infocat.catMessages
                       .filter((type) => type.from === 'me').length - 1])
@@ -80,7 +81,7 @@ function Direct() {
               ))}
             </div>
           </div>
-          <div className="chat">
+          <div id="chat" className="chat">
             {chats.some((chat) => chat.nick === user) ? [chats.find((chat) => chat.nick === user)].map((infos) => (
               <div className="square-chat">
                 <div className="chat-header">
@@ -89,6 +90,7 @@ function Direct() {
                     <Link className="name-chat" to={`/${infos.nick}`} >{infos.user}</Link>
                     {infos.verified ? <Icon icon="codicon:verified-filled" className="verified" /> : ''}
                   </div>
+                  <HashLink to={`/direct/${infos.nick}#body`} className="direct">Direct</HashLink>
                 </div>
                 <div className="all-chats">
                   {infos.catMessages.map((messages) => (
