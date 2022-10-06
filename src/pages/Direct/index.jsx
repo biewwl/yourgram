@@ -84,7 +84,6 @@ function Direct() {
           <div id="chat" className="chat">
             {chats.some((chat) => chat.nick === user) ? [chats.find((chat) => chat.nick === user)].map((infos) => (
               <div className="square-chat">
-                <HashLink to={`/direct/${infos.nick}#body`} className="direct">Return to Direct</HashLink>
                 <div className="chat-header">
                   <img src={infos.avatar} alt="" />
                   <div className="name-top">
