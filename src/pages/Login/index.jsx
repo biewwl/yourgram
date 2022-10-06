@@ -133,13 +133,13 @@ function Login({ dispatch }) {
           {!create && (
             <span className="_login_alternate_mode">
               Don't have an account?
-              <span onClick={alternateMode}>Sing up!</span>
+              <span onClick={alternateMode}>Sign up!</span>
             </span>
           )}
           {create && (
             <span className="_login_alternate_mode" onClick={alternateMode}>
               You have an account?
-              <span onClick={alternateMode}>Sing in!</span>
+              <span onClick={alternateMode}>Sign in!</span>
             </span>
           )}
         </form>
