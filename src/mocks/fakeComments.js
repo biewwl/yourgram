@@ -76,6 +76,66 @@ const fakeComments = [
       comment: "oww",
     },
   },
+  {
+    sender: {
+      ...getUser("astravlog"),
+    },
+    elapsedMinutes: 39,
+    payload: {
+      post: {
+        ...getPost("realblack", 1),
+      },
+      comment: "The king! 👑",
+    },
+  },
+  {
+    sender: {
+      ...getUser("johnnn"),
+    },
+    elapsedMinutes: 70,
+    payload: {
+      post: {
+        ...getPost("realblack", 1),
+      },
+      comment: "🆙🆙",
+    },
+  },
+  {
+    sender: {
+      ...getUser("lifebella"),
+    },
+    elapsedMinutes: 10,
+    payload: {
+      post: {
+        ...getPost("realblack", 1),
+      },
+      comment: "pretty ❤️",
+    },
+  },
+  {
+    sender: {
+      ...getUser("meowzeiro"),
+    },
+    elapsedMinutes: 10,
+    payload: {
+      post: {
+        ...getPost("realblack", 1),
+      },
+      comment: "meow meow",
+    },
+  },
+  {
+    sender: {
+      ...getUser("thuglife"),
+    },
+    elapsedMinutes: 10,
+    payload: {
+      post: {
+        ...getPost("realblack", 1),
+      },
+      comment: "like",
+    },
+  },
 ];
 
 export const getCommentsForLogged = (logged, id) => {
@@ -92,7 +152,8 @@ export const getCommentsForLogged = (logged, id) => {
 
 export const getCommentsById = (nick, id) => {
   return fakeComments.filter(
-    (comment) => comment.payload.post.id === id && comment.payload.post.nick === nick
+    (comment) =>
+      comment.payload.post.id === id && comment.payload.post.nick === nick
   );
 };
 

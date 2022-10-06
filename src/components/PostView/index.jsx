@@ -70,7 +70,14 @@ function PostView({ userData, comments }) {
                     className="_post_view_comment_avatar"
                   />
                   <span>
-                    <Link to={`/${sender.nick}`}>{sender.nick}</Link>
+                    <Link to={`/${sender.nick}`}>
+                      {sender.nick}
+                      {sender.verified && (
+                        <Icon
+                          icon="codicon:verified-filled"
+                        />
+                      )}
+                    </Link>
                     <p>{payload.comment}</p>
                   </span>
                 </div>

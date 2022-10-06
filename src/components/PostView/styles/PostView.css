@@ -198,4 +198,13 @@
   font-family: product_sans, sans-serif;
   color: var(--dark-blue);
   text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.9em;
+}
+
+._post_view_comments a svg {
+  color: var(--orange);
+  font-size: 0.9em
 }
