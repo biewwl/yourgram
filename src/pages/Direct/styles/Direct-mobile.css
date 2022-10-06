@@ -24,6 +24,10 @@
     justify-content: center;
   }
 
+  .dont-message {
+    margin-top: 20px;
+  }
+
   .chat {
     /* display: none; */
     margin: 10px 0 70px 0;
