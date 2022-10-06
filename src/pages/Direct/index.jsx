@@ -25,12 +25,14 @@ function Direct() {
         <div className="page">
           <div className="persons">
             <div className="user">
-              <img
-                className="user-pic"
-                src="https://assets.papodehomem.com.br/2015/05/30/05/42/43/431/photo.jpg"
-                alt=""
-              />
-              <p className="name">Cat LoL</p>
+              <Link to="/lolcat">
+                <img
+                  className="user-pic"
+                  src="https://assets.papodehomem.com.br/2015/05/30/05/42/43/431/photo.jpg"
+                  alt=""
+                />
+              </Link>
+              <Link className="name" to="/lolcat" >Cat LoL</Link>
             </div>
             <div className="options">
               <input
@@ -47,11 +49,13 @@ function Direct() {
               {chats.filter((infos) => infos.user.toLowerCase().includes(search.toLowerCase())).map((infocat) => (
                 <Link to={`/direct/${infocat.nick}`} className={`person-message-${infocat.nick === user}`}>
                   <div className="all">
-                    <img
-                      className="photo-chat"
-                      src={infocat.avatar}
-                      alt=""
-                    />
+                    <Link to={`/${infocat.nick}`}>
+                      <img
+                        className="photo-chat"
+                        src={infocat.avatar}
+                        alt=""
+                      />
+                    </Link>
                     <div className="cat-message">
                       <div className="box-name">
                         <p className="name-chat">{infocat.user}</p>
@@ -77,7 +81,7 @@ function Direct() {
                 <div className="chat-header">
                   <img src={infos.avatar} alt="" />
                   <div className="name-top">
-                    <p>{infos.user}</p>
+                    <Link className="name-chat" to={`/${infos.nick}`} >{infos.user}</Link>
                     {infos.verified ? <Icon icon="codicon:verified-filled" className="verified" /> : ''}
                   </div>
                 </div>
@@ -86,11 +90,11 @@ function Direct() {
                     <div>
                       {messages.from === 'other'
                         ? <div className="other-message">
-                          <img className="img-side-other" src={infos.avatar} alt="" />
+                          <Link to={`/${infos.nick}`}><img className="img-side-other" src={infos.avatar} alt="" /></Link>
                           <p className="message-other">{messages.message}</p>
                         </div>
                         : <div className="me-message">
-                          <img className="img-side-me" src={getUser('lolcat').avatar} alt="" />
+                          <Link to="/lolcat"><img className="img-side-me" src={getUser('lolcat').avatar} alt="" /></Link>
                           <p className="message-me">{messages.message}</p>
                         </div>}
                     </div>
