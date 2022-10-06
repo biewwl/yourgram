@@ -55,6 +55,7 @@
 
 .list {
   padding: 10px;
+  overflow-y: scroll;
 }
 
 .person-message-false {
@@ -89,6 +90,7 @@
 .all {
   display: flex;
   width: 80%;
+  text-decoration: none;
 }
 
 .count-message {
@@ -284,6 +286,10 @@
   border-radius: 20px;
   border: .5px solid var(--light-grey-2);
   padding: 5px 10px;
+}
+
+.direct {
+  display: none;
 }
 
 .send {

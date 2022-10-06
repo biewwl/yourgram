@@ -3,9 +3,33 @@
     padding-bottom: 60px;
   }
 
-  .chat {
-    display: none;
+  .chat-header {
+    position: relative;
   }
+
+  .input {
+    width: 70%;
+  }
+
+  .options {
+    padding: 10px;
+  }
+
+  .direct {
+    display: flex;
+    text-transform: uppercase;
+    color: var(--orange);
+    text-decoration: none;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .chat {
+    /* display: none; */
+    margin: 10px 0 70px 0;
+    width: 100%;
+    border: 0;
+  } 
 
   .persons {
     width: 100%;
@@ -13,12 +37,29 @@
 
   .list {
     width: 100%;
-    padding: 0;
+    padding: 10px;
   }
 
-  .person-message-false {
+  .person-message-false, .person-message-true {
     width: 100%;
     max-width: 100%;
     min-width: 300px;
   }
+
+  .user {
+    display: none;
+  }
+   
+  .body {
+    align-items: flex-start;
+    height: auto;
+  }
+
+  .page {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  
 }
