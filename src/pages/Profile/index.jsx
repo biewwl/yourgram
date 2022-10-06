@@ -1,26 +1,33 @@
 import { Icon } from "@iconify/react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Header from "../../components/Header";
 import ProfileBar from "../../components/ProfileBar";
 import PostGrid from "../../components/PostsGrid";
 import Posts from "../../components/Posts";
 import fakeUsers from "../../mocks/fakeUsers";
 import fakePosts from "../../mocks/fakePosts";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./styles/Profile.css";
 import "./styles/Profile-mobile.css";
 import { connect } from "react-redux";
 
 function Profile({ nickLogged }) {
   const { nick } = useParams();
+  
+  const nav = useNavigate();
+  
+  const [userData, setUserData] = useState({});
+  const [grid, setGrid] = useState(true);
+  
+  useEffect(() => {
+    const userDataReturn = fakeUsers.find((u) => u.nick === nick);
+    if (!userDataReturn) return nav("/");
+    return setUserData(userDataReturn);
+  }, [nav, nick]);
 
-  const { user, avatar, verified, header } = fakeUsers.find(
-    (u) => u.nick === nick
-  );
+  const { user, avatar, verified, header } = userData;
 
   const posts = fakePosts.filter((p) => p.nick === nick);
-
-  const [grid, setGrid] = useState(true);
 
   const changeView = () => setGrid(!grid);
 
