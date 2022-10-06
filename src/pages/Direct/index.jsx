@@ -1,4 +1,5 @@
 import "./styles/Direct.css";
+import "./styles/Direct-mobile.css";
 import Header from "../../components/Header";
 import { Icon } from "@iconify/react";
 import { Link, useParams } from "react-router-dom";
@@ -45,7 +46,7 @@ function Direct() {
                 id="" />
               <Icon className="write" icon="jam:write" />
             </div>
-            <div clkLinkassName="list">
+            <div className="list">
               {chats.filter((infos) => infos.user.toLowerCase().includes(search.toLowerCase())).map((infocat) => (
                 <Link to={`/direct/${infocat.nick}`} className={`person-message-${infocat.nick === user}`}>
                   <div className="all">
