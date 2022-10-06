@@ -20,6 +20,8 @@
     text-transform: uppercase;
     color: var(--orange);
     text-decoration: none;
+    align-items: center;
+    justify-content: center;
   }
 
   .chat {

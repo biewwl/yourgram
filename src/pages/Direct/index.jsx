@@ -84,13 +84,13 @@ function Direct() {
           <div id="chat" className="chat">
             {chats.some((chat) => chat.nick === user) ? [chats.find((chat) => chat.nick === user)].map((infos) => (
               <div className="square-chat">
+                <HashLink to={`/direct/${infos.nick}#body`} className="direct">Return to Direct</HashLink>
                 <div className="chat-header">
                   <img src={infos.avatar} alt="" />
                   <div className="name-top">
                     <Link className="name-chat" to={`/${infos.nick}`} >{infos.user}</Link>
                     {infos.verified ? <Icon icon="codicon:verified-filled" className="verified" /> : ''}
                   </div>
-                  <HashLink to={`/direct/${infos.nick}#body`} className="direct">Direct</HashLink>
                 </div>
                 <div className="all-chats">
                   {infos.catMessages.map((messages) => (
