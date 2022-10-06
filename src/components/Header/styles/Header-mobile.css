@@ -21,4 +21,11 @@
     justify-content: space-evenly;
     border-top: 1px solid var(--light-grey);
   }
+
+  ._header_login {
+    height: 100%;
+    font-size: 1em;
+    padding: 0;
+    background-color: #fff;
+  }
 }

@@ -6,6 +6,9 @@ const fakeComments = [
     sender: {
       ...getUser("johnnn"),
     },
+    recipient: {
+      ...getUser("lolcat"),
+    },
     elapsedMinutes: 10,
     payload: {
       post: {
@@ -19,6 +22,9 @@ const fakeComments = [
     sender: {
       ...getUser("lifebella"),
     },
+    recipient: {
+      ...getUser("lolcat"),
+    },
     elapsedMinutes: 21,
     payload: {
       post: {
@@ -30,6 +36,9 @@ const fakeComments = [
   {
     sender: {
       ...getUser("studious.cat"),
+    },
+    recipient: {
+      ...getUser("lolcat"),
     },
     elapsedMinutes: 21,
     payload: {
@@ -44,6 +53,9 @@ const fakeComments = [
     sender: {
       ...getUser("thecute"),
     },
+    recipient: {
+      ...getUser("lolcat"),
+    },
     elapsedMinutes: 10,
     payload: {
       post: {
@@ -55,6 +67,9 @@ const fakeComments = [
   {
     sender: {
       ...getUser("cat.life"),
+    },
+    recipient: {
+      ...getUser("lolcat"),
     },
     elapsedMinutes: 10,
     payload: {
@@ -68,6 +83,9 @@ const fakeComments = [
     sender: {
       ...getUser("astravlog"),
     },
+    recipient: {
+      ...getUser("lolcat"),
+    },
     elapsedMinutes: 30,
     payload: {
       post: {
@@ -79,6 +97,9 @@ const fakeComments = [
   {
     sender: {
       ...getUser("astravlog"),
+    },
+    recipient: {
+      ...getUser("realblack"),
     },
     elapsedMinutes: 39,
     payload: {
@@ -92,6 +113,9 @@ const fakeComments = [
     sender: {
       ...getUser("johnnn"),
     },
+    recipient: {
+      ...getUser("realblack"),
+    },
     elapsedMinutes: 70,
     payload: {
       post: {
@@ -103,6 +127,9 @@ const fakeComments = [
   {
     sender: {
       ...getUser("lifebella"),
+    },
+    recipient: {
+      ...getUser("realblack"),
     },
     elapsedMinutes: 10,
     payload: {
@@ -116,6 +143,9 @@ const fakeComments = [
     sender: {
       ...getUser("meowzeiro"),
     },
+    recipient: {
+      ...getUser("realblack"),
+    },
     elapsedMinutes: 10,
     payload: {
       post: {
@@ -127,6 +157,9 @@ const fakeComments = [
   {
     sender: {
       ...getUser("thuglife"),
+    },
+    recipient: {
+      ...getUser("realblack")
     },
     elapsedMinutes: 10,
     payload: {
@@ -141,10 +174,10 @@ const fakeComments = [
 export const getCommentsForLogged = (logged, id) => {
   return fakeComments
     .filter((comment) => {
-      const { payload } = comment;
+      const { recipient, payload } = comment;
       const getType = id
-        ? payload.post.nick === logged && id === payload.post.id
-        : payload.post.nick === logged;
+        ? recipient.nick === logged && id === payload.post.id
+        : recipient.nick === logged;
       return getType;
     })
     .map((comment) => ({ ...comment, type: "comment" }));

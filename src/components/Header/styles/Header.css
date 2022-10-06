@@ -19,6 +19,7 @@
   color: var(--dark-blue);
   justify-self: flex-start;
   padding-left: 50px;
+  text-decoration: none;
 }
 
 ._header_search_bar {
@@ -66,4 +67,14 @@
   width: 30px;
   border-radius: 50%;
   object-fit: cover;
+}
+
+._header_login {
+  text-decoration: none;
+  color: var(--dark-blue);
+  font-family: product_sans, sans-serif;
+  background-color: var(--light-grey);
+  padding: 5px 10px;
+  border-radius: 25px;
+  font-size: 0.8em;
 }
