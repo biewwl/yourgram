@@ -12,7 +12,7 @@ export const fakeAPI = {
     createUser: (nick, email, password, user) => {
       const { existEmail } = verifyExistUser(user, email);
       if (existEmail) return { message: "E-mail already registered!" };
-      fakeUsers.push({
+      const newUser = {
         user,
         email,
         password,
@@ -20,9 +20,10 @@ export const fakeAPI = {
           "https://jacksonvillepartycompany.com/wp-content/uploads/2018/10/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg",
         verified: false,
         nick,
-        header: "https://wallpapercave.com/wp/wp9779896.jpg",
-      });
-      return { login: "ok!" };
+        header: "https://pbs.twimg.com/media/DCU4xoLVwAAJWhH.jpg",
+      };
+      fakeUsers.push(newUser);
+      return { login: newUser };
     },
   },
 };

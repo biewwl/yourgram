@@ -9,8 +9,12 @@ import Post from "./pages/Post";
 import "./App.css";
 import "./colors/colors.css";
 import { connect } from "react-redux";
+import { getLogins } from "./helpers/localStorage";
 
 function App({ status }) {
+
+  getLogins();
+
   return (
     <div className="App">
       <Routes>

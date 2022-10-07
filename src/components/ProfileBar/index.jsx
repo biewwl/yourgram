@@ -2,8 +2,10 @@ import { Icon } from "@iconify/react";
 import "./styles/ProfileBar.css";
 import "./styles/ProfileBar-mobile.css";
 import { useNavigate } from "react-router-dom";
+import { connect } from "react-redux";
+import { logoutUser } from "../../redux/actions/userAction";
 
-function ProfileBar({ nick, posts, nickLogged, edit }) {
+function ProfileBar({ nick, posts, nickLogged, edit, dispatch }) {
   const nav = useNavigate();
 
   const sendMessage = () => {
@@ -12,6 +14,11 @@ function ProfileBar({ nick, posts, nickLogged, edit }) {
 
   const editProfile = () => {
     nav(`/profile/edit`);
+  };
+
+  const logout = () => {
+    dispatch(logoutUser());
+    nav("/");
   };
 
   const isLogged = nick === nickLogged;
@@ -28,7 +35,9 @@ function ProfileBar({ nick, posts, nickLogged, edit }) {
         {isLogged && !edit && (
           <>
             <button onClick={editProfile}>Edit Profile</button>
-            {/* <button>saved</button> */}
+            <button className="_logout_button" onClick={logout}>
+              Logout
+            </button>
           </>
         )}
       </section>
@@ -61,4 +70,4 @@ function ProfileBar({ nick, posts, nickLogged, edit }) {
   );
 }
 
-export default ProfileBar;
+export default connect()(ProfileBar);

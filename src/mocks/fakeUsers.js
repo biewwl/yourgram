@@ -197,8 +197,8 @@ export const getUser = (nick) => {
   return withoutPass.find((u) => u.nick === nick);
 };
 
-export const getFullUser = (nickOrEmail) =>
-  fakeUsers.find((u) => u.nick === nickOrEmail || u.email === nickOrEmail);
+export const getFullUser = (nickOrEmail) => fakeUsers.find((u) =>
+  u.nick === nickOrEmail || u.email === nickOrEmail);
 
 export const verifyExistUser = (nick, email) => {
   const existNick = fakeUsers.some((u) => u.nick === nick);

@@ -55,3 +55,8 @@
 ._profile_stats_bar_icon div svg {
   font-size: 1.2em;
 }
+
+._logout_button {
+  background-color: var(--dark-blue) !important;
+  color: #fff !important;
+}

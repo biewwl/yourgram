@@ -1,10 +1,11 @@
-import { useState } from "react";
+import {  useState } from "react";
 import { connect } from "react-redux";
 import { validateEmail } from "../../helpers";
 import { fakeAPI } from "../../mocks/fakeAPI";
 import { verifyExistUser } from "../../mocks/fakeUsers";
 import logo from "./images/logo.png";
 import { loginUser } from "../../redux/actions/userAction";
+import { setLogin } from "../../helpers/localStorage";
 import "./styles/Login.css";
 
 function Login({ dispatch }) {
@@ -32,7 +33,7 @@ function Login({ dispatch }) {
 
   const createLogin = () => {
     const { username, email, password, name } = userData;
-    const { message } = fakeAPI.post.createUser(
+    const { message, login } = fakeAPI.post.createUser(
       username,
       email,
       password,
@@ -40,6 +41,7 @@ function Login({ dispatch }) {
     );
     if (message) return setInvalidCreateUser(message);
     dispatch(loginUser(username));
+    setLogin(login);
     // return nav("/feed");
   };
 
@@ -147,15 +149,15 @@ function Login({ dispatch }) {
           disabled={!verifyData()}
           onClick={create ? createLogin : login}
           className="_login_button"
-          >
+        >
           Enter
         </button>
-          {!create && invalidLogin && (
-            <span className="_invalid_message">{invalidLogin}</span>
-          )}
-          {create && invalidCreateUser && (
-            <span className="_invalid_message">{invalidCreateUser}</span>
-          )}
+        {!create && invalidLogin && (
+          <span className="_invalid_message">{invalidLogin}</span>
+        )}
+        {create && invalidCreateUser && (
+          <span className="_invalid_message">{invalidCreateUser}</span>
+        )}
       </article>
     </main>
   );

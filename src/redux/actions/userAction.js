@@ -1,5 +1,5 @@
 import { getUser } from "../../mocks/fakeUsers";
-import { CHANGE_IMAGES, LOGIN } from "../reducers/userReducer";
+import { CHANGE_IMAGES, LOGIN, LOGOUT } from "../reducers/userReducer";
 
 export const changeImages = (header, avatar) => ({
   type: CHANGE_IMAGES,
@@ -14,4 +14,8 @@ export const loginUser = (nick) => ({
   payload: {
     ...getUser(nick),
   },
+});
+
+export const logoutUser = (nick) => ({
+  type: LOGOUT,
 });
