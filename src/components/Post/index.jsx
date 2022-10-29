@@ -1,5 +1,5 @@
 import { Icon } from "@iconify/react";
-import PostBar from "../PostBar";
+import PostActions from "../PostActions";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getCommentsById } from "../../mocks/fakeComments";
@@ -36,7 +36,7 @@ function Post({
           )}
         </Link>
         <img src={thumbnail} alt="trending_post" className="_post_thumbnail" />
-        <PostBar
+        <PostActions
           postData={{
             user,
             nick,

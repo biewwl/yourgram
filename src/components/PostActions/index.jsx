@@ -4,13 +4,15 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { commentPost, isLiked, managerLike } from "../../helpers/managerPosts";
 import { getCommentsById } from "../../mocks/fakeComments";
-import "./styles/PostBar.css";
+import "./styles/PostActions.css";
 
-function PostBar({ className, postData, reloadComments }) {
-  const isView = className ? ` ${className}` : "";
-  const [liked, setLiked] = useState(false);
-
+function PostActions({ className, postData, reloadComments, status }) {
   const { user, id, subtitle, postDate, nick, sender } = postData;
+
+  const isView = className ? ` ${className}` : "";
+
+  const [liked, setLiked] = useState(false);
+  const [comment, setComment] = useState("");
 
   useEffect(() => {
     const setIsLiked = () => {
@@ -23,8 +25,6 @@ function PostBar({ className, postData, reloadComments }) {
     managerLike(sender, id, nick);
     setLiked(isLiked(sender, id, nick));
   };
-
-  const [comment, setComment] = useState("");
 
   const handleChange = ({ target }) => {
     const { value } = target;
@@ -44,25 +44,26 @@ function PostBar({ className, postData, reloadComments }) {
   const countPost = getCommentsById(nick, id).length;
 
   return (
-    // <PostBar postId={id} nick={nick} />
     <>
-      <section className={`_post_bar${isView}`}>
-        <div>
-          <span onClick={handleLike} className={liked ? "_liked_post" : ""}>
-            {!liked && <Icon icon="mdi:cards-heart-outline" />}
-            {liked && <Icon icon="mdi:cards-heart" />}
-          </span>
-          {
-            <label htmlFor={`_comment_${id}_${nick}`}>
-              <Icon icon="mdi:comment-outline" />
-            </label>
-          }
-          <span>
-            <Icon icon="eva:paper-plane-fill" />
-          </span>
-        </div>
-        <Icon icon="mdi:bookmark-outline" />
-      </section>
+      {status && (
+        <section className={`_post_bar${isView}`}>
+          <div>
+            <span onClick={handleLike} className={liked ? "_liked_post" : ""}>
+              {!liked && <Icon icon="mdi:cards-heart-outline" />}
+              {liked && <Icon icon="mdi:cards-heart" />}
+            </span>
+            {
+              <label htmlFor={`_comment_${id}_${nick}`}>
+                <Icon icon="mdi:comment-outline" />
+              </label>
+            }
+            <span>
+              <Icon icon="eva:paper-plane-fill" />
+            </span>
+          </div>
+          <Icon icon="mdi:bookmark-outline" />
+        </section>
+      )}
       {!isView && (
         <section className="_post_data">
           <span className="_post_data_user_subtitle">
@@ -86,19 +87,21 @@ function PostBar({ className, postData, reloadComments }) {
             {countPost > 1 && `See post and all ${countPost} comments`}
           </Link>
         )}
-        <section className="_comment">
-          <Icon icon="ic:outline-emoji-emotions" />
-          <input
-            type="text"
-            placeholder="Add a comment..."
-            value={comment}
-            onChange={handleChange}
-            id={`_comment_${id}_${nick}`}
-          />
-          <button disabled={checkSend()} onClick={handleComment}>
-            Send
-          </button>
-        </section>
+        {status && (
+          <section className="_comment">
+            <Icon icon="ic:outline-emoji-emotions" />
+            <input
+              type="text"
+              placeholder="Add a comment..."
+              value={comment}
+              onChange={handleChange}
+              id={`_comment_${id}_${nick}`}
+            />
+            <button disabled={checkSend()} onClick={handleComment}>
+              <Icon icon="charm:paper-plane" />
+            </button>
+          </section>
+        )}
       </section>
     </>
   );
@@ -106,6 +109,7 @@ function PostBar({ className, postData, reloadComments }) {
 
 const mapStateToProps = (state) => ({
   nick: state.user.nick,
+  status: state.user.status,
 });
 
-export default connect(mapStateToProps)(PostBar);
+export default connect(mapStateToProps)(PostActions);

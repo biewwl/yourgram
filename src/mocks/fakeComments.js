@@ -5,8 +5,9 @@ import { getUser } from "./fakeUsers";
 
 export const fakeCommentsFullData = (comments) =>
   comments.map((post) => {
-    const { sender, postId, recipient, comment, date } = post;
+    const { sender, postId, recipient, comment, date, id } = post;
     return {
+      id,
       type: "comment",
       sender: {
         ...getUser(sender),

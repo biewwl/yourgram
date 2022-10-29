@@ -1,4 +1,4 @@
-import PostBar from "../PostBar";
+import PostActions from "../PostActions";
 import { Icon } from "@iconify/react";
 import "./styles/PostView.css";
 import { Link } from "react-router-dom";
@@ -6,6 +6,7 @@ import "./styles/PostView-mobile.css";
 import { connect } from "react-redux";
 import { getCommentsById } from "../../mocks/fakeComments";
 import { useEffect, useState } from "react";
+import { uncommentPost } from "../../helpers/managerPosts";
 
 function PostView({ userData, nickUser, avatarImage, status }) {
   const { thumbnail, user, subtitle, verified, avatar, postDate, nick, id } =
@@ -14,12 +15,17 @@ function PostView({ userData, nickUser, avatarImage, status }) {
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
-    setComments(getCommentsById(nick, id))
+    setComments(getCommentsById(nick, id));
   }, [nick, id]);
 
   const image = nick === nickUser ? avatarImage : avatar;
 
   const reloadComments = () => setComments(getCommentsById(nick, id));
+
+  const uncomment = (idComment) => {
+    uncommentPost(idComment, id, nick);
+    reloadComments();
+  };
 
   return (
     <section className="_post_view">
@@ -58,15 +64,16 @@ function PostView({ userData, nickUser, avatarImage, status }) {
             </p>
           </div>
           <div className="_post_view_comments">
-            {comments.map((comment) => {
-              const { sender, payload } = comment;
+            {comments.map((comment, i) => {
+              const { sender, payload, id: idComment } = comment;
               return (
-                <div className="_post_view_comment">
+                <div className="_post_view_comment" key={i}>
                   <img
                     src={sender.avatar}
                     alt=""
                     className="_post_view_comment_avatar"
                   />
+                  <button onClick={() => uncomment(idComment)}>x</button>
                   <span>
                     <Link to={`/${sender.nick}`}>
                       {sender.nick}
@@ -80,23 +87,19 @@ function PostView({ userData, nickUser, avatarImage, status }) {
               );
             })}
           </div>
-          {status && (
-            <>
-              <PostBar
-                className="_post_view_post_bar"
-                reloadComments={reloadComments}
-                postData={{
-                  user,
-                  nick,
-                  subtitle,
-                  postDate,
-                  id,
-                  comments,
-                  sender: nickUser,
-                }}
-              />
-            </>
-          )}
+          <PostActions
+            className="_post_view_post_bar"
+            reloadComments={reloadComments}
+            postData={{
+              user,
+              nick,
+              subtitle,
+              postDate,
+              id,
+              comments,
+              sender: nickUser,
+            }}
+          />
         </section>
       </article>
     </section>

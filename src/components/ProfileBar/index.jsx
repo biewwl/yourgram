@@ -1,12 +1,23 @@
 import { Icon } from "@iconify/react";
-import "./styles/ProfileBar.css";
-import "./styles/ProfileBar-mobile.css";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { logoutUser } from "../../redux/actions/userAction";
+import { alreadyFollow, followedCount, followingCount, managerFollow } from "../../helpers/managerFollows";
+import "./styles/ProfileBar.css";
+import "./styles/ProfileBar-mobile.css";
 
-function ProfileBar({ nick, posts, nickLogged, edit, dispatch }) {
+function ProfileBar({ nick, posts, nickLogged, edit, dispatch, status }) {
   const nav = useNavigate();
+
+  const [statusFollow, setStatusFollow] = useState(false);
+
+  useEffect(() => {
+    const setFollow = () => {
+      setStatusFollow(alreadyFollow(nickLogged, nick));
+    };
+    setFollow();
+  }, [nickLogged, nick]);
 
   const sendMessage = () => {
     nav(`/direct/${nick}`);
@@ -21,26 +32,36 @@ function ProfileBar({ nick, posts, nickLogged, edit, dispatch }) {
     nav("/");
   };
 
+  const follow = () => {
+    managerFollow(nickLogged, nick);
+    setStatusFollow(alreadyFollow(nickLogged, nick));
+  };
+
   const isLogged = nick === nickLogged;
 
   return (
     <section className="_profile_stats_bar">
-      <section className="_profile_actions">
-        {!isLogged && (
-          <>
-            <button>+ Follow</button>
-            <button onClick={sendMessage}>Message</button>
-          </>
-        )}
-        {isLogged && !edit && (
-          <>
-            <button onClick={editProfile}>Edit Profile</button>
-            <button className="_logout_button" onClick={logout}>
-              Logout
-            </button>
-          </>
-        )}
-      </section>
+      {status && (
+        <section className="_profile_actions">
+          {!isLogged && (
+            <>
+              <button onClick={follow}>
+                { statusFollow && "- Unfollow" }
+                { !statusFollow && "+ Follow" }
+              </button>
+              <button onClick={sendMessage}>Message</button>
+            </>
+          )}
+          {isLogged && !edit && (
+            <>
+              <button onClick={editProfile}>Edit Profile</button>
+              <button className="_logout_button" onClick={logout}>
+                Logout
+              </button>
+            </>
+          )}
+        </section>
+      )}
       {!edit && (
         <section className="_profile_stats">
           <span className="_profile_stats_bar_icon _followers">
@@ -48,14 +69,14 @@ function ProfileBar({ nick, posts, nickLogged, edit, dispatch }) {
               <Icon icon="lucide:users" />
               <span>Followers</span>
             </div>
-            27M
+            {followedCount(nick)}
           </span>
           <span className="_profile_stats_bar_icon _following">
             <div>
               <Icon icon="mingcute:user-follow-line" />
               <span>Following</span>
             </div>
-            99
+            {followingCount(nick)}
           </span>
           <span className="_profile_stats_bar_icon _posts">
             <div>
@@ -70,4 +91,9 @@ function ProfileBar({ nick, posts, nickLogged, edit, dispatch }) {
   );
 }
 
-export default connect()(ProfileBar);
+const mapStateToProps = (state) => ({
+  status: state.user.status,
+  nickLogged: state.user.nick,
+});
+
+export default connect(mapStateToProps)(ProfileBar);

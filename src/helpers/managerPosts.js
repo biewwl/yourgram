@@ -44,29 +44,36 @@ export const managerLike = (sender, postId, recipient) => {
 };
 
 export const commentPost = (sender, postId, recipient, comment) => {
-  const currentComments = lS.get("biewwl-comment-posts");
+  const currentComments = lS.get("biewwl-comment-posts") ?? [];
+  const qtyCommentsByPost = currentComments.filter(
+    (like) =>
+      like.sender === sender &&
+      like.postId === postId &&
+      like.recipient === recipient
+  ).length;
   const dataComment = {
     sender,
     recipient,
     postId,
     date: new Date(),
     comment,
+    id: qtyCommentsByPost,
   };
   if (!currentComments) return lS.set("biewwl-comment-posts", [dataComment]);
   lS.set("biewwl-comment-posts", [...currentComments, dataComment]);
 };
 
-export const uncommentPost = (sender, postId, recipient) => {
-  const currentLikes = lS.get("biewwl-like-posts");
-  if (currentLikes) {
-    const updatedLikes = currentLikes.filter(
+export const uncommentPost = (id, postId, recipient) => {
+  const currentComments = lS.get("biewwl-comment-posts") ?? [];
+  if (currentComments) {
+    const updatedLikes = currentComments.filter(
       (like) =>
         !(
-          like.sender === sender &&
+          like.id === id &&
           like.postId === postId &&
           like.recipient === recipient
         )
     );
-    return lS.set("biewwl-like-posts", updatedLikes);
+    return lS.set("biewwl-comment-posts", updatedLikes);
   }
 };

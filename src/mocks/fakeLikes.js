@@ -6,7 +6,6 @@ import { getElapsedMinutes } from "../helpers";
 export const fakeLikesFullData = (likes) =>
   likes.map((post) => {
     const { sender, postId, recipient, date } = post;
-    console.log(date);
     return {
       type: "like",
       sender: {

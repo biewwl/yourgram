@@ -54,7 +54,6 @@ function Profile({ nickLogged }) {
             <ProfileBar
               posts={posts.length}
               nick={nick}
-              nickLogged={nickLogged}
             />
             <div className="_profile_post_title">
               <div>
