@@ -60,3 +60,8 @@
   background-color: var(--dark-blue) !important;
   color: #fff !important;
 }
+
+._button_unfollow {
+  color: #c12828 !important;
+  background-color: #efc9c9 !important;
+}

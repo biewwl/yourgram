@@ -66,6 +66,7 @@ function PostView({ userData, nickUser, avatarImage, status }) {
           <div className="_post_view_comments">
             {comments.map((comment, i) => {
               const { sender, payload, id: idComment } = comment;
+              const validDelete = sender.nick === nickUser;
               return (
                 <div className="_post_view_comment" key={i}>
                   <img
@@ -73,14 +74,20 @@ function PostView({ userData, nickUser, avatarImage, status }) {
                     alt=""
                     className="_post_view_comment_avatar"
                   />
-                  <button onClick={() => uncomment(idComment)}>x</button>
-                  <span>
-                    <Link to={`/${sender.nick}`}>
-                      {sender.nick}
-                      {sender.verified && (
-                        <Icon icon="codicon:verified-filled" />
+                  <span className="_comment_area">
+                    <span className="_header_comment">
+                      <Link to={`/${sender.nick}`}>
+                        {sender.nick}
+                        {sender.verified && (
+                          <Icon icon="codicon:verified-filled" />
+                        )}
+                      </Link>
+                      {validDelete && (
+                        <button onClick={() => uncomment(idComment)}>
+                          <Icon icon="bi:x" />
+                        </button>
                       )}
-                    </Link>
+                    </span>
                     <p>{payload.comment}</p>
                   </span>
                 </div>

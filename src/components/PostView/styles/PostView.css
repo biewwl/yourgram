@@ -136,9 +136,8 @@
   border-top: 1px solid var(--light-grey);
 }
 
-
 ._post_view_comments::-webkit-scrollbar {
-  display: none;             /* width of the entire scrollbar */
+  display: none; /* width of the entire scrollbar */
 }
 
 ._post_view_comment_input svg {
@@ -190,10 +189,27 @@
   align-items: center;
 }
 
+._post_view_comment:hover button {
+  display: block;
+}
+
 ._post_view_comments p {
   font-family: product_sans, sans-serif;
   font-size: 0.8em;
   color: var(--dark-grey);
+  word-break: break-word;
+}
+
+._post_view_comments button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  color: var(--medium-grey);
+  font-size: 1.2em;
+  display: none;
 }
 
 ._post_view_comments a {
@@ -208,5 +224,16 @@
 
 ._post_view_comments a svg {
   color: var(--orange);
-  font-size: 0.9em
+  font-size: 0.9em;
+}
+
+._comment_area {
+  width: 100%;
+}
+
+._header_comment {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 5px 0;
 }

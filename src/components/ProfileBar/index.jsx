@@ -3,7 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { logoutUser } from "../../redux/actions/userAction";
-import { alreadyFollow, followedCount, followingCount, managerFollow } from "../../helpers/managerFollows";
+import {
+  alreadyFollow,
+  followedCount,
+  followingCount,
+  managerFollow,
+} from "../../helpers/managerFollows";
 import "./styles/ProfileBar.css";
 import "./styles/ProfileBar-mobile.css";
 
@@ -45,9 +50,14 @@ function ProfileBar({ nick, posts, nickLogged, edit, dispatch, status }) {
         <section className="_profile_actions">
           {!isLogged && (
             <>
-              <button onClick={follow}>
-                { statusFollow && "- Unfollow" }
-                { !statusFollow && "+ Follow" }
+              <button
+                onClick={follow}
+                className={
+                  statusFollow ? "_button_unfollow" : "_button_follow"
+                }
+              >
+                {statusFollow && "Unfollow"}
+                {!statusFollow && "Follow"}
               </button>
               <button onClick={sendMessage}>Message</button>
             </>
