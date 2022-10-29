@@ -6,10 +6,8 @@ export const getNotificationsByNick = (nick) => {
   const comments = [...getCommentsForLogged(nick)];
   const likes = [...getLikesForLogged(nick)];
   const follows = [...getFollowsForLogged(nick)];
-  const notifications = [
-    ...comments,
-    ...likes,
-    ...follows,
-  ]
-  return notifications.filter((n) => n.recipient.nick === nick);
+  const notifications = [...comments, ...likes, ...follows];
+  return notifications
+    .filter((n) => n.recipient.nick === nick)
+    .filter((like) => like.sender.nick !== like.recipient.nick);
 };
