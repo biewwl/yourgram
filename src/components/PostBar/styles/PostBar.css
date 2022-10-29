@@ -6,7 +6,7 @@
   /* border-bottom: 1px solid #f1f1f1; */
 }
 
-._post_bar div{
+._post_bar div {
   display: flex;
   gap: 20px;
 }
@@ -15,4 +15,8 @@
   font-size: 1.5em;
   cursor: pointer;
   color: var(--dark-grey);
+}
+
+._liked_post svg {
+  color: rgb(234, 64, 64);
 }

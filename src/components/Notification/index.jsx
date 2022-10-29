@@ -10,18 +10,8 @@ function Notification({ notification, nick }) {
   const timer = () => {
     const time = formatTimer(elapsedMinutes);
     const { timer, format } = time;
-    if (format === "minutes") {
-      if (timer > 1) return `${timer} minutes ago`;
-      return `${timer} minute ago`;
-    }
-    if (format === "hour") {
-      if (timer > 1) return `${timer} hours ago`;
-      return `${timer} hour ago`;
-    }
-    if (format === "day") {
-      if (timer > 1) return `${timer} days ago`;
-      return `${timer} day ago`;
-    }
+    if (timer > 1) return `${timer} ${format}s ago`;
+    return `${timer} ${format} ago`;
   };
 
   return (

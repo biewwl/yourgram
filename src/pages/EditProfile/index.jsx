@@ -1,4 +1,5 @@
 import { Icon } from "@iconify/react";
+import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import ProfileBar from "../../components/ProfileBar";
 import fakeUsers from "../../mocks/fakeUsers";
@@ -6,11 +7,19 @@ import fakePosts from "../../mocks/fakePosts";
 import { useState } from "react";
 import { connect } from "react-redux";
 import { changeImages } from "../../redux/actions/userAction";
+import EditUserInfos from "../../components/EditUserInfos";
 import "./styles/EditProfile.css";
 import "./styles/EditProfile-mobile.css";
-import { useNavigate } from "react-router-dom";
 
-function EditProfile({ nick, headerImage, avatarImage, dispatch }) {
+function EditProfile({
+  nick,
+  headerImage,
+  avatarImage,
+  name,
+  email,
+  password,
+  dispatch,
+}) {
   const nav = useNavigate();
 
   const { user, verified } = fakeUsers.find((u) => u.nick === nick);
@@ -19,6 +28,12 @@ function EditProfile({ nick, headerImage, avatarImage, dispatch }) {
 
   const [headerSrc, setHeaderSrc] = useState(headerImage);
   const [avatarSrc, setAvatarSrc] = useState(avatarImage);
+  const [userInfos, setUserInfos] = useState({
+    nick,
+    user: name,
+    email,
+    password,
+  });
 
   const setHeader = ({ target }) => {
     const image = URL.createObjectURL(target.files[0]);
@@ -31,10 +46,20 @@ function EditProfile({ nick, headerImage, avatarImage, dispatch }) {
   };
 
   const save = () => {
-    dispatch(changeImages(headerSrc, avatarSrc));
+    dispatch(
+      changeImages({
+        avatar: avatarSrc,
+        header: headerSrc,
+        ...userInfos,
+      })
+    );
     const user = fakeUsers.find((u) => u.nick === nick);
     user.header = headerSrc;
     user.avatar = avatarSrc;
+    user.email = userInfos.email;
+    user.nick = userInfos.nick;
+    user.password = userInfos.password;
+    user.user = userInfos.user;
     nav(`/${nick}`);
   };
 
@@ -89,6 +114,7 @@ function EditProfile({ nick, headerImage, avatarImage, dispatch }) {
               nickLogged={nick}
               edit={true}
             />
+            <EditUserInfos userInfos={userInfos} setUserInfos={setUserInfos} />
             <button onClick={save} className="_edit_profile_save">
               <Icon icon="el:ok" />
             </button>
@@ -103,6 +129,9 @@ const mapStateToProps = (state) => ({
   nick: state.user.nick,
   headerImage: state.user.header,
   avatarImage: state.user.avatar,
+  name: state.user.user,
+  email: state.user.email,
+  password: state.user.password,
 });
 
 export default connect(mapStateToProps)(EditProfile);

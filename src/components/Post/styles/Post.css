@@ -101,6 +101,8 @@
   height: 50px;
   align-items: center;
   border-top: 1px solid var(--light-grey);
+  background-color: #f8f8f8;
+
 }
 
 ._comment svg {
@@ -117,6 +119,7 @@
   padding: 5px;
   font-family: product_sans, sans-serif;
   color: var(--medium-grey);
+  background-color: #f8f8f8;
 }
 
 ._comment button {

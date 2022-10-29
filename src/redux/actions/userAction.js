@@ -1,18 +1,17 @@
-import { getUser } from "../../mocks/fakeUsers";
-import { CHANGE_IMAGES, LOGIN, LOGOUT } from "../reducers/userReducer";
+import { getFullUser } from "../../mocks/fakeUsers";
+import { CHANGE_INFOS, LOGIN, LOGOUT } from "../reducers/userReducer";
 
-export const changeImages = (header, avatar) => ({
-  type: CHANGE_IMAGES,
+export const changeImages = (newInfos) => ({
+  type: CHANGE_INFOS,
   payload: {
-    header,
-    avatar,
+    ...newInfos,
   },
 });
 
 export const loginUser = (nick) => ({
   type: LOGIN,
   payload: {
-    ...getUser(nick),
+    ...getFullUser(nick),
   },
 });
 

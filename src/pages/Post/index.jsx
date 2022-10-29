@@ -1,11 +1,11 @@
 import { useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import Header from "../../components/Header";
 // import PostComponent from "../../components/Post";
 import PostView from "../../components/PostView";
 import { getPost } from "../../mocks/fakePosts";
 import { getCommentsForLogged } from "../../mocks/fakeComments";
 import "./styles/Post.css";
-import { useEffect, useState } from "react";
 
 function Post() {
   const nav = useNavigate();

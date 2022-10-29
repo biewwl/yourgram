@@ -1,28 +1,25 @@
 import PostBar from "../PostBar";
 import { Icon } from "@iconify/react";
 import "./styles/PostView.css";
-import { useState } from "react";
-// import { getCommentsForLogged } from "../../mocks/fakeComments";
 import { Link } from "react-router-dom";
 import "./styles/PostView-mobile.css";
 import { connect } from "react-redux";
+import { getCommentsById } from "../../mocks/fakeComments";
+import { useEffect, useState } from "react";
 
-function PostView({ userData, comments, nickUser, avatarImage, status }) {
-  const { thumbnail, user, subtitle, verified, avatar, postDate, nick } =
+function PostView({ userData, nickUser, avatarImage, status }) {
+  const { thumbnail, user, subtitle, verified, avatar, postDate, nick, id } =
     userData;
 
-  const [comment, setComment] = useState("");
+  const [comments, setComments] = useState([]);
 
-  const handleChange = ({ target }) => {
-    const { value } = target;
-    setComment(value);
-  };
-
-  const checkSend = () => {
-    return comment.length <= 0;
-  };
+  useEffect(() => {
+    setComments(getCommentsById(nick, id))
+  }, [nick, id]);
 
   const image = nick === nickUser ? avatarImage : avatar;
+
+  const reloadComments = () => setComments(getCommentsById(nick, id));
 
   return (
     <section className="_post_view">
@@ -85,17 +82,19 @@ function PostView({ userData, comments, nickUser, avatarImage, status }) {
           </div>
           {status && (
             <>
-              <PostBar className="_post_view_post_bar" />
-              <section className="_post_view_comment_input">
-                <Icon icon="ic:outline-emoji-emotions" />
-                <input
-                  type="text"
-                  placeholder="Add a comment..."
-                  value={comment}
-                  onChange={handleChange}
-                />
-                <button disabled={checkSend()}>Send</button>
-              </section>
+              <PostBar
+                className="_post_view_post_bar"
+                reloadComments={reloadComments}
+                postData={{
+                  user,
+                  nick,
+                  subtitle,
+                  postDate,
+                  id,
+                  comments,
+                  sender: nickUser,
+                }}
+              />
             </>
           )}
         </section>

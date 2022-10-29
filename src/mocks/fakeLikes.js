@@ -1,117 +1,33 @@
+import lS from "manager-local-storage";
 import { getPost } from "./fakePosts";
 import { getUser } from "./fakeUsers";
+import { getElapsedMinutes } from "../helpers";
 
-const fakeLikes = [
-  {
-    type: "like",
-    sender: {
-      ...getUser("johnnn"),
-    },
-    recipient: {
-      ...getUser("lolcat")
-    },
-    elapsedMinutes: 10,
-    payload: {
-      post: {
-        ...getPost("lolcat", 1),
+export const fakeLikesFullData = (likes) =>
+  likes.map((post) => {
+    const { sender, postId, recipient, date } = post;
+    console.log(date);
+    return {
+      type: "like",
+      sender: {
+        ...getUser(sender),
       },
-      comment: "",
-    },
-  },
-  // {
-  //   type: "follow",
-  //   sender: {
-  //     ...getUser("realblack"),
-  //   },
-  //   recipient: {
-  //     ...getUser("lolcat")
-  //   },
-  //   elapsedMinutes: 30,
-  //   payload: {
-  //     post: "",
-  //     comment: "",
-  //   },
-  // },
-  {
-    type: "like",
-    sender: {
-      ...getUser("cat.life"),
-    },
-    recipient: {
-      ...getUser("lolcat")
-    },
-    elapsedMinutes: 65,
-    payload: {
-      post: {
-        ...getPost("lolcat", 1),
+      recipient: {
+        ...getUser(recipient),
       },
-      comment: "",
-    },
-  },
-  {
-    type: "like",
-    sender: {
-      ...getUser("astravlog"),
-    },
-    recipient: {
-      ...getUser("lolcat")
-    },
-    elapsedMinutes: 65,
-    payload: {
-      post: {
-        ...getPost("lolcat", 1),
+      elapsedMinutes: getElapsedMinutes(date),
+      payload: {
+        post: {
+          ...getPost(recipient, postId),
+        },
+        comment: "",
       },
-      comment: "",
-    },
-  },
-  // {
-  //   type: "follow",
-  //   sender: {
-  //     ...getUser("astravlog"),
-  //   },
-  //   recipient: {
-  //     ...getUser("lolcat")
-  //   },
-  //   elapsedMinutes: 1500,
-  //   payload: {
-  //     post: "",
-  //     comment: "",
-  //   },
-  // },
-  // {
-  //   type: "follow",
-  //   sender: {
-  //     ...getUser("johnnn"),
-  //   },
-  //   recipient: {
-  //     ...getUser("lolcat")
-  //   },
-  //   elapsedMinutes: 1500,
-  //   payload: {
-  //     post: "",
-  //     comment: "",
-  //   },
-  // },
-  {
-    type: "like",
-    sender: {
-      ...getUser("studious.cat"),
-    },
-    recipient: {
-      ...getUser("lolcat")
-    },
-    elapsedMinutes: 21,
-    payload: {
-      post: {
-        ...getPost("lolcat", 2),
-      },
-      comment: "",
-    },
-  },
-];
+    };
+  });
 
 export const getLikesForLogged = (logged, id) => {
-  return fakeLikes
+  const fakeLikes = lS.get("biewwl-like-posts") ?? [];
+  return fakeLikesFullData(fakeLikes)
     .filter((like) => {
       const { recipient, payload } = like;
       const getType = id
@@ -119,7 +35,5 @@ export const getLikesForLogged = (logged, id) => {
         : recipient.nick === logged;
       return getType;
     })
-    .map((like) => ({ ...like, type: "like" }));
+    .filter((like) => like.sender.nick !== like.recipient.nick);
 };
-
-export default fakeLikes;

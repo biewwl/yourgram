@@ -5,7 +5,6 @@ export const fakeAPI = {
     login: (nickOrEmail, password) => {
       const user = getFullUser(nickOrEmail);
       if (!user) return { message: "User not found!" };
-      console.log(user);
       if (user.password !== password) return { message: "Wrong password!" };
       return { login: user.nick };
     },

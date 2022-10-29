@@ -6,10 +6,10 @@ import Profile from "./pages/Profile";
 import Notifications from "./pages/Notifications";
 import EditProfile from "./pages/EditProfile";
 import Post from "./pages/Post";
+import { getLogins } from "./helpers/localStorage";
+import { connect } from "react-redux";
 import "./App.css";
 import "./colors/colors.css";
-import { connect } from "react-redux";
-import { getLogins } from "./helpers/localStorage";
 
 function App({ status }) {
 

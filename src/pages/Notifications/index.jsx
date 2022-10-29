@@ -1,12 +1,21 @@
 import Header from "../../components/Header";
 import Notification from "../../components/Notification";
 import { getNotificationsByNick } from "../../mocks/fakeNotifications";
+import { connect } from "react-redux";
 import "./styles/Notifications.css";
 import "./styles/Notifications-mobile.css";
-import { connect } from "react-redux";
+import { useEffect, useState } from "react";
 
 function Notifications({ nick }) {
-  const notifications = getNotificationsByNick(nick);
+  const [notifications, setNotifications] = useState([]);
+
+  useEffect(() => {
+    const setNotify = () => {
+      const notify = getNotificationsByNick(nick) ?? [];
+      setNotifications(notify);
+    };
+    setNotify();
+  }, [nick]);
 
   return (
     <div className="_notifications_page">

@@ -7,9 +7,9 @@ import Posts from "../../components/Posts";
 import fakeUsers from "../../mocks/fakeUsers";
 import fakePosts from "../../mocks/fakePosts";
 import { useEffect, useState } from "react";
+import { connect } from "react-redux";
 import "./styles/Profile.css";
 import "./styles/Profile-mobile.css";
-import { connect } from "react-redux";
 
 function Profile({ nickLogged }) {
   const { nick } = useParams();

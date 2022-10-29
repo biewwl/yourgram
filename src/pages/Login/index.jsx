@@ -72,6 +72,13 @@ function Login({ dispatch }) {
     });
   };
 
+  const enterDown = ({ key }) => {
+    if (key === 'Enter' && verifyData()) {
+      if (create) createLogin();
+      if (!create) login();
+    }
+  }
+
   const verifyData = () => {
     const { password, username, email } = userData;
     const verifyUser = username.length > 2;
@@ -105,6 +112,7 @@ function Login({ dispatch }) {
                 value={userData.name}
                 onChange={handleChange}
                 placeholder="Name"
+                onKeyDown={enterDown}
               />
               <input
                 type="email"
@@ -113,6 +121,7 @@ function Login({ dispatch }) {
                 value={userData.email}
                 onChange={handleChange}
                 placeholder="Email"
+                onKeyDown={enterDown}
               />
             </>
           )}
@@ -123,7 +132,8 @@ function Login({ dispatch }) {
             value={userData.username}
             onChange={handleChange}
             placeholder={create ? "Username" : "Username or email"}
-          />
+            onKeyDown={enterDown}
+            />
           <input
             type="password"
             name="password"
@@ -131,7 +141,8 @@ function Login({ dispatch }) {
             value={userData.password}
             onChange={handleChange}
             placeholder="Password"
-          />
+            onKeyDown={enterDown}
+            />
           {!create && (
             <span className="_login_alternate_mode">
               Don't have an account?
