@@ -65,8 +65,9 @@ function PostView({ userData, nickUser, avatarImage, status }) {
           </div>
           <div className="_post_view_comments">
             {comments.map((comment, i) => {
-              const { sender, payload, id: idComment } = comment;
-              const validDelete = sender.nick === nickUser;
+              const { sender, payload, id: idComment, recipient } = comment;
+              const validDelete =
+                sender.nick === nickUser || recipient.nick === nickUser;
               return (
                 <div className="_post_view_comment" key={i}>
                   <img
