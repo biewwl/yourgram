@@ -5,25 +5,30 @@ import { Link } from "react-router-dom";
 import { commentPost, isLiked, managerLike } from "../../helpers/managerPosts";
 import { getCommentsById } from "../../mocks/fakeComments";
 import "./styles/PostActions.css";
+import "./styles/PostActions-mobile.css";
 
-function PostActions({ className, postData, reloadComments, status }) {
-  const { user, id, subtitle, postDate, nick, sender } = postData;
-
-  const isView = className ? ` ${className}` : "";
+function PostActions({ postData, reloadComments, status, nickLogged, isView }) {
+  const {
+    user, // user name (owner of the post)
+    id, // post id
+    subtitle,
+    postDate,
+    nick: nickPost // owner of the post
+  } = postData;
 
   const [liked, setLiked] = useState(false);
   const [comment, setComment] = useState("");
 
   useEffect(() => {
     const setIsLiked = () => {
-      setLiked(isLiked(sender, id, nick));
+      setLiked(isLiked(nickLogged, id, nickPost));
     };
     setIsLiked();
-  }, [sender, id, nick]);
+  }, [nickLogged, id, nickPost]);
 
   const handleLike = () => {
-    managerLike(sender, id, nick);
-    setLiked(isLiked(sender, id, nick));
+    managerLike(nickLogged, id, nickPost);
+    setLiked(isLiked(nickLogged, id, nickPost));
   };
 
   const handleChange = ({ target }) => {
@@ -36,24 +41,24 @@ function PostActions({ className, postData, reloadComments, status }) {
   };
 
   const handleComment = () => {
-    commentPost(sender, id, nick, comment);
+    commentPost(nickLogged, id, nickPost, comment);
     setComment("");
     reloadComments();
   };
 
-  const countPost = getCommentsById(nick, id).length;
+  const countPost = getCommentsById(nickPost, id).length;
 
   return (
     <>
       {status && (
-        <section className={`_post_bar${isView}`}>
+        <section className={`_post_bar${isView ? " _post_view_post_bar" : ""}`}>
           <div>
             <span onClick={handleLike} className={liked ? "_liked_post" : ""}>
               {!liked && <Icon icon="mdi:cards-heart-outline" />}
               {liked && <Icon icon="mdi:cards-heart" />}
             </span>
             {
-              <label htmlFor={`_comment_${id}_${nick}`}>
+              <label htmlFor={`_comment_${id}_${nickPost}`}>
                 <Icon icon="mdi:comment-outline" />
               </label>
             }
@@ -67,7 +72,7 @@ function PostActions({ className, postData, reloadComments, status }) {
       {!isView && (
         <section className="_post_data">
           <span className="_post_data_user_subtitle">
-            <Link to={`/${nick}`} className="_post_data_user">
+            <Link to={`/${nickPost}`} className="_post_data_user">
               {user}
             </Link>
             <span className="_post_subtitle">{subtitle}</span>
@@ -81,7 +86,7 @@ function PostActions({ className, postData, reloadComments, status }) {
       )}
       <section className="_post_comments">
         {!isView && (
-          <Link to={`/${nick}/${id}`} className="_comments_link">
+          <Link to={`/${nickPost}/${id}`} className="_comments_link">
             {countPost === 0 && `See post`}
             {countPost === 1 && `See post and ${countPost} comment`}
             {countPost > 1 && `See post and all ${countPost} comments`}
@@ -95,7 +100,7 @@ function PostActions({ className, postData, reloadComments, status }) {
               placeholder="Add a comment..."
               value={comment}
               onChange={handleChange}
-              id={`_comment_${id}_${nick}`}
+              id={`_comment_${id}_${nickPost}`}
             />
             <button disabled={checkSend()} onClick={handleComment}>
               <Icon icon="charm:paper-plane" />
@@ -108,7 +113,7 @@ function PostActions({ className, postData, reloadComments, status }) {
 }
 
 const mapStateToProps = (state) => ({
-  nick: state.user.nick,
+  nickLogged: state.user.nick,
   status: state.user.status,
 });
 

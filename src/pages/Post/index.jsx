@@ -4,30 +4,26 @@ import Header from "../../components/Header";
 // import PostComponent from "../../components/Post";
 import PostView from "../../components/PostView";
 import { getPost } from "../../mocks/fakePosts";
-import { getCommentsForLogged } from "../../mocks/fakeComments";
 import "./styles/Post.css";
 
 function Post() {
   const nav = useNavigate();
 
-  const [userData, setUserData] = useState({});
-  // const [comments, setComments] = useState([]);
+  const [postData, setPostData] = useState({});
 
   const { nick, post } = useParams();
 
   useEffect(() => {
-    const userDataReturn = getPost(nick, Number(post));
-    if (!userDataReturn) return nav("/");
+    const postDataReturn = getPost(nick, Number(post));
+    if (!postDataReturn) return nav("/");
     window.scrollTo(0, 0);
-    return setUserData(userDataReturn);
+    return setPostData(postDataReturn);
   }, [nav, nick, post]);
-
-  const commentsForLogged = getCommentsForLogged(nick, Number(post));
 
   return (
     <div className="_post_page">
       <Header />
-      <PostView userData={userData} comments={commentsForLogged} />
+      <PostView postData={postData} />
     </div>
   );
 }

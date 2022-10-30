@@ -1,31 +1,34 @@
 import PostActions from "../PostActions";
 import { Icon } from "@iconify/react";
-import "./styles/PostView.css";
 import { Link } from "react-router-dom";
-import "./styles/PostView-mobile.css";
 import { connect } from "react-redux";
 import { getCommentsById } from "../../mocks/fakeComments";
 import { useEffect, useState } from "react";
-import { uncommentPost } from "../../helpers/managerPosts";
+import PostComments from "../PostComments";
+import "./styles/PostView.css";
+import "./styles/PostView-mobile.css";
 
-function PostView({ userData, nickUser, avatarImage, status }) {
-  const { thumbnail, user, subtitle, verified, avatar, postDate, nick, id } =
-    userData;
+function PostView({ postData, nickUser, avatarImage }) {
+  const {
+    thumbnail,
+    user, // user name (owner of the post)
+    subtitle,
+    verified,
+    avatar, // avatar (owner of the post)
+    postDate,
+    nick: nickPost, // owner of the post
+    id,
+  } = postData;
 
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
-    setComments(getCommentsById(nick, id));
-  }, [nick, id]);
+    setComments(getCommentsById(nickPost, id));
+  }, [nickPost, id]);
 
-  const image = nick === nickUser ? avatarImage : avatar;
+  const image = nickPost === nickUser ? avatarImage : avatar;
 
-  const reloadComments = () => setComments(getCommentsById(nick, id));
-
-  const uncomment = (idComment) => {
-    uncommentPost(idComment, id, nick);
-    reloadComments();
-  };
+  const reloadComments = () => setComments(getCommentsById(nickPost, id));
 
   return (
     <section className="_post_view">
@@ -36,14 +39,14 @@ function PostView({ userData, nickUser, avatarImage, status }) {
         <section className="_post_view_data">
           <div className="_post_view_fixed_header">
             <section className="_post_view_header">
-              <Link to={`/${nick}`}>
+              <Link to={`/${nickPost}`}>
                 <img
                   src={image}
-                  alt={nick}
+                  alt={nickPost}
                   className="_post_view_header_avatar"
                 />
               </Link>
-              <Link to={`/${nick}`} className="_post_view_user">
+              <Link to={`/${nickPost}`} className="_post_view_user">
                 {user}
                 {verified && (
                   <Icon
@@ -55,7 +58,7 @@ function PostView({ userData, nickUser, avatarImage, status }) {
             </section>
             <p className="_post_view_subtitle">
               <span>
-                <Link to={`/${nick}`} className="_post_view_subtitle_user">
+                <Link to={`/${nickPost}`} className="_post_view_subtitle_user">
                   {user}
                 </Link>
                 <span className="_post_view_subtitle_content">{subtitle}</span>
@@ -63,50 +66,16 @@ function PostView({ userData, nickUser, avatarImage, status }) {
               <span className="_post_view_date">{postDate}</span>
             </p>
           </div>
-          <div className="_post_view_comments">
-            {comments.map((comment, i) => {
-              const { sender, payload, id: idComment, recipient } = comment;
-              const validDelete =
-                sender.nick === nickUser || recipient.nick === nickUser;
-              return (
-                <div className="_post_view_comment" key={i}>
-                  <img
-                    src={sender.avatar}
-                    alt=""
-                    className="_post_view_comment_avatar"
-                  />
-                  <span className="_comment_area">
-                    <span className="_header_comment">
-                      <Link to={`/${sender.nick}`}>
-                        {sender.nick}
-                        {sender.verified && (
-                          <Icon icon="codicon:verified-filled" />
-                        )}
-                      </Link>
-                      {validDelete && (
-                        <button onClick={() => uncomment(idComment)}>
-                          <Icon icon="bi:x" />
-                        </button>
-                      )}
-                    </span>
-                    <p>{payload.comment}</p>
-                  </span>
-                </div>
-              );
-            })}
-          </div>
-          <PostActions
-            className="_post_view_post_bar"
+          <PostComments
+            nickPost={nickPost}
+            idPost={id}
             reloadComments={reloadComments}
-            postData={{
-              user,
-              nick,
-              subtitle,
-              postDate,
-              id,
-              comments,
-              sender: nickUser,
-            }}
+            comments={comments}
+          />
+          <PostActions
+            isView={true}
+            reloadComments={reloadComments}
+            postData={postData}
           />
         </section>
       </article>
@@ -117,7 +86,6 @@ function PostView({ userData, nickUser, avatarImage, status }) {
 const mapStateToProps = (state) => ({
   nickUser: state.user.nick,
   avatarImage: state.user.avatar,
-  status: state.user.status,
 });
 
 export default connect(mapStateToProps)(PostView);

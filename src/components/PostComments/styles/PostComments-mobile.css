@@ -1,0 +1,8 @@
+@media screen and (max-width: 768px) {
+
+  ._post_view_comments {
+    height: auto;
+    max-height: 250px;
+  }
+
+}

@@ -20,11 +20,6 @@
     width: 100%;
   }
 
-  ._post_view_comments {
-    height: auto;
-    max-height: 250px;
-  }
-
   ._post_view_data {
     border-radius: 0;
   }

@@ -1,0 +1,17 @@
+@media screen and (max-width: 768px) {
+  ._post_data_user {
+    font-size: 0.8em;
+  }
+
+  ._post_capture {
+    font-size: 0.7em;
+  }
+
+  ._post_comments {
+    font-size: 0.7em;
+  }
+
+  ._comment {
+    border-top: 1px solid var(--light-grey-2);
+  }
+}

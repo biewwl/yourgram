@@ -1,0 +1,72 @@
+._post_comments_area {
+  /* background-color: red; */
+  height: 900px;
+  overflow-y: scroll;
+}
+
+._post_comments_area p {
+  font-family: product_sans, sans-serif;
+  font-size: 0.8em;
+  color: var(--dark-grey);
+  word-break: break-word;
+}
+
+._post_comments_area button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  color: var(--medium-grey);
+  font-size: 1.2em;
+  display: none;
+}
+
+._post_comments_area a {
+  font-family: product_sans, sans-serif;
+  color: var(--dark-blue);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.9em;
+}
+
+._post_comments_area a svg {
+  color: var(--orange);
+  font-size: 0.9em;
+}
+
+._post_comments_area::-webkit-scrollbar {
+  display: none; /* width of the entire scrollbar */
+}
+
+._post_comment_area {
+  display: flex;
+  padding: 10px 20px;
+  gap: 10px;
+  align-items: center;
+}
+
+._post_comment_area:hover button {
+  display: block;
+}
+
+._post_comment_area_avatar {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+._comment_area {
+  width: 100%;
+}
+
+._header_comment_area {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 5px 0;
+}

@@ -6,18 +6,18 @@ import { getCommentsById } from "../../mocks/fakeComments";
 import "./styles/Post.css";
 import "./styles/Post-mobile.css";
 
-function Post({
-  thumbnail,
-  user,
-  subtitle,
-  verified,
-  avatar,
-  postDate,
-  nick,
-  nickUser,
-  avatarImage,
-  id,
-}) {
+function Post({ postData }) {
+  const {
+    thumbnail,
+    user, // user name (owner of the post)
+    verified,
+    avatar,
+    nick, // owner of the post
+    nickUser, // logged user
+    avatarImage,
+    id, // post id
+  } = postData;
+
   const image = nick === nickUser ? avatarImage : avatar;
 
   const comments = getCommentsById(nick, id);
@@ -35,16 +35,16 @@ function Post({
             />
           )}
         </Link>
-        <img src={thumbnail} alt="trending_post" className="_post_thumbnail" />
+        <img
+          src={thumbnail}
+          alt={`_post_${id}_from_${nick}`}
+          className="_post_thumbnail"
+        />
         <PostActions
+          isView={false}
           postData={{
-            user,
-            nick,
-            subtitle,
-            postDate,
-            id,
+            ...postData,
             comments,
-            sender: nickUser,
           }}
         />
       </section>
