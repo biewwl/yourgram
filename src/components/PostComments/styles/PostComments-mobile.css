@@ -1,6 +1,6 @@
 @media screen and (max-width: 768px) {
 
-  ._post_view_comments {
+  ._post_comments_area {
     height: auto;
     max-height: 250px;
   }
