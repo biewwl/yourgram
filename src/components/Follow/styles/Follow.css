@@ -1,0 +1,48 @@
+._follow {
+  display: flex;
+  /* background-color: grey; */
+  align-items: center;
+  gap: 10px;
+  padding: 15px 10px;
+  border-bottom: 1px solid var(--light-grey);
+}
+
+._follow_avatar {
+  min-width: 45px;
+  max-width: 45px;
+  height: 45px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+._follow_nick {
+  font-weight: 600;
+  font-family: product_sans, sans-serif;
+  color: var(--dark-blue);
+  display: flex;
+  align-items: center;
+  gap: 2.5px;
+  text-decoration: none;
+}
+
+._follow p {
+  display: flex;
+  flex-direction: column;
+  gap: 0 5px;
+  /* background-color: red; */
+  width: 100%;
+  font-size: 0.9em;
+}
+
+._follow p > span {
+  display: flex;
+  gap: 0 5px;
+  flex-wrap: wrap;
+}
+
+._following._button_unfollow {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+}

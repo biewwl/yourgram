@@ -53,6 +53,7 @@
   gap: 0 5px;
   flex-wrap: wrap;
 }
+
 ._notify_elapsed_minutes {
   color: var(--light-grey-2);
   font-size: 0.8em;

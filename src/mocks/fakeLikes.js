@@ -36,3 +36,12 @@ export const getLikesForLogged = (logged, id) => {
     })
     .filter((like) => like.sender.nick !== like.recipient.nick);
 };
+
+export const getLikesById = (nick, id) => {
+  const fakeLikes = lS.get("biewwl-like-posts") ?? [];
+  return fakeLikesFullData(fakeLikes).filter(
+    (like) =>
+      like.payload.post.id === id && like.payload.post.nick === nick
+  );
+};
+

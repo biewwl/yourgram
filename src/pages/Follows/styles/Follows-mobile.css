@@ -1,0 +1,31 @@
+@media screen and (max-width: 500px) {
+  ._follows_page {
+    display: block;
+    padding-bottom: 70px;
+    height: auto;
+    position: static;
+    padding-top: 60px;
+    min-height: 100vh;
+    background-color: #fff;
+  }
+
+  ._follows_page_content ._profile_page {
+    display: none;
+  }
+
+  ._follows_page_content ._header_bar {
+    display: flex;
+  }
+
+  ._follows {
+    max-width: none;
+    width: 100%;
+    border-radius: 0;
+    max-height: none;
+    overflow-y: auto;
+  }
+
+  ._header_follows {
+    display: none;
+  }
+}

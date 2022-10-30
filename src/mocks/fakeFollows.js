@@ -28,3 +28,11 @@ export const getFollowsForLogged = (logged) => {
     return recipient.nick === logged;
   });
 };
+
+export const getFollowingForLogged = (logged) => {
+  const fakeFollows = lS.get("biewwl-follows") ?? [];
+  return fakeFollowsFullData(fakeFollows).filter((follow) => {
+    const { sender } = follow;
+    return sender.nick === logged;
+  });
+};

@@ -1,0 +1,51 @@
+._follows_page_content ._header_bar {
+  display: none;
+}
+
+._follows_page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0000007c;
+  position: fixed;
+  z-index: 100;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+._follows {
+  background-color: #fff;
+  width: 100%;
+  max-width: 400px;
+  max-height: 500px;
+  border-radius: 0.5em;
+  position: relative;
+  overflow-y: scroll;
+}
+
+._follows::-webkit-scrollbar {
+  display: none;
+}
+
+._header_follows {
+  display: flex;
+  padding: 10px;
+  border-bottom: 1px solid var(--light-grey);
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--light-grey);
+  position: sticky;
+  top: 0;
+}
+
+._header_follows h4 {
+  font-family: product_sans, sans-serif;
+  font-weight: 100;
+  color: var(--dark-blue);
+}
+
+._header_follows svg {
+  font-size: 1.5em;
+  color: var(--dark-grey);
+}

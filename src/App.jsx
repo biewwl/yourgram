@@ -10,9 +10,9 @@ import { getLogins } from "./helpers/localStorage";
 import { connect } from "react-redux";
 import "./App.css";
 import "./colors/colors.css";
+import Follows from "./pages/Follows";
 
 function App({ status }) {
-
   getLogins();
 
   return (
@@ -27,11 +27,7 @@ function App({ status }) {
           element={status ? <Direct /> : <Login />}
         />
         <Route exact path="/:nick" element={<Profile />} />
-        <Route
-          exact
-          path="/:nick/:post"
-          element={<Post />}
-        />
+        <Route exact path="/:nick/:post" element={<Post />} />
         <Route
           exact
           path="/profile/edit"
@@ -42,7 +38,17 @@ function App({ status }) {
           path="/notifications"
           element={status ? <Notifications /> : <Login />}
         />
-        <Route path="*" element={<h1>ok</h1>} />
+        <Route
+          exact
+          path="/:nick/following"
+          element={<Follows type="following" />}
+        />
+        <Route
+          exact
+          path="/:nick/followers"
+          element={<Follows type="followers" />}
+        />
+        <Route path="/" element={<h1>ok</h1>} />
       </Routes>
     </div>
   );
