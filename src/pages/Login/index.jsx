@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { connect } from "react-redux";
-import { fakeAPI } from "../../mocks/fakeAPI";
 import logo from "./images/logo.png";
 import { loginUser as loginUserAction } from "../../redux/actions/userAction";
 import "./styles/Login.css";

@@ -10,6 +10,7 @@ import EditUserInfos from "../../components/EditUserInfos";
 import validate from "../../helpers/validateDataJOI";
 import "./styles/EditProfile.css";
 import "./styles/EditProfile-mobile.css";
+import CloudinaryUploadWidget from "../../components/CloudinaryUploadWidget";
 
 function EditProfile({
   nick,
@@ -19,7 +20,7 @@ function EditProfile({
   email,
   password,
   dispatch,
-  verified
+  verified,
 }) {
   const nav = useNavigate();
 
@@ -36,17 +37,7 @@ function EditProfile({
     password,
   });
 
-  const setHeader = ({ target }) => {
-    const image = URL.createObjectURL(target.files[0]);
-    setHeaderSrc(image);
-  };
-
-  const setAvatar = ({ target }) => {
-    const image = URL.createObjectURL(target.files[0]);
-    setAvatarSrc(image);
-  };
-
-  const save = () => {
+  const save = async () => {
     dispatch(
       changeInfos({
         avatar: avatarSrc,
@@ -77,33 +68,13 @@ function EditProfile({
       <main className="_edit_profile_content">
         <div className="_thumbnail_header_edit_profile">
           <img src={headerSrc} alt={name} className="_header_edit_profile" />
-          <label className="_edit_profile_header_button_edit" htmlFor="header">
-            <Icon icon="fluent:camera-edit-20-filled" />
-            <input
-              type="file"
-              name="header"
-              id="header"
-              onChange={setHeader}
-              accept="image/*"
-            />
-          </label>
+          <CloudinaryUploadWidget type="header" setHeader={setHeaderSrc} />
         </div>
         <section className="_edit_profile_presentation">
           <section className="_edit_profile_user_avatar">
             <img src={avatarSrc} alt={name} className="_avatar_edit_profile" />
-            <label
-              className="_edit_profile_avatar_button_edit"
-              htmlFor="avatar"
-            >
-              <Icon icon="fluent:camera-edit-20-filled" />
-              <input
-                type="file"
-                name="avatar"
-                id="avatar"
-                onChange={setAvatar}
-                accept="image/*"
-              />
-            </label>
+            <CloudinaryUploadWidget type="avatar" setAvatar={setAvatarSrc} />
+
             <div className="_edit_profile_user">
               <h1>{name}</h1>
               {verified && (
