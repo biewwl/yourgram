@@ -46,7 +46,6 @@ export const getElapsedMinutes = (startDate) => {
 export const sortFollows = (follows, nick) => {
   const isFollow = follows.some((follow) => follow.recipient.nick === nick);
   const isFollowing = follows.some((follow) => follow.sender.nick === nick);
-  console.log(isFollow, isFollowing);
   if (isFollow || isFollowing)
     return follows.sort((follow) => {
       if (follow.recipient.nick === nick || follow.sender.nick === nick)

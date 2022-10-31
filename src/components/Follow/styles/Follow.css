@@ -34,10 +34,19 @@
   font-size: 0.9em;
 }
 
-._follow p > span {
+._follow_data {
   display: flex;
-  gap: 0 5px;
+  gap: 5px;
   flex-wrap: wrap;
+  flex-direction: column;
+  text-decoration: none;
+}
+
+._follow_data span:nth-child(2) {
+  font-weight: 100;
+  font-size: 0.8em;
+  font-family: product_sans, sans-serif;
+  color: var(--medium-grey);
 }
 
 ._following._button_unfollow {

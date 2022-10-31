@@ -28,8 +28,8 @@ function Follow({ follow, nickLogged, reloadFollows, type }) {
         <img src={user.avatar} alt="" className="_follow_avatar" />
       </Link>
       <p>
-        <span>
-          <Link to={`/${user.nick}`} className="_follow_nick">
+        <Link to={`/${user.nick}`} className="_follow_data">
+          <span className="_follow_nick">
             {user.nick}
             {recipient.verified && (
               <Icon
@@ -37,8 +37,9 @@ function Follow({ follow, nickLogged, reloadFollows, type }) {
                 className="_verified_user_notify"
               />
             )}
-          </Link>
-        </span>
+          </span>
+          <span>{user.user}</span>
+        </Link>
       </p>
       {type === "following" && validDelete && (
         <button onClick={unfollow} className="_following _button_unfollow">
