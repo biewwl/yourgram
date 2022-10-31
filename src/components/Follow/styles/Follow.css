@@ -45,4 +45,15 @@
   border: none;
   border-radius: 25px;
   cursor: pointer;
+  background-color: #fff !important;
+  /* border: 1px solid #c12828; */
+  transition: 0.5s;
+}
+
+._following._button_unfollow:hover {
+  background-color: #ffe1e1 !important;
+}
+
+._following._button_unfollow svg {
+  font-size: 1.2em;
 }

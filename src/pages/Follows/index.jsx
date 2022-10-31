@@ -9,8 +9,9 @@ import Profile from "../Profile";
 import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import Header from "../../components/Header";
+import { sortFollows } from "../../helpers";
 
-function Follows({ type }) {
+function Follows({ type, nickLogged }) {
   const [follows, setFollows] = useState([]);
 
   const { nick } = useParams();
@@ -54,7 +55,7 @@ function Follows({ type }) {
               <Icon icon="bi:x" />
             </Link>
           </section>
-          {follows.map((follow, i) => (
+          {sortFollows(follows, nickLogged).map((follow, i) => (
             <Follow follow={follow} reloadFollows={reloadFollows} type={type} />
           ))}
         </main>
@@ -65,7 +66,7 @@ function Follows({ type }) {
 }
 
 const mapStateToProps = (state) => ({
-  // nick: state.user.nick,
+  nickLogged: state.user.nick,
 });
 
 export default connect(mapStateToProps)(Follows);

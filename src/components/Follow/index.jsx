@@ -19,8 +19,8 @@ function Follow({ follow, nickLogged, reloadFollows, type }) {
 
   const validDelete =
     type === "following"
-      ? (sender.nick === nickLogged || recipient.nick === nickLogged)
-      : (recipient.nick === nickLogged || sender.nick === nickLogged);
+      ? sender.nick === nickLogged || recipient.nick === nickLogged
+      : recipient.nick === nickLogged || sender.nick === nickLogged;
 
   return (
     <section className="_follow">
@@ -42,12 +42,20 @@ function Follow({ follow, nickLogged, reloadFollows, type }) {
       </p>
       {type === "following" && validDelete && (
         <button onClick={unfollow} className="_following _button_unfollow">
-          {sender.nick === nickLogged ? "unfollow" : "remove"}
+          {sender.nick === nickLogged ? (
+            <Icon icon="ri:user-unfollow-line" />
+          ) : (
+            <Icon icon="ep:remove" />
+          )}
         </button>
       )}
       {type === "followers" && validDelete && (
         <button onClick={unfollow} className="_following _button_unfollow">
-          {recipient.nick === nickLogged ? "remove" : "unfollow"}
+          {recipient.nick === nickLogged ? (
+            <Icon icon="ep:remove" />
+          ) : (
+            <Icon icon="ri:user-unfollow-line" />
+          )}
         </button>
       )}
     </section>
