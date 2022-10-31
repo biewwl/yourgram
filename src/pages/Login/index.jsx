@@ -1,71 +1,41 @@
-import {  useState } from "react";
+import { useState } from "react";
 import { connect } from "react-redux";
-import { validateEmail } from "../../helpers";
 import { fakeAPI } from "../../mocks/fakeAPI";
-import { verifyExistUser } from "../../mocks/fakeUsers";
 import logo from "./images/logo.png";
-import { loginUser } from "../../redux/actions/userAction";
-import { setLogin } from "../../helpers/localStorage";
+import { loginUser as loginUserAction } from "../../redux/actions/userAction";
 import "./styles/Login.css";
+import validate from "../../helpers/validateDataJOI";
+import { createLoginUser, loginUser } from "../../helpers/managerLogin";
 
 function Login({ dispatch }) {
   // const nav = useNavigate();
 
   const [create, setCreate] = useState(false);
   const [invalidLogin, setInvalidLogin] = useState(false);
-  const [invalidCreateUser, setInvalidCreateUser] = useState(false);
-  const [createExistUser, setCreateExistUser] = useState(false);
+  const [errorData, setErrorData] = useState([]);
 
   const [userData, setUserData] = useState({
-    username: "",
+    nick: "",
     password: "",
     email: "",
-    name: "",
+    user: "",
   });
 
   const login = () => {
-    const { username, password } = userData;
-    const { message, login } = fakeAPI.post.login(username, password);
+    const { nick, password } = userData;
+    const { message, login } = loginUser(nick, password);
     if (message) return setInvalidLogin(message);
-    dispatch(loginUser(login));
-    // nav("/feed");
+    dispatch(loginUserAction(login));
   };
 
   const createLogin = () => {
-    const { username, email, password, name } = userData;
-    const { message, login } = fakeAPI.post.createUser(
-      username,
-      email,
-      password,
-      name
-    );
-    if (message) return setInvalidCreateUser(message);
-    dispatch(loginUser(username));
-    setLogin(login);
-    // return nav("/feed");
+    createLoginUser(userData);
+    dispatch(loginUserAction(userData.nick));
   };
 
   const handleChange = ({ target }) => {
     const { name, value } = target;
-
-    if (invalidLogin) setInvalidLogin("");
-    if (invalidCreateUser) setInvalidCreateUser("");
-    setCreateExistUser(false);
-
-    if (create && name === "username") {
-      const { existNick } = verifyExistUser(value);
-      if (existNick) {
-        setInvalidCreateUser("Username not available!");
-        setCreateExistUser(true);
-      }
-    } else if (create) {
-      const { existNick } = verifyExistUser(userData.username);
-      if (existNick) {
-        setInvalidCreateUser("Username not available!");
-        setCreateExistUser(true);
-      }
-    }
-
+    setErrorData("");
     setUserData({
       ...userData,
       [name]: value,
@@ -73,21 +43,25 @@ function Login({ dispatch }) {
   };
 
   const enterDown = ({ key }) => {
-    if (key === 'Enter' && verifyData()) {
+    if (key === "Enter" && verifyDataCreate()) {
       if (create) createLogin();
       if (!create) login();
     }
-  }
+  };
 
-  const verifyData = () => {
-    const { password, username, email } = userData;
-    const verifyUser = username.length > 2;
-    const verifyPass = password.length > 7;
-    const verifyEmail = validateEmail(email);
-    if (!create) {
-      return verifyUser && verifyPass;
+  const verifyDataLogin = () =>
+    userData.nick.length >= 3 && userData.password.length >= 6;
+
+  const verifyDataCreate = () => {
+    const isValid = validate(userData, { nick: "", email: "" });
+    const { error } = isValid;
+    if (error) {
+      if (!errorData) {
+        setErrorData(error);
+      }
+      return false;
     }
-    return !createExistUser && verifyUser && verifyPass && verifyEmail;
+    return true;
   };
 
   const alternateMode = () => {
@@ -107,9 +81,9 @@ function Login({ dispatch }) {
             <>
               <input
                 type="text"
-                name="name"
-                id="name"
-                value={userData.name}
+                name="user"
+                id="user"
+                value={userData.user}
                 onChange={handleChange}
                 placeholder="Name"
                 onKeyDown={enterDown}
@@ -127,13 +101,13 @@ function Login({ dispatch }) {
           )}
           <input
             type="text"
-            name="username"
-            id="username"
-            value={userData.username}
+            name="nick"
+            id="nick"
+            value={userData.nick}
             onChange={handleChange}
-            placeholder={create ? "Username" : "Username or email"}
+            placeholder={create ? "Nick" : "Nick or email"}
             onKeyDown={enterDown}
-            />
+          />
           <input
             type="password"
             name="password"
@@ -142,7 +116,7 @@ function Login({ dispatch }) {
             onChange={handleChange}
             placeholder="Password"
             onKeyDown={enterDown}
-            />
+          />
           {!create && (
             <span className="_login_alternate_mode">
               Don't have an account?
@@ -157,7 +131,7 @@ function Login({ dispatch }) {
           )}
         </form>
         <button
-          disabled={!verifyData()}
+          disabled={create ? !verifyDataCreate() : !verifyDataLogin()}
           onClick={create ? createLogin : login}
           className="_login_button"
         >
@@ -166,8 +140,12 @@ function Login({ dispatch }) {
         {!create && invalidLogin && (
           <span className="_invalid_message">{invalidLogin}</span>
         )}
-        {create && invalidCreateUser && (
-          <span className="_invalid_message">{invalidCreateUser}</span>
+        {create && errorData.length > 0 && (
+          <span className="_invalid_message">
+            {errorData.map((error) => (
+              <span className="_error_feedback">{error.error}</span>
+            ))}
+          </span>
         )}
       </article>
     </main>

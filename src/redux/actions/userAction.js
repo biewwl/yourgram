@@ -1,7 +1,7 @@
 import { getFullUser } from "../../mocks/fakeUsers";
 import { CHANGE_INFOS, LOGIN, LOGOUT } from "../reducers/userReducer";
 
-export const changeImages = (newInfos) => ({
+export const changeInfos = (newInfos) => ({
   type: CHANGE_INFOS,
   payload: {
     ...newInfos,

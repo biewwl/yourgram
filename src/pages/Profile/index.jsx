@@ -10,8 +10,9 @@ import { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import "./styles/Profile.css";
 import "./styles/Profile-mobile.css";
+import lS from "manager-local-storage";
 
-function Profile({ nickLogged }) {
+function Profile() {
   const { nick } = useParams();
   
   const nav = useNavigate();
@@ -20,7 +21,9 @@ function Profile({ nickLogged }) {
   const [grid, setGrid] = useState(true);
   
   useEffect(() => {
-    const userDataReturn = fakeUsers.find((u) => u.nick === nick);
+    const lSUsers = lS.get("biewwl-created-logins") ?? [];
+    const allLogins = [...lSUsers, ...fakeUsers];
+    const userDataReturn = allLogins.find((u) => u.nick === nick);
     if (!userDataReturn) return nav("/");
     return setUserData(userDataReturn);
   }, [nav, nick]);

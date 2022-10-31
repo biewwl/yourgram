@@ -2,12 +2,12 @@ import { Icon } from "@iconify/react";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import ProfileBar from "../../components/ProfileBar";
-import fakeUsers from "../../mocks/fakeUsers";
 import fakePosts from "../../mocks/fakePosts";
 import { useState } from "react";
 import { connect } from "react-redux";
-import { changeImages } from "../../redux/actions/userAction";
+import { changeInfos, loginUser } from "../../redux/actions/userAction";
 import EditUserInfos from "../../components/EditUserInfos";
+import validate from "../../helpers/validateDataJOI";
 import "./styles/EditProfile.css";
 import "./styles/EditProfile-mobile.css";
 
@@ -19,10 +19,11 @@ function EditProfile({
   email,
   password,
   dispatch,
+  verified
 }) {
   const nav = useNavigate();
 
-  const { user, verified } = fakeUsers.find((u) => u.nick === nick);
+  const [errorData, setErrorData] = useState([]);
 
   const posts = fakePosts.filter((p) => p.nick === nick);
 
@@ -47,20 +48,27 @@ function EditProfile({
 
   const save = () => {
     dispatch(
-      changeImages({
+      changeInfos({
         avatar: avatarSrc,
         header: headerSrc,
+        verified,
         ...userInfos,
       })
     );
-    const user = fakeUsers.find((u) => u.nick === nick);
-    user.header = headerSrc;
-    user.avatar = avatarSrc;
-    user.email = userInfos.email;
-    user.nick = userInfos.nick;
-    user.password = userInfos.password;
-    user.user = userInfos.user;
-    nav(`/${nick}`);
+    dispatch(loginUser(userInfos.nick));
+    nav(`/${userInfos.nick}`);
+  };
+
+  const validSave = () => {
+    const isValid = validate(userInfos, { nick, email });
+    const { error } = isValid;
+    if (error) {
+      if (!errorData) {
+        setErrorData(error);
+      }
+      return false;
+    }
+    return true;
   };
 
   return (
@@ -68,7 +76,7 @@ function EditProfile({
       <Header />
       <main className="_edit_profile_content">
         <div className="_thumbnail_header_edit_profile">
-          <img src={headerSrc} alt={user} className="_header_edit_profile" />
+          <img src={headerSrc} alt={name} className="_header_edit_profile" />
           <label className="_edit_profile_header_button_edit" htmlFor="header">
             <Icon icon="fluent:camera-edit-20-filled" />
             <input
@@ -82,7 +90,7 @@ function EditProfile({
         </div>
         <section className="_edit_profile_presentation">
           <section className="_edit_profile_user_avatar">
-            <img src={avatarSrc} alt={user} className="_avatar_edit_profile" />
+            <img src={avatarSrc} alt={name} className="_avatar_edit_profile" />
             <label
               className="_edit_profile_avatar_button_edit"
               htmlFor="avatar"
@@ -97,7 +105,7 @@ function EditProfile({
               />
             </label>
             <div className="_edit_profile_user">
-              <h1>{user}</h1>
+              <h1>{name}</h1>
               {verified && (
                 <Icon
                   icon="codicon:verified-filled"
@@ -114,10 +122,22 @@ function EditProfile({
               nickLogged={nick}
               edit={true}
             />
-            <EditUserInfos userInfos={userInfos} setUserInfos={setUserInfos} />
-            <button onClick={save} className="_edit_profile_save">
+            <EditUserInfos
+              userInfos={userInfos}
+              setUserInfos={setUserInfos}
+              setErrorData={setErrorData}
+            />
+            <button
+              onClick={save}
+              disabled={!validSave()}
+              className="_edit_profile_save"
+            >
               <Icon icon="el:ok" />
             </button>
+            {errorData &&
+              errorData.map((error) => (
+                <span className="_error_feedback">{error.error}</span>
+              ))}
           </section>
         </section>
       </main>
@@ -132,6 +152,7 @@ const mapStateToProps = (state) => ({
   name: state.user.user,
   email: state.user.email,
   password: state.user.password,
+  verified: state.user.verified,
 });
 
 export default connect(mapStateToProps)(EditProfile);

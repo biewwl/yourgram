@@ -1,3 +1,5 @@
+import lS from "manager-local-storage";
+
 const fakeUsers = [
   {
     user: "Mr. Cat",
@@ -190,24 +192,32 @@ const fakeUsers = [
 // };
 
 export const getUser = (nick) => {
-  const withoutPass = fakeUsers.map((u) => {
+  const lSUsers = lS.get("biewwl-created-logins") ?? [];
+  const allLogins = [...lSUsers, ...fakeUsers];
+  const withoutPass = allLogins.map((u) => {
     const { avatar, header, nick, user, verified } = u;
     return { avatar, header, nick, user, verified };
   });
   return withoutPass.find((u) => u.nick === nick);
 };
 
-export const getFullUser = (nickOrEmail) => fakeUsers.find((u) =>
-  u.nick === nickOrEmail || u.email === nickOrEmail);
+export const getFullUser = (nickOrEmail) => {
+  const lSUsers = lS.get("biewwl-created-logins") ?? [];
+  const allLogins = [...lSUsers, ...fakeUsers];
+  return allLogins.find(
+    (u) => u.nick === nickOrEmail || u.email === nickOrEmail
+  );
+};
 
 export const verifyExistUser = (nick, email) => {
-  const existNick = fakeUsers.some((u) => u.nick === nick);
-  const existEmail = fakeUsers.some((u) => u.email === email);
+  const lSUsers = lS.get("biewwl-created-logins") ?? [];
+  const allUsers = [...lSUsers, ...fakeUsers];
+  const existNick = allUsers.some((u) => u.nick === nick);
+  const existEmail = allUsers.some((u) => u.email === email);
   return {
     existNick,
-    existEmail
-  }
+    existEmail,
+  };
 };
-// export const prettyFakeUsers = generatePrettyArray();
 
 export default fakeUsers;
