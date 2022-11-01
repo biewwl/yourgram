@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { commentPost, isLiked, managerLike } from "../../helpers/managerPosts";
 import { getCommentsById } from "../../mocks/fakeComments";
+import EmojiPicker from "emoji-picker-react";
 import "./styles/PostActions.css";
 import "./styles/PostActions-mobile.css";
 
@@ -13,16 +14,26 @@ function PostActions({ postData, reloadComments, status, nickLogged, isView }) {
     id, // post id
     subtitle,
     postDate,
-    nick: nickPost // owner of the post
+    nick: nickPost, // owner of the post
   } = postData;
 
   const [liked, setLiked] = useState(false);
   const [comment, setComment] = useState("");
+  const [emojiPicker, setEmojiPicker] = useState(false);
 
   useEffect(() => {
     const setIsLiked = () => {
       setLiked(isLiked(nickLogged, id, nickPost));
     };
+    const closeDropDown = (event) => {
+      if (
+        !event.target.closest("._emoji_btn") &&
+        !event.target.closest(".EmojiPickerReact")
+      ) {
+        setEmojiPicker(false);
+      }
+    };
+    document.addEventListener("click", closeDropDown);
     setIsLiked();
   }, [nickLogged, id, nickPost]);
 
@@ -47,6 +58,14 @@ function PostActions({ postData, reloadComments, status, nickLogged, isView }) {
   };
 
   const countPost = getCommentsById(nickPost, id).length;
+
+  const openCloseEmojiPicker = () => {
+    setEmojiPicker(!emojiPicker);
+  };
+
+  const addEmoji = (emoji) => {
+    setComment(`${comment}${emoji.emoji}`);
+  };
 
   return (
     <>
@@ -94,7 +113,14 @@ function PostActions({ postData, reloadComments, status, nickLogged, isView }) {
         )}
         {status && (
           <section className="_comment">
-            <Icon icon="ic:outline-emoji-emotions" />
+            <span>
+              <Icon
+                icon="ic:outline-emoji-emotions"
+                onClick={openCloseEmojiPicker}
+                className="_emoji_btn"
+              />
+              {emojiPicker && <EmojiPicker onEmojiClick={addEmoji} />}
+            </span>
             <input
               type="text"
               placeholder="Add a comment..."
@@ -102,7 +128,11 @@ function PostActions({ postData, reloadComments, status, nickLogged, isView }) {
               onChange={handleChange}
               id={`_comment_${id}_${nickPost}`}
             />
-            <button disabled={checkSend()} onClick={handleComment}>
+            <button
+              disabled={checkSend()}
+              onClick={handleComment}
+              className="_send_comment_btn"
+            >
               <Icon icon="charm:paper-plane" />
             </button>
           </section>

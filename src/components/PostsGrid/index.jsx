@@ -7,8 +7,8 @@ function PostsGrid({ posts }) {
       {posts.map((post, i) => {
         const { thumbnail, subtitle, id, nick } = post;
         return (
-          <Link to={`/${nick}/${id}`}>
-            <img src={thumbnail} alt={subtitle} key={i} />
+          <Link to={`/${nick}/${id}`} key={i}>
+            <img src={thumbnail} alt={subtitle} />
           </Link>
         );
       })}

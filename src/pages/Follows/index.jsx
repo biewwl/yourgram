@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getFollowingForLogged, getFollowsForLogged } from "../../mocks/fakeFollows";
+import {
+  getFollowingForLogged,
+  getFollowsForLogged,
+} from "../../mocks/fakeFollows";
 import { connect } from "react-redux";
 import "./styles/Follows.css";
 import "./styles/Follows-mobile.css";
@@ -55,8 +58,13 @@ function Follows({ type, nickLogged }) {
               <Icon icon="bi:x" />
             </Link>
           </section>
-          {sortFollows(follows, nickLogged).map((follow, i) => (
-            <Follow follow={follow} reloadFollows={reloadFollows} type={type} />
+          {sortFollows(follows, nickLogged).map((followData, i) => (
+            <Follow
+              followData={followData}
+              key={i}
+              reloadFollows={reloadFollows}
+              type={type}
+            />
           ))}
         </main>
       </div>

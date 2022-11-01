@@ -74,7 +74,6 @@ function EditProfile({
           <section className="_edit_profile_user_avatar">
             <img src={avatarSrc} alt={name} className="_avatar_edit_profile" />
             <CloudinaryUploadWidget type="avatar" setAvatar={setAvatarSrc} />
-
             <div className="_edit_profile_user">
               <h1>{name}</h1>
               {verified && (

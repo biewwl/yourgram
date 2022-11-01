@@ -88,10 +88,20 @@
 
 }
 
-._comment > svg {
-  font-size: 2.5em;
+._comment span {
+  position: relative;
+}
+
+._emoji_btn {
+  font-size: 2em;
   margin: 0 20px;
   color: var(--medium-grey);
+}
+
+aside.EmojiPickerReact.epr-main {
+  position: absolute;
+  bottom: 50px;
+  left: 20px;
 }
 
 ._comment input {
@@ -105,7 +115,7 @@
   background-color: #f8f8f8;
 }
 
-._comment button {
+._send_comment_btn {
   padding: 0 20px;
   height: 100%;
   background: none;

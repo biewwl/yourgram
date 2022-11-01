@@ -11,7 +11,19 @@
     font-size: 0.7em;
   }
 
+  ._emoji_btn {
+    display: none;
+  }
+
+  aside.EmojiPickerReact.epr-main {
+    display: none;
+  }
+
   ._comment {
     border-top: 1px solid var(--light-grey-2);
+  }
+
+  ._comment input {
+    padding-left: 20px;
   }
 }

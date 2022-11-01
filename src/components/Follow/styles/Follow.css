@@ -49,20 +49,45 @@
   color: var(--medium-grey);
 }
 
-._following._button_unfollow {
+._follow_btn {
   padding: 5px 10px;
   border: none;
   border-radius: 25px;
   cursor: pointer;
-  background-color: #fff !important;
-  /* border: 1px solid #c12828; */
   transition: 0.5s;
+  display: flex;
+  gap: 10px;
 }
 
-._following._button_unfollow:hover {
+._follow_btn svg {
+  font-size: 1.2em;
+
+}
+
+._follow_btn._unfollow {
+  background-color: #ffe1e1 !important;
+  color: #c12828;
+}
+
+._follow_btn._follow {
+  background-color: #e1e5ff !important;
+  color: #2858c1;
+}
+
+._follow_btn._remove {
+  background-color: #fff !important;
+  color: #c12828;
+  border: 1px solid #c12828;
+}
+
+._follow_btn._unfollow:hover {
+  background-color: #ffc1c1 !important;
+}
+
+._follow_btn._remove:hover {
   background-color: #ffe1e1 !important;
 }
 
-._following._button_unfollow svg {
-  font-size: 1.2em;
+._follow_btn._follow:hover {
+  background-color: #c1c3ff !important;
 }
