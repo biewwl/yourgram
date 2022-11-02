@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -11,7 +12,6 @@ import {
 } from "../../helpers/managerFollows";
 import "./styles/ProfileBar.css";
 import "./styles/ProfileBar-mobile.css";
-import { Link } from "react-router-dom";
 
 function ProfileBar({ nick, posts, nickLogged, edit, dispatch, status }) {
   const nav = useNavigate();

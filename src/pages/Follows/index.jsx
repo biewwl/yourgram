@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import {
-  getFollowingForLogged,
-  getFollowsForLogged,
+  getFollowingByNick,
+  getFollowsByNick,
 } from "../../mocks/fakeFollows";
 import { connect } from "react-redux";
 import "./styles/Follows.css";
@@ -22,11 +22,11 @@ function Follows({ type, nickLogged }) {
   useEffect(() => {
     const setCurrentFollows = () => {
       if (type === "following") {
-        const currentFollows = getFollowingForLogged(nick) ?? [];
+        const currentFollows = getFollowingByNick(nick) ?? [];
         setFollows(currentFollows);
       }
       if (type === "followers") {
-        const currentFollows = getFollowsForLogged(nick) ?? [];
+        const currentFollows = getFollowsByNick(nick) ?? [];
         setFollows(currentFollows);
       }
     };
@@ -35,17 +35,18 @@ function Follows({ type, nickLogged }) {
 
   const reloadFollows = () => {
     if (type === "following") {
-      const currentFollows = getFollowingForLogged(nick) ?? [];
+      const currentFollows = getFollowingByNick(nick) ?? [];
       setFollows(currentFollows);
     }
     if (type === "followers") {
-      const currentFollows = getFollowsForLogged(nick) ?? [];
+      const currentFollows = getFollowsByNick(nick) ?? [];
       setFollows(currentFollows);
     }
   };
 
   return (
     <div className="_follows_page_content">
+      <Header />
       <Profile />
       <div className="_follows_page">
         <main className="_follows">
@@ -68,7 +69,6 @@ function Follows({ type, nickLogged }) {
           ))}
         </main>
       </div>
-      <Header />
     </div>
   );
 }

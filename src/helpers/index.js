@@ -1,3 +1,5 @@
+import { getAllUsers } from "../mocks/fakeUsers";
+
 export const formatTimer = (minutes) => {
   let timer = Math.floor(minutes);
   let format = "minute";
@@ -53,4 +55,20 @@ export const sortFollows = (follows, nick) => {
       return 0;
     });
   return follows;
+};
+
+export const getSearchUsers = (query) => {
+  const lCQuery = query.toLowerCase();
+  const users = getAllUsers();
+  return users
+    .filter((user) => {
+      return (
+        user.nick.includes(lCQuery) || user.user.toLowerCase().includes(lCQuery)
+      );
+    })
+    .sort((a, b) => {
+      if (a.nick[0] === lCQuery[0] && b.nick[0] !== lCQuery[0]) return -1;
+      if (a.user[0] === lCQuery[0] && b.user[0] !== lCQuery[0]) return -1;
+      return 0;
+    });
 };

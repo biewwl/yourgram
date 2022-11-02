@@ -29,3 +29,8 @@
     background-color: #fff;
   }
 }
+@media screen and (max-width: 500px) {
+  ._search_area {
+    position: static;
+  }
+}

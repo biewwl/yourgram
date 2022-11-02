@@ -191,9 +191,13 @@ const fakeUsers = [
 //   return newObject;
 // };
 
-export const getUser = (nick) => {
+export const getAllUsers = () => {
   const lSUsers = lS.get("biewwl-created-logins") ?? [];
-  const allLogins = [...lSUsers, ...fakeUsers];
+  return [...fakeUsers, ...lSUsers];
+};
+
+export const getUser = (nick) => {
+  const allLogins = getAllUsers();
   const withoutPass = allLogins.map((u) => {
     const { avatar, header, nick, user, verified } = u;
     return { avatar, header, nick, user, verified };
@@ -202,16 +206,14 @@ export const getUser = (nick) => {
 };
 
 export const getFullUser = (nickOrEmail) => {
-  const lSUsers = lS.get("biewwl-created-logins") ?? [];
-  const allLogins = [...lSUsers, ...fakeUsers];
+  const allLogins = getAllUsers();
   return allLogins.find(
     (u) => u.nick === nickOrEmail || u.email === nickOrEmail
   );
 };
 
 export const verifyExistUser = (nick, email) => {
-  const lSUsers = lS.get("biewwl-created-logins") ?? [];
-  const allUsers = [...lSUsers, ...fakeUsers];
+  const allUsers = getAllUsers();
   const existNick = allUsers.some((u) => u.nick === nick);
   const existEmail = allUsers.some((u) => u.email === email);
   return {

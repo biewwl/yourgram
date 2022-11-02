@@ -2,8 +2,9 @@ import lS from "manager-local-storage";
 import { getElapsedMinutes } from "../helpers";
 import { getUser } from "./fakeUsers";
 
-export const fakeFollowsFullData = (follows) =>
-  follows.map((post) => {
+export const fakeFollowsFullData = () => {
+  const fakeFollows = lS.get("biewwl-follows") ?? [];
+  return fakeFollows.map((post) => {
     const { sender, recipient, date } = post;
     return {
       type: "follow",
@@ -20,19 +21,18 @@ export const fakeFollowsFullData = (follows) =>
       },
     };
   });
+};
 
-export const getFollowsForLogged = (logged) => {
-  const fakeFollows = lS.get("biewwl-follows") ?? [];
-  return fakeFollowsFullData(fakeFollows).filter((follow) => {
+export const getFollowsByNick = (nick) => {
+  return fakeFollowsFullData().filter((follow) => {
     const { recipient } = follow;
-    return recipient.nick === logged;
+    return recipient.nick === nick;
   });
-};
+}; // returns who follow the user
 
-export const getFollowingForLogged = (logged) => {
-  const fakeFollows = lS.get("biewwl-follows") ?? [];
-  return fakeFollowsFullData(fakeFollows).filter((follow) => {
+export const getFollowingByNick = (nick) => {
+  return fakeFollowsFullData().filter((follow) => {
     const { sender } = follow;
-    return sender.nick === logged;
+    return sender.nick === nick;
   });
-};
+}; // returns who's the user follow

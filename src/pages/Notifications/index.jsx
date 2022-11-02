@@ -1,10 +1,10 @@
+import { useEffect, useState } from "react";
 import Header from "../../components/Header";
 import Notification from "../../components/Notification";
 import { getNotificationsByNick } from "../../mocks/fakeNotifications";
 import { connect } from "react-redux";
 import "./styles/Notifications.css";
 import "./styles/Notifications-mobile.css";
-import { useEffect, useState } from "react";
 
 function Notifications({ nick }) {
   const [notifications, setNotifications] = useState([]);

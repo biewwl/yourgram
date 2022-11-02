@@ -1,0 +1,13 @@
+@media screen and (max-width: 768px) {
+  ._search_results {
+    right: 0;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  ._search_results {
+    top: 65px;
+    width: 95%;
+    right: 10px;
+  }
+}

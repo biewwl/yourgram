@@ -3,8 +3,9 @@ import { getPost } from "./fakePosts";
 import { getUser } from "./fakeUsers";
 import { getElapsedMinutes } from "../helpers";
 
-export const fakeLikesFullData = (likes) =>
-  likes.map((post) => {
+export const fakeLikesFullData = () => {
+  const fakeLikes = lS.get("biewwl-like-posts") ?? [];
+  return fakeLikes.map((post) => {
     const { sender, postId, recipient, date } = post;
     return {
       type: "like",
@@ -23,25 +24,25 @@ export const fakeLikesFullData = (likes) =>
       },
     };
   });
-
-export const getLikesForLogged = (logged, id) => {
-  const fakeLikes = lS.get("biewwl-like-posts") ?? [];
-  return fakeLikesFullData(fakeLikes)
-    .filter((like) => {
-      const { recipient, payload } = like;
-      const getType = id
-        ? recipient.nick === logged && id === payload.post.id
-        : recipient.nick === logged;
-      return getType;
-    })
-    .filter((like) => like.sender.nick !== like.recipient.nick);
 };
 
-export const getLikesById = (nick, id) => {
-  const fakeLikes = lS.get("biewwl-like-posts") ?? [];
-  return fakeLikesFullData(fakeLikes).filter(
-    (like) =>
-      like.payload.post.id === id && like.payload.post.nick === nick
-  );
-};
+export const getLikesForNick = (nick) => {
+  return fakeLikesFullData().filter((like) => {
+    const { recipient } = like;
+    return recipient.nick === nick;
+  });
+}; // returns who like post the user
 
+export const getLikesByNick = (nick) => {
+  return fakeLikesFullData().filter((like) => {
+    const { sender } = like;
+    return sender.nick === nick;
+  });
+}; // returns what posts user like
+
+export const getLikesByPost = (nick, postId) => {
+  return getLikesForNick(nick).filter((like) => {
+    const { payload } = like;
+    return payload.post.id === postId;
+  });
+}; // returns who like the user post

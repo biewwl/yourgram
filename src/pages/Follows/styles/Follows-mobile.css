@@ -13,10 +13,6 @@
     display: none;
   }
 
-  ._follows_page_content ._header_bar {
-    display: flex;
-  }
-
   ._follows {
     max-width: none;
     width: 100%;

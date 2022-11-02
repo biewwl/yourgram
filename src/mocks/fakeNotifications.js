@@ -1,12 +1,12 @@
-import { getCommentsForLogged } from "./fakeComments";
-import { getLikesForLogged } from "./fakeLikes";
-import { getFollowsForLogged } from "./fakeFollows";
+import { getCommentsForNick } from "./fakeComments";
+import { getLikesForNick } from "./fakeLikes";
+import { getFollowsByNick } from "./fakeFollows";
 import { sortByTimer } from "../helpers";
 
 export const getNotificationsByNick = (nick) => {
-  const comments = [...getCommentsForLogged(nick)];
-  const likes = [...getLikesForLogged(nick)];
-  const follows = [...getFollowsForLogged(nick)];
+  const comments = [...getCommentsForNick(nick)];
+  const likes = [...getLikesForNick(nick)];
+  const follows = [...getFollowsByNick(nick)];
   const notifications = [...comments, ...likes, ...follows];
   return notifications
     .filter((n) => n.recipient.nick === nick)

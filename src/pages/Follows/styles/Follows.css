@@ -1,7 +1,3 @@
-._follows_page_content ._header_bar {
-  display: none;
-}
-
 ._follows_page {
   display: flex;
   align-items: center;

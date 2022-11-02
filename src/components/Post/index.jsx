@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Icon } from "@iconify/react";
 import PostActions from "../PostActions";
 import { Link } from "react-router-dom";
@@ -14,13 +15,14 @@ function Post({ postData }) {
     avatar,
     nick, // owner of the post
     nickUser, // logged user
-    avatarImage,
+    avatarLogged,
     id, // post id
   } = postData;
 
-  const image = nick === nickUser ? avatarImage : avatar;
+  const [comments, setComments] = useState(getCommentsById(nick, id));
+  const reloadComments = () => setComments(getCommentsById(nick, id));
 
-  const comments = getCommentsById(nick, id);
+  const image = nick === nickUser ? avatarLogged : avatar;
 
   return (
     <section className="_post">
@@ -46,6 +48,7 @@ function Post({ postData }) {
             ...postData,
             comments,
           }}
+          reloadComments={reloadComments}
         />
       </section>
     </section>
@@ -54,7 +57,7 @@ function Post({ postData }) {
 
 const mapStateToProps = (state) => ({
   nickUser: state.user.nick,
-  avatarImage: state.user.avatar,
+  avatarLogged: state.user.avatar,
 });
 
 export default connect(mapStateToProps)(Post);

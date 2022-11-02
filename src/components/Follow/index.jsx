@@ -8,30 +8,7 @@ import "./styles/Follow.css";
 function Follow({ followData, nickLogged, reloadFollows, type }) {
   const { recipient, sender } = followData;
 
-  // const unfollow = () => {
-  //   if (type === "following") unfollowUser(nickLogged, recipient.nick);
-  //   if (type === "followers") {
-  //     unfollowUser(sender.nick, nickLogged);
-  //   }
-  //   reloadFollows();
-  // };
-
-  // const follow = () => {
-  //   if (type === "following") followUser(nickLogged, recipient.nick);
-  //   if (type === "followers") {
-  //     followUser(nickLogged, sender.nick);
-  //   }
-  //   reloadFollows();
-  // };
-
   const user = type === "following" ? recipient : sender;
-
-  // const validDelete =
-  //   type === "following"
-  //     ? sender.nick === nickLogged || recipient.nick === nickLogged
-  //     : recipient.nick === nickLogged || sender.nick === nickLogged;
-
-  // const verifyFollow = () => alreadyFollow(nickLogged, sender.nick);
 
   return (
     <section className="_follow">

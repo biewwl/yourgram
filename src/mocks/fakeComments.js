@@ -3,8 +3,9 @@ import { getElapsedMinutes } from "../helpers";
 import { getPost } from "./fakePosts";
 import { getUser } from "./fakeUsers";
 
-export const fakeCommentsFullData = (comments) =>
-  comments.map((post) => {
+export const fakeCommentsFullData = () => {
+  const fakeComments = lS.get("biewwl-comment-posts") ?? [];
+  return fakeComments.map((post) => {
     const { sender, postId, recipient, comment, date, id } = post;
     return {
       id,
@@ -24,22 +25,18 @@ export const fakeCommentsFullData = (comments) =>
       },
     };
   });
-
-export const getCommentsForLogged = (logged, id) => {
-  const fakeComments = lS.get("biewwl-comment-posts") ?? [];
-  return fakeCommentsFullData(fakeComments).filter((comment) => {
-    const { recipient, payload } = comment;
-    const getType = id
-      ? recipient.nick === logged && id === payload.post.id
-      : recipient.nick === logged;
-    return getType;
-  });
 };
 
+export const getCommentsForNick = (nick) => {
+  return fakeCommentsFullData().filter((comment) => {
+    const { recipient } = comment;
+    return recipient.nick === nick;
+  });
+}; // returns all comments for user
+
 export const getCommentsById = (nick, id) => {
-  const fakeLikes = lS.get("biewwl-comment-posts") ?? [];
-  return fakeCommentsFullData(fakeLikes).filter(
+  return fakeCommentsFullData().filter(
     (comment) =>
       comment.payload.post.id === id && comment.payload.post.nick === nick
   );
-};
+}; // returns all comments for user post
