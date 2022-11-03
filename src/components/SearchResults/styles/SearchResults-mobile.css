@@ -12,5 +12,6 @@
     max-height: none;
     height: calc(100vh - 130px);
     border-radius: 0;
+    padding-bottom: 70px;
   }
 }
