@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import FollowButtons from "../FollowButtons";
 import "./styles/Follow.css";
 
-function Follow({ followData, nickLogged, reloadFollows, type }) {
+function Follow({ followData, reloadFollows, type }) {
   const { recipient, sender } = followData;
 
   const user = type === "following" ? recipient : sender;
@@ -19,7 +19,7 @@ function Follow({ followData, nickLogged, reloadFollows, type }) {
         <Link to={`/${user.nick}`} className="_follow_data">
           <span className="_follow_nick">
             {user.nick}
-            {recipient.verified && (
+            {user.verified && (
               <Icon
                 icon="codicon:verified-filled"
                 className="_verified_user_notify"
@@ -30,44 +30,6 @@ function Follow({ followData, nickLogged, reloadFollows, type }) {
         </Link>
       </p>
       <FollowButtons followData={followData} type={type} reloadFollows={reloadFollows} />
-      {/* {type === "following" && validDelete && (
-        <button onClick={unfollow} className="_following _button_unfollow">
-          {sender.nick === nickLogged ? (
-            <Icon icon="ri:user-unfollow-line" />
-          ) : (
-            <Icon icon="ep:remove" />
-          )}
-        </button>
-      )}
-      {type === "followers" && validDelete && (
-        <button onClick={unfollow} className="_following _button_unfollow">
-          {recipient.nick === nickLogged ? (
-            <Icon icon="ep:remove" />
-          ) : (
-            <Icon icon="ri:user-unfollow-line" />
-          )}
-        </button>
-      )}
-      {type === "following" && validDelete && (
-        <button onClick={follow} className="_following _button_unfollow">
-          f
-          {sender.nick === nickLogged ? (
-            <Icon icon="ri:user-unfollow-line" />
-          ) : (
-            <Icon icon="ep:remove" />
-          )}
-        </button>
-      )}
-      {type === "followers" && sender.nick !== nickLogged && !verifyFollow() && (
-        <button onClick={follow} className="_following _button_unfollow">
-          2
-          {recipient.nick === nickLogged ? (
-            <Icon icon="ep:remove" />
-          ) : (
-            <Icon icon="ri:user-unfollow-line" />
-          )}
-        </button>
-      )} */}
     </section>
   );
 }
