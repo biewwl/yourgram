@@ -4,7 +4,7 @@
   align-items: center;
   gap: 10px;
   padding: 20px 10px;
-  border-bottom: 1px solid var(--light-grey);
+  /* border-bottom: 1px solid var(--dark-grey); */
 }
 
 ._notify_avatar_sender {
@@ -25,10 +25,15 @@
   text-decoration: none;
 }
 
+._notify_sender_nick svg {
+  color: var(--orange);
+  font-size: 0.9em;
+}
+
 ._notify_feedback {
   font-family: product_sans, sans-serif;
   font-weight: 100;
-  color: var(--medium-grey);
+  color: var(--dark-grey);
 }
 
 ._notify_thumbnail {
@@ -36,6 +41,7 @@
   max-width: 50px;
   height: 50px;
   object-fit: cover;
+  border-radius: 0.5em;
 }
 
 ._notification p {
@@ -52,10 +58,15 @@
   display: flex;
   gap: 0 5px;
   flex-wrap: wrap;
+  align-items: center;
+}
+
+._notification p > span svg {
+  font-size: 0.9em;
 }
 
 ._notify_elapsed_minutes {
-  color: var(--light-grey-2);
+  color: var(--medium-grey);
   font-size: 0.8em;
   /* background-color: red; */
   height: 100%;

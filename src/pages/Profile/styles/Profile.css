@@ -2,8 +2,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #fff;
-  background-image: url("../../../pattners/wiggle/wiggle.svg");
+  /* background-color: #fff; */
+  background-color: var(--light-grey);
+  /* background-image: url("../../../pattners/wiggle/wiggle.svg"); */
 }
 
 ._profile_content {

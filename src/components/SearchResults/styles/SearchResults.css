@@ -1,5 +1,6 @@
 ._search_results {
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
   border-radius: 0.5em;
   position: absolute;
   width: 400px;
@@ -9,7 +10,7 @@
   border: 1px solid var(--light-grey);
   display: flex;
   flex-direction: column;
-  box-shadow: 0 0 5px var(--light-grey-2);
+  /* box-shadow: 0 0 5px var(--light-grey-2); */
 }
 
 ._search_results::-webkit-scrollbar {
@@ -18,7 +19,7 @@
 
 ._search_result {
   display: flex;
-  border-bottom: 1px solid var(--light-grey);
+  /* border-bottom: 1px solid var(--light-grey); */
   padding: 15px;
   align-items: center;
   gap: 10px;

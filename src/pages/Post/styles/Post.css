@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   background-color: #fff;
-  background-image: url("../../../pattners/wiggle/wiggle.svg");
+  /* background-image: url("../../../pattners/wiggle/wiggle.svg"); */
   min-height: 100vh;
 }
 

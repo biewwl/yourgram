@@ -7,15 +7,22 @@ import "./styles/Header-mobile.css";
 import { getNotificationsByNick } from "../../mocks/fakeNotifications";
 import SearchResults from "../SearchResults";
 import { getSearchUsers } from "../../helpers";
+import Notifications from "../Notifications";
 
 function Header({ nick, page, avatar, status }) {
   const [querySearch, setQuerySearch] = useState("");
   const [results, setResults] = useState([]);
+  const [menuNotify, setMenuNotify] = useState(false);
 
   const handleChange = ({ target }) => {
     const { value } = target;
     setQuerySearch(value);
     setResults(getSearchUsers(value));
+    setMenuNotify(false);
+  };
+
+  const openCloseNotify = () => {
+    setMenuNotify(!menuNotify);
   };
 
   const haveNotify = getNotificationsByNick(nick).length > 0;
@@ -33,7 +40,7 @@ function Header({ nick, page, avatar, status }) {
           onChange={handleChange}
           placeholder="Search"
         />
-        {querySearch && (
+        {querySearch && !menuNotify && (
           <SearchResults results={results} setQuerySearch={setQuerySearch} />
         )}
       </div>
@@ -52,11 +59,12 @@ function Header({ nick, page, avatar, status }) {
             <Link to="/new">
               <Icon icon="bx:add-to-queue" />
             </Link>
-            <Link to="/notifications">
-              {page === "notifications" && <Icon icon="bxs:bell" />}
-              {page !== "notifications" && <Icon icon="bx:bell" />}
+            <span onClick={openCloseNotify} className="_notifications_area">
+              {menuNotify && <Icon icon="bxs:bell" />}
+              {!menuNotify && <Icon icon="bx:bell" />}
               {haveNotify && <span className="_notify"></span>}
-            </Link>
+              {menuNotify && <Notifications />}
+            </span>
             <Link to={`/${nick}`}>
               <img src={avatar} alt="avatar" className="_avatar_header_bar" />
             </Link>

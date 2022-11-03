@@ -5,6 +5,10 @@
     padding: 20px;
   }
 
+  ._notifications_area {
+    position: static;
+  }
+
   ._title_header_bar {
     padding-left: 0;
   }

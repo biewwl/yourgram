@@ -2,7 +2,12 @@
 
   ._post_comments_area {
     height: auto;
-    max-height: 250px;
+    max-height: none;
+    order: 3;
+  }
+
+  ._post_comment_area {
+    padding: 20px;
   }
 
 }

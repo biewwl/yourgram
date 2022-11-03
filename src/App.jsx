@@ -3,7 +3,7 @@ import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Direct from "./pages/Direct";
 import Profile from "./pages/Profile";
-import Notifications from "./pages/Notifications";
+// import Notifications from "./pages/Notifications";
 import EditProfile from "./pages/EditProfile";
 import Post from "./pages/Post";
 // import { getLogins } from "./helpers/localStorage";
@@ -33,11 +33,11 @@ function App({ status }) {
           path="/profile/edit"
           element={status ? <EditProfile /> : <Login />}
         />
-        <Route
+        {/* <Route
           exact
           path="/notifications"
           element={status ? <Notifications /> : <Login />}
-        />
+        /> */}
         <Route
           exact
           path="/:nick/following"

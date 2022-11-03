@@ -18,6 +18,7 @@
   ._post_view_data {
     width: 100%;
     /* overflow: visible; */
+    box-shadow: none;
   }
 
   ._post_view_data {
