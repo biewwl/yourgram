@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/yourgram/static/css/main.f36f4643.css",
+    "main.css": "/yourgram/static/css/main.4a398a73.css",
     "main.js": "/yourgram/static/js/main.253736cb.js",
     "static/js/787.7fd4e045.chunk.js": "/yourgram/static/js/787.7fd4e045.chunk.js",
     "static/media/logo.png": "/yourgram/static/media/logo.e104aeee2f4b24ba3f48.png",
@@ -8,12 +8,12 @@
     "static/media/minimalist2.jpg": "/yourgram/static/media/minimalist2.ad42f566afefb0989b18.jpg",
     "index.html": "/yourgram/index.html",
     "static/media/wiggle.svg": "/yourgram/static/media/wiggle.7b945eaf15658458a4da.svg",
-    "main.f36f4643.css.map": "/yourgram/static/css/main.f36f4643.css.map",
+    "main.4a398a73.css.map": "/yourgram/static/css/main.4a398a73.css.map",
     "main.253736cb.js.map": "/yourgram/static/js/main.253736cb.js.map",
     "787.7fd4e045.chunk.js.map": "/yourgram/static/js/787.7fd4e045.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.f36f4643.css",
+    "static/css/main.4a398a73.css",
     "static/js/main.253736cb.js"
   ]
 }
