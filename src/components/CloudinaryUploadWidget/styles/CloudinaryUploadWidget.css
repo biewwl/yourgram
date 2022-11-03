@@ -18,7 +18,7 @@
 }
 
 ._edit_profile_avatar_button_edit {
-  top: auto;
+  top: auto !important;
   bottom: 45px;
   right: 10px;
   left: auto;
