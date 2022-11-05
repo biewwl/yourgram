@@ -61,9 +61,11 @@ function Header({ nick, page, avatar, status }) {
             </Link>
             <span onClick={openCloseNotify} className="_notifications_area">
               {menuNotify && <Icon icon="bxs:bell" />}
-              {!menuNotify && <Icon icon="bx:bell" />}
-              {haveNotify && <span className="_notify"></span>}
               {menuNotify && <Notifications />}
+              {!menuNotify && <Icon icon="bx:bell" />}
+              <div className="_notifications_area_notify">
+                {haveNotify && <span className="_notify"></span>}
+              </div>
             </span>
             <Link to={`/${nick}`}>
               <img src={avatar} alt="avatar" className="_avatar_header_bar" />

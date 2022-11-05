@@ -1,15 +1,13 @@
 @media screen and (max-width: 768px) {
   ._notifications {
-    min-height: calc(100vh - 130px);
-    min-width: 0;
     top: auto;
     margin: auto;
-    right: 0;
-    bottom: 70px;
-    width: 100%;
+    right: 2.5%;
+    bottom: 75px;
+    width: 95%;
+    height: 300px;
     box-shadow: none;
     border: 1px solid var(--light-grey);
-    border-radius: 0;
     /* background-color: rgba(255, 255, 255, 0.742);
     backdrop-filter: blur(10px); */
   }

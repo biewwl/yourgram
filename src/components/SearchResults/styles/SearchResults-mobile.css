@@ -6,12 +6,8 @@
 
 @media screen and (max-width: 500px) {
   ._search_results {
-    top: 60px;
-    width: 100%;
-    right: 0;
-    max-height: none;
-    height: calc(100vh - 130px);
-    border-radius: 0;
-    padding-bottom: 70px;
+    top: 65px;
+    width: 95%;
+    right: 2.5%;
   }
 }

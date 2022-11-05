@@ -10,6 +10,7 @@
   top: 0;
   width: 100%;
   z-index: 100;
+  gap: 20px;
 }
 
 ._title_header_bar {
@@ -60,6 +61,13 @@
 }
 
 ._notifications_area {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+._notifications_area_notify {
   position: relative;
   display: flex;
   justify-content: center;
