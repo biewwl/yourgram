@@ -3,6 +3,7 @@ import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Direct from "./pages/Direct";
 import Profile from "./pages/Profile";
+import New from "./pages/New";
 // import Notifications from "./pages/Notifications";
 import EditProfile from "./pages/EditProfile";
 import Post from "./pages/Post";
@@ -33,11 +34,6 @@ function App({ status }) {
           path="/profile/edit"
           element={status ? <EditProfile /> : <Login />}
         />
-        {/* <Route
-          exact
-          path="/notifications"
-          element={status ? <Notifications /> : <Login />}
-        /> */}
         <Route
           exact
           path="/:nick/following"
@@ -47,6 +43,11 @@ function App({ status }) {
           exact
           path="/:nick/followers"
           element={<Follows type="followers" />}
+        />
+        <Route
+          exact
+          path="/new"
+          element={<New />}
         />
         <Route path="/" element={<h1>ok</h1>} />
       </Routes>

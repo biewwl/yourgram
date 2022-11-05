@@ -57,7 +57,8 @@ function Header({ nick, page, avatar, status }) {
               <span className="_notify"></span>
             </Link>
             <Link to="/new">
-              <Icon icon="bx:add-to-queue" />
+              {page === "new" && <Icon icon="bxs:add-to-queue" />}
+              {page !== "new" && <Icon icon="bx:add-to-queue" />}
             </Link>
             <span onClick={openCloseNotify} className="_notifications_area">
               {menuNotify && <Icon icon="bxs:bell" />}
