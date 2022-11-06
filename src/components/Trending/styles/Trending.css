@@ -28,7 +28,7 @@
   width: 60%;
   height: 250px;
   object-fit: cover;
-  border-radius: 1.3em;
+  border-radius: 0.5em;
 }
 
 ._trending_post {

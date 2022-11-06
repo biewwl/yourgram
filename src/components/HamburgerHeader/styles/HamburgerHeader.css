@@ -13,10 +13,28 @@
 }
 
 ._menu_hamburger_header button {
-  padding: 5px 10px;
+  padding: 5px;
   background: none;
   border: none;
   text-align: left;
   font-family: product_sans, sans-serif;
   color: var(--dark-grey);
+  cursor: pointer;
+  border-radius: 0.5em;
+  transition: 0.5s;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+._menu_hamburger_header button svg {
+  font-size: 1.2em;
+}
+
+._menu_hamburger_header button:hover {
+  background-color: var(--light-grey-2);
+}
+
+._menu_hamburger_header ._logout_button {
+  color: rgb(193, 35, 35);
 }

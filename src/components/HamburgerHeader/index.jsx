@@ -1,3 +1,4 @@
+import { Icon } from "@iconify/react";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logoutUser } from "../../redux/actions/userAction";
@@ -17,9 +18,13 @@ function HamburgerHeader({ dispatch }) {
 
   return (
     <aside className="_menu_hamburger_header">
-      <button onClick={editProfile}>Edit Profile</button>
-      <button onClick={logout}>
-        Logout
+      <button onClick={editProfile}>
+        <Icon icon="bi:gear-wide-connected" />
+        <span>Edit Profile</span>
+      </button>
+      <button onClick={logout} className="_logout_button">
+        <Icon icon="heroicons-outline:logout" />
+        <span>Logout</span>
       </button>
     </aside>
   );
