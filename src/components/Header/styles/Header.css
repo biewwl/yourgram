@@ -18,9 +18,14 @@
   font-weight: 100;
   font-size: 1.3em;
   color: var(--dark-blue);
-  justify-self: flex-start;
-  padding-left: 50px;
+  /* justify-self: flex-start; */
+  padding-left: 10px;
   text-decoration: none;
+}
+
+._header_menu_logo {
+  display: flex;
+  align-items: center;
 }
 
 ._search_area {
@@ -40,12 +45,21 @@
   font-family: product_sans, sans-serif;
 }
 
+._menu {
+  display: flex;
+  font-size: 1.4em;
+  align-items: center;
+  color: var(--dark-blue);
+  cursor: pointer;
+  position: relative;
+}
+
 ._nav_header_bar {
   display: flex;
   align-items: center;
   gap: 30px;
-  justify-self: flex-end;
-  padding-right: 50px;
+  /* justify-self: flex-end; */
+  padding-right: 10px;
 }
 
 ._nav_header_bar a {

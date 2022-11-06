@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import "./styles/PostGrid.css";
+import "./styles/PostGrid-mobile.css";
 
 function PostsGrid({ posts }) {
+
   return (
     <article className="_posts_grid">
       {posts.map((post, i) => {

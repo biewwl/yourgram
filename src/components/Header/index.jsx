@@ -2,36 +2,53 @@ import { Icon } from "@iconify/react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import "./styles/Header.css";
-import "./styles/Header-mobile.css";
 import { getNotificationsByNick } from "../../mocks/fakeNotifications";
 import SearchResults from "../SearchResults";
 import { getSearchUsers } from "../../helpers";
 import Notifications from "../Notifications";
+import HamburgerHeader from "../HamburgerHeader";
+import "./styles/Header.css";
+import "./styles/Header-mobile.css";
 
 function Header({ nick, page, avatar, status }) {
   const [querySearch, setQuerySearch] = useState("");
   const [results, setResults] = useState([]);
   const [menuNotify, setMenuNotify] = useState(false);
+  const [menuHamburger, setMenuHamburger] = useState(false);
 
   const handleChange = ({ target }) => {
     const { value } = target;
     setQuerySearch(value);
     setResults(getSearchUsers(value));
     setMenuNotify(false);
+    setMenuHamburger(false);
   };
 
   const openCloseNotify = () => {
     setMenuNotify(!menuNotify);
+    setMenuHamburger(false);
+  };
+
+  const openCloseHamburger = () => {
+    setMenuHamburger(!menuHamburger);
+    setMenuNotify(false);
   };
 
   const haveNotify = getNotificationsByNick(nick).length > 0;
 
   return (
     <header className="_header_bar">
-      <Link to="/" className="_title_header_bar">
-        Yourgram®
-      </Link>
+      <div className="_header_menu_logo">
+        {status && (
+          <span onClick={openCloseHamburger} className="_menu">
+            <Icon icon="bx:menu" />
+            {menuHamburger && <HamburgerHeader />}
+          </span>
+        )}
+        <Link to="/" className={`_title_header_bar${status ? ' logged' : ''}`}>
+          Yourgram®
+        </Link>
+      </div>
       <div className="_search_area">
         <input
           className="_header_search_bar"
@@ -40,7 +57,7 @@ function Header({ nick, page, avatar, status }) {
           onChange={handleChange}
           placeholder="Search"
         />
-        {querySearch && !menuNotify && (
+        {querySearch && !menuHamburger && !menuNotify && (
           <SearchResults results={results} setQuerySearch={setQuerySearch} />
         )}
       </div>
@@ -62,8 +79,8 @@ function Header({ nick, page, avatar, status }) {
             </Link>
             <span onClick={openCloseNotify} className="_notifications_area">
               {menuNotify && <Icon icon="bxs:bell" />}
-              {menuNotify && <Notifications />}
               {!menuNotify && <Icon icon="bx:bell" />}
+              {menuNotify && <Notifications />}
               <div className="_notifications_area_notify">
                 {haveNotify && <span className="_notify"></span>}
               </div>

@@ -1,5 +1,5 @@
 ._search_results {
-  background-color: #fff;
+  background-color: var(--light-grey);
   border-radius: 0.5em;
   position: absolute;
   width: 400px;
@@ -9,7 +9,7 @@
   border: 1px solid var(--light-grey);
   display: flex;
   flex-direction: column;
-  /* box-shadow: 0 0 5px var(--light-grey-2); */
+  box-shadow: 0 0 5px rgb(191, 191, 191);
 }
 
 ._search_results::-webkit-scrollbar {

@@ -1,9 +1,9 @@
 ._notifications {
-  background-color: #fff;
+  background-color: var(--light-grey);
   width: 400px;
   height: 500px;
   border-radius: 0.5em;
-  box-shadow: 0 0 5px var(--light-grey-2);
+  box-shadow: 0 0 5px rgb(191, 191, 191);
   display: flex;
   flex-direction: column;
   /* gap: 10px; */

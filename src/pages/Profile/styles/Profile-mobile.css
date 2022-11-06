@@ -1,5 +1,19 @@
 @media screen and (max-width: 768px) {
+  ._profile_page {
+    padding-bottom: 70px;
+  }
+
   ._profile_content {
     padding-bottom: 60px;
+    border: none;
+  }
+
+  ._profile_presentation {
+    padding: 0;
+  }
+
+  ._profile_user_data {
+    border-radius: 0;
+    border: none;
   }
 }

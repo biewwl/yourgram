@@ -8,10 +8,6 @@
   ._notifications_area {
     position: static;
   }
-  
-  ._title_header_bar {
-    padding-left: 0;
-  }
 
   ._nav_header_bar {
     /* background-color: red; */
@@ -32,8 +28,15 @@
     padding: 0;
     background-color: #fff;
   }
+
 }
+
 @media screen and (max-width: 500px) {
+
+  ._title_header_bar.logged {
+    display: none;
+  }
+
   ._search_area {
     position: static;
   }

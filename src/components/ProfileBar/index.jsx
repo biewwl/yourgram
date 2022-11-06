@@ -3,7 +3,6 @@ import { Icon } from "@iconify/react";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { logoutUser } from "../../redux/actions/userAction";
 import {
   alreadyFollow,
   followedCount,
@@ -13,7 +12,7 @@ import {
 import "./styles/ProfileBar.css";
 import "./styles/ProfileBar-mobile.css";
 
-function ProfileBar({ nick, posts, nickLogged, edit, dispatch, status }) {
+function ProfileBar({ nick, posts, nickLogged, edit, status }) {
   const nav = useNavigate();
 
   const [statusFollow, setStatusFollow] = useState(false);
@@ -27,15 +26,6 @@ function ProfileBar({ nick, posts, nickLogged, edit, dispatch, status }) {
 
   const sendMessage = () => {
     nav(`/direct/${nick}`);
-  };
-
-  const editProfile = () => {
-    nav(`/profile/edit`);
-  };
-
-  const logout = () => {
-    dispatch(logoutUser());
-    nav("/");
   };
 
   const follow = () => {
@@ -61,14 +51,6 @@ function ProfileBar({ nick, posts, nickLogged, edit, dispatch, status }) {
               <button onClick={sendMessage}>Message</button>
             </>
           )}
-          {isLogged && !edit && (
-            <>
-              <button onClick={editProfile}>Edit Profile</button>
-              <button className="_logout_button" onClick={logout}>
-                Logout
-              </button>
-            </>
-          )}
         </section>
       )}
       {!edit && (
@@ -77,28 +59,28 @@ function ProfileBar({ nick, posts, nickLogged, edit, dispatch, status }) {
             to={`/${nick}/followers`}
             className="_profile_stats_bar_icon _followers"
           >
+            {followedCount(nick)}
             <div>
               <Icon icon="lucide:users" />
               <span>Followers</span>
             </div>
-            {followedCount(nick)}
           </Link>
           <Link
             to={`/${nick}/following`}
             className="_profile_stats_bar_icon _following"
           >
+            {followingCount(nick)}
             <div>
               <Icon icon="mingcute:user-follow-line" />
               <span>Following</span>
             </div>
-            {followingCount(nick)}
           </Link>
           <span className="_profile_stats_bar_icon _posts">
+            {posts}
             <div>
               <Icon icon="gridicons:posts" />
               <span>Posts</span>
             </div>
-            {posts}
           </span>
         </section>
       )}

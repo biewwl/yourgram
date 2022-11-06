@@ -1,4 +1,12 @@
 @media screen and (max-width: 768px) {
+  ._profile_stats_bar {
+    border-radius: 0;
+  }
+
+  ._profile_stats_bar_icon div {
+    font-size: 1em;
+  }
+
   ._profile_stats_bar_icon div svg {
     display: none;
   }

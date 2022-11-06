@@ -1,0 +1,16 @@
+@media screen and (max-width: 768px) {
+
+  ._posts_grid {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 10px;
+    justify-items: center;
+    gap: 10px;
+  }
+
+  ._posts_grid img {
+    width: 30vw;
+    height: 30vw;
+  }
+}

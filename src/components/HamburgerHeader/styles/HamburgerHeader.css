@@ -1,0 +1,22 @@
+._menu_hamburger_header {
+  background-color: var(--light-grey);
+  position: absolute;
+  top: 50px;
+  padding: 10px;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-radius: 0.5em;
+  border: 1px solid var(--light-grey);
+  box-shadow: 0 0 5px rgb(191, 191, 191);
+}
+
+._menu_hamburger_header button {
+  padding: 5px 10px;
+  background: none;
+  border: none;
+  text-align: left;
+  font-family: product_sans, sans-serif;
+  color: var(--dark-grey);
+}
