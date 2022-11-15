@@ -13,7 +13,7 @@
 <p>Este projeto foi desenvolvido com um sistema de rotas que variam de acordo com o estado de login. Em outras palavras, há páginas que só podem ser visualizadas se existir um usuário logado, caso contrário, o usuário será redirecionado para o login.
 A página de perfil de um usuário é acessível sem login, porém as interações não ficam disponíveis e o Header é subistituído por uma barra com botão de login.</p>
 <hr />
-<h3>🧐 Validação de campos (Login, Registro)</h3>
+<h4>🧐 Validação de campos (Login, Registro)</h4>
 <p>Um usuário só poderá fazer o <i>submit</i> dos dados de login ou registro caso atenda as regras de login, sendo essa verificação feita utilizando a ferramenta JOI. Para saber se um login ou registro é valido, as seguintes regras são verificadas:</p>
 <ul><li>Nickname possui de <strong>3</strong> a <strong>15</strong> caracteres;</li>
 <li>Nickname não possúi caracteres especiais, válido apenas "<strong>.</strong>" e  "<strong>_</strong>";</li>
