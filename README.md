@@ -7,7 +7,8 @@
 </p>
 
 <h1 align="center">Yourgram</h1>
-<p>Este projeto é a parte Frontend de um site social, de fácil integração com o Backend. Feito completamente com **React.js** e **Javascript**, utilizando **Redux** como gerenciador de estado.</p>
+
+Este projeto é a parte Frontend de um site social, de fácil integração com o Backend. Feito completamente com **React.js** e **Javascript**, utilizando **Redux** como gerenciador de estado.
 
 ------------
 
