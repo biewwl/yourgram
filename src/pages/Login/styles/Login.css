@@ -105,6 +105,7 @@
   transition: 0.5s;
   border-radius: 0.5em;
   font-family: product_sans, sans-serif;
+  margin: 0 50px;
 }
 
 ._login_button:disabled {

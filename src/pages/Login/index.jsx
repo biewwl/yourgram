@@ -20,14 +20,16 @@ function Login({ dispatch }) {
     user: "",
   });
 
-  const login = () => {
+  const login = (e) => {
+    e.preventDefault();
     const { nick, password } = userData;
     const { message, login } = loginUser(nick, password);
     if (message) return setInvalidLogin(message);
     dispatch(loginUserAction(login));
   };
 
-  const createLogin = () => {
+  const createLogin = (e) => {
+    e.preventDefault();
     createLoginUser(userData);
     dispatch(loginUserAction(userData.nick));
   };
@@ -75,7 +77,11 @@ function Login({ dispatch }) {
           <h1>Yourgram®</h1>
           <span className="_text_intro">Share moments!</span>
         </section>
-        <form className="_login_form">
+        <form
+          className="_login_form"
+          action="POST"
+          onSubmit={create ? createLogin : login}
+        >
           {create && (
             <>
               <input
@@ -128,14 +134,14 @@ function Login({ dispatch }) {
               <span onClick={alternateMode}>Sign in!</span>
             </span>
           )}
+          <button
+            disabled={create ? !verifyDataCreate() : !verifyDataLogin()}
+            className="_login_button"
+            type="submit"
+          >
+            Enter
+          </button>
         </form>
-        <button
-          disabled={create ? !verifyDataCreate() : !verifyDataLogin()}
-          onClick={create ? createLogin : login}
-          className="_login_button"
-        >
-          Enter
-        </button>
         {!create && invalidLogin && (
           <span className="_invalid_message">{invalidLogin}</span>
         )}
