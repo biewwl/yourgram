@@ -1,19 +1,18 @@
 {
   "files": {
-    "main.css": "/yourgram/static/css/main.679db0d9.css",
-    "main.js": "/yourgram/static/js/main.adcd7e7d.js",
+    "main.css": "/yourgram/static/css/main.7136c092.css",
+    "main.js": "/yourgram/static/js/main.29167c24.js",
     "static/js/787.7fd4e045.chunk.js": "/yourgram/static/js/787.7fd4e045.chunk.js",
     "static/media/logo.png": "/yourgram/static/media/logo.e104aeee2f4b24ba3f48.png",
     "static/media/Product Sans Regular.ttf": "/yourgram/static/media/Product Sans Regular.d165384076551a756b3c.ttf",
     "static/media/minimalist2.jpg": "/yourgram/static/media/minimalist2.ad42f566afefb0989b18.jpg",
     "index.html": "/yourgram/index.html",
-    "static/media/wiggle.svg": "/yourgram/static/media/wiggle.7b945eaf15658458a4da.svg",
-    "main.679db0d9.css.map": "/yourgram/static/css/main.679db0d9.css.map",
-    "main.adcd7e7d.js.map": "/yourgram/static/js/main.adcd7e7d.js.map",
+    "main.7136c092.css.map": "/yourgram/static/css/main.7136c092.css.map",
+    "main.29167c24.js.map": "/yourgram/static/js/main.29167c24.js.map",
     "787.7fd4e045.chunk.js.map": "/yourgram/static/js/787.7fd4e045.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.679db0d9.css",
-    "static/js/main.adcd7e7d.js"
+    "static/css/main.7136c092.css",
+    "static/js/main.29167c24.js"
   ]
 }
